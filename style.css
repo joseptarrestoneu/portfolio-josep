@@ -115,6 +115,8 @@ button { font: inherit; }
 .project-card__visual--blue { background: #446b8d; }
 .project-card__visual--orange { background: #ca6f35; }
 .project-card__visual--red { background: #9a302b; }
+.project-card__visual--white { background: #ffffff; }
+.project-card__visual--black { background: #000000; }
 .mockup { width: min(82%, 900px); aspect-ratio: 16/9; background: #f4f4ef; border-radius: .75rem; box-shadow: 0 30px 70px rgba(0,0,0,.23); overflow: hidden; transform: perspective(1000px) rotateX(4deg); }
 .mockup__bar { height: 9%; background: #111; }
 .mockup__body { height: 91%; display: grid; grid-template-columns: 22% 1fr; }
