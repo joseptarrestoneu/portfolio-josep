@@ -163,6 +163,102 @@ button { font: inherit; }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+.phone-mockup{
+    width:170px;
+    height:330px;
+    background:#111827;
+    border-radius:30px;
+    border:5px solid #2d3748;
+    position:relative;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.phone-notch{
+    position:absolute;
+    top:10px;
+    width:70px;
+    height:12px;
+    border-radius:20px;
+    background:#000;
+}
+
+.phone-screen{
+    width:90%;
+    height:92%;
+    background:#0f172a;
+    border-radius:22px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.voice-recorder{
+    width:85%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+}
+
+.rec-indicator{
+    align-self:flex-start;
+    color:#ef4444;
+    font-size:.75rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    background:#ef4444;
+    border-radius:50%;
+}
+
+.mic-circle{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:#16a34a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+}
+
+.sound-bars{
+    display:flex;
+    align-items:flex-end;
+    gap:4px;
+    height:32px;
+}
+
+.sound-bars span{
+    width:5px;
+    background:#22c55e;
+    border-radius:6px;
+}
+
+.sound-bars span:nth-child(1){height:10px;}
+.sound-bars span:nth-child(2){height:24px;}
+.sound-bars span:nth-child(3){height:30px;}
+.sound-bars span:nth-child(4){height:18px;}
+.sound-bars span:nth-child(5){height:12px;}
+
+.transcription-box{
+    background:#1e293b;
+    border-radius:12px;
+    color:#cbd5e1;
+    padding:12px;
+    font-size:.72rem;
+    line-height:1.4;
+}
+
 @media (max-width: 900px) {
   .site-header {
     grid-template-columns: 1fr auto auto;
