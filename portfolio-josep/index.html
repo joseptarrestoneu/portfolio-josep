@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfoli de Josep Tarrés, dissenyador de producte digital i desenvolupador full stack." />
+  <meta name="theme-color" content="#f3f1eb" />
+  <title>Josep Tarrés — Product Designer & Full Stack Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contingut</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#home" aria-label="Anar a l'inici">JT<span>.</span></a>
+
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" data-menu-button>
+      <span>Menú</span>
+      <span class="menu-button__icon" aria-hidden="true"></span>
+    </button>
+
+    <nav id="main-navigation" class="site-nav" aria-label="Navegació principal" data-nav>
+      <a href="#work">Projectes</a>
+      <a href="#about">Sobre mi</a>
+      <a href="#sport">Esport</a>
+      <a href="#process">Procés</a>
+      <a href="#contact">Contacte</a>
+    </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Canviar tema" data-theme-toggle>
+      <span aria-hidden="true">◐</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero section" aria-labelledby="hero-title">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Digital Product Designer · Full Stack Developer</p>
+        <h1 id="hero-title">Construeixo productes digitals que la gent entén i gaudeix utilitzant</h1>
+        <p class="hero__intro">
+          Combino estratègia, UX/UI i desenvolupament per transformar problemes reals en solucions útils, clares i escalables.
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#work">Veure projectes</a>
+          <a class="text-link" href="#contact">Parlem <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal" aria-label="Fotografia de Josep Tarrés">
+        <div class="hero__shape" aria-hidden="true"></div>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="jo_noColor.png" />
+          <img src="jo.png" alt="Josep Tarrés somrient, amb samarreta blanca i ulleres" width="960" height="1440" fetchpriority="high" />
+        </picture>
+        <p class="hero__caption">Vic · Barcelona<br />Disponible per a projectes digitals</p>
+      </div>
+
+      <a class="scroll-cue" href="#work" aria-label="Baixar fins als projectes">
+        <span>Scroll</span><span aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <section id="work" class="work section section--padded" aria-labelledby="work-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Projectes realitzats</p>
+        <h2 id="work-title">Del problema al producte</h2>
+      </div>
+
+      <div class="project-list">
+        <article class="project-card project-card--featured reveal">
+          <a href="https://actclub.es/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el cas d'estudi d'ActClub">
+            <div class="project-card__topline">
+              <span>01</span>
+              <span>SaaS · UX/UI · Full Stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>ActClub</h3>
+                <p>Una plataforma multi-club per gestionar activitats, inscripcions, socis, assistència i cobertures.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--green" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="actclub.png" />
+                <img src="actclub.png" alt="Captura de pantalla de la plataforma ActClub" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'eina de competències">
+            <div class="project-card__topline">
+              <span>02</span>
+              <span>Product Design · Data · IA</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Eina de competències</h3>
+                <p>Aplicació web per avaluar perfils, llocs de treball i facilitar el matching de competències.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--black" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="competencies.png" />
+                <img src="competencies.png" alt="Captura de pantalla de l'eina de competències" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi del projecte de calendaris amb IA">
+            <div class="project-card__topline">
+              <span>03</span>
+              <span>AI Product · Research · Automation</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Calendaris amb IA</h3>
+                <p>Conceptualització d'una eina per generar calendaris laborals respectant regles, disponibilitats i necessitats del servei.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--orange" aria-hidden="true">
+              <div class="calendar-visual"><b></b><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de la web de la Càtedra UdL">
+            <div class="project-card__topline">
+              <span>04</span>
+              <span>Web Design · Institution · Frontend</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Càtedra UdL</h3>
+                <p>Redisseny d'una experiència institucional que combina identitat universitària, claredat i una presència digital actual.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="catedra.png" />
+                <img src="catedra.png" alt="Captura de pantalla de la web de la Càtedra UdL" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'EspaiViu App">
+            <div class="project-card__topline">
+              <span>05</span>
+              <span>App Design · Institution · Full Stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>EspaiViu App</h3>
+                <p>Plataforma de gestió d'un CDIAP - Centre de Desenvolupament Infantil i Atenció Precoç, dirigit a nens de 0 a 6 anys.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="espaiviu.png" />
+                <img src="espaiviu.png" alt="Captura de pantalla de l'EspaiViu App" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="https://controlapp-jmhy.onrender.com/" class="project-card__link" aria-label="Veure el cas d'estudi de l'Inspection App">
+            <div class="project-card__topline">
+              <span>06</span>
+              <span>App Design · Institution · Full Stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Inspection App</h3>
+                <p>Plataforma per a la gestió d'inspeccions tècniques, de legionel·losi, i altres serveis relacionats.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="inspect.png" />
+                <img src="inspect.png" alt="Captura de pantalla de l'Inspection App" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="https://taskin-app.onrender.com/" class="project-card__link" aria-label="Veure el cas d'estudi de l'aplicació Taskin">
+            <div class="project-card__topline">
+              <span>07</span>
+              <span>App Design · Product · Full Stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Taskin IA</h3>
+                <p>Plataforma per a la gestió de tasques i projectes d'equips incorporant IA per transcripció de veu a text i automatització.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="taskin.png" />
+                <img src="taskin.png" alt="Captura de pantalla de l'aplicació Taskin" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi del Pla Estratègic de la Fundació Sant Tomàs">
+            <div class="project-card__topline">
+              <span>08</span>
+              <span>Web Design · Institution · Frontend</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Plà Estratègic</h3>
+                <p>Desenvolupament del pla estratègic de la Fundació Sant Tomàs, establint objectius, iniciatives i indicadors clau de rendiment.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="pla_estrategic.png" />
+                <img src="pla_estrategic.png" alt="Captura de pantalla del Pla Estratègic de la Fundació Sant Tomàs" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'aplicació de gestió de xips RFID">
+            <div class="project-card__topline">
+              <span>09</span>
+              <span>App Design · Product · Full Stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>RFID - gestió xips</h3>
+                <p>Aplicació per a la gestió de dispositius RFID, permetent el seguiment i control eficient dels actius.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="rfid.png" />
+                <img src="rfid.png" alt="Captura de pantalla de l'Aplicació gestió RFID" fetchpriority="high" />
+              </picture>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about section section--padded" aria-labelledby="about-title">
+      <div class="about__lead reveal">
+        <p class="eyebrow">Sobre mi</p>
+        <h2 id="about-title">Dissenyo, construeixo i faig evolucionar productes digitals de principi a fi.</h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__copy reveal">
+          <p>
+            Treballo a la intersecció entre persones, negoci i tecnologia. M'agrada entendre bé el problema abans d'obrir Figma o escriure una línia de codi.
+          </p>
+          <p>
+            El meu perfil combina experiència en producte, UX/UI, desenvolupament web, dades i intel·ligència artificial aplicada.
+          </p>
+        </div>
+
+        <dl class="stats reveal">
+          <div><dt>15+</dt><dd>Anys creant solucions digitals</dd></div>
+          <div><dt>End-to-end</dt><dd>De la descoberta al desplegament</dd></div>
+          <div><dt>UX + Code</dt><dd>Disseny i desenvolupament en un sol perfil</dd></div>
+        </dl>
+      </div>
+
+      <div class="skills reveal" aria-label="Competències i tecnologies">
+        <span>Product strategy</span><span>UX research</span><span>UI design</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>Tailwind CSS</span><span>Figma</span><span>OpenAI</span><span>Power BI</span>
+      </div>
+    </section>
+
+    <section id="sport" class="sport section section--padded" aria-labelledby="sport-title">
+      <div class="sport__heading reveal">
+        <p class="eyebrow">Més enllà de la pantalla</p>
+        <h2 id="sport-title">El ciclisme també defineix la meva manera de treballar.</h2>
+      </div>
+
+      <div class="sport__layout">
+        <div class="sport__statement reveal">
+          <p>
+            L'esport d'ultradistància m'ha ensenyat a preparar objectius ambiciosos,
+            gestionar la incertesa i mantenir la constància quan els resultats encara no es veuen.
+          </p>
+          <p>
+            Trasllado aquesta mentalitat als productes digitals: estratègia, disciplina,
+            capacitat d'adaptació i una millora contínua basada en dades.
+          </p>
+        </div>
+
+        <div class="sport-links">
+          <a href="https://www.strava.com/athletes/3655609" target="_blank">
+            → Strava
+          </a>
+
+          <a href="https://es.wikiloc.com/wikiloc/user.do?id=166521" target="_blank">
+            → Wikiloc
+          </a>
+        </div>
+
+        <div class="sport__principles reveal" aria-label="Valors que connecten esport i treball">
+          <article>
+            <span>01</span>
+            <h3>Resistència</h3>
+            <p>Avançar amb constància en projectes llargs i complexos.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Estratègia</h3>
+            <p>Dosificar recursos, prioritzar i prendre decisions en el moment adequat.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Comunitat</h3>
+            <p>Compartir recorregut, aprenentatges i objectius amb altres persones.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="sport__highlights reveal">
+        <article>
+          <p class="sport__label">Disciplina</p>
+          <h3>Ciclisme d'ultradistància</h3>
+          <p>Preparació, resistència i gestió física i mental durant moltes hores.</p>
+        </article>
+        <article>
+          <p class="sport__label">Comunitat</p>
+          <h3>Club Ciclista Torelló</h3>
+          <p>Organització d'activitats, sortides socials i iniciatives per fer créixer el club.</p>
+        </article>
+        <article>
+          <p class="sport__label">Comunicació</p>
+          <h3>Tour de Charleys</h3>
+          <p>Esport, producció audiovisual, streaming i creació de continguts en directe.</p>
+        </article>
+      </div>
+
+      <blockquote class="sport__quote reveal">
+        <p>«Els grans objectius no es resolen amb una única acceleració, sinó mantenint una bona direcció durant tot el recorregut.»</p>
+      </blockquote>
+    </section>
+
+    <section id="process" class="process section section--padded" aria-labelledby="process-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Com treballo</p>
+        <h2 id="process-title">Un procés clar, flexible i orientat a resultats.</h2>
+      </div>
+
+      <ol class="process-list">
+        <li class="reveal"><span>01</span><h3>Entendre</h3><p>Objectius, persones, context i limitacions.</p></li>
+        <li class="reveal"><span>02</span><h3>Definir</h3><p>Prioritats, fluxos, arquitectura i mètriques.</p></li>
+        <li class="reveal"><span>03</span><h3>Dissenyar</h3><p>Wireframes, prototips i sistema visual.</p></li>
+        <li class="reveal"><span>04</span><h3>Construir</h3><p>Frontend, backend, integracions i proves.</p></li>
+        <li class="reveal"><span>05</span><h3>Millorar</h3><p>Mesura, aprenentatge i iteració contínua.</p></li>
+      </ol>
+    </section>
+
+    <section id="contact" class="contact section section--padded" aria-labelledby="contact-title">
+      <div class="contact__inner reveal">
+        <p class="eyebrow">Tens un projecte?</p>
+        <h2 id="contact-title">Construïm alguna cosa que valgui la pena.</h2>
+        <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+      </div>
+
+      <footer class="site-footer">
+        <p>© <span data-year></span> Josep Tarrés</p>
+        <div>
+          <a href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://github.com/joseptarrestoneu" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.strava.com/athletes/3655609" target="_blank" rel="noopener">Strava</a>
+          <a href="https://es.wikiloc.com/wikiloc/user.do?id=166521" target="_blank" rel="noopener">Wikiloc</a>
+        </div>
+        <a href="#home">Tornar a dalt ↑</a>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
