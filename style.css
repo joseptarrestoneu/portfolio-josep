@@ -700,8 +700,8 @@ button { font: inherit; }
 }
 
 /* Carrusel de projectes */
-.carousel { --stage-h: 700px; position: relative; }
-.carousel--articles { --stage-h: 580px; }
+.carousel { --stage-h: clamp(540px, calc(100svh - 190px), 700px); position: relative; }
+.carousel--articles { --stage-h: clamp(500px, calc(100svh - 190px), 580px); }
 .carousel:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: var(--radius); }
 .carousel .project-list { display: block; position: relative; height: var(--stage-h); overflow: hidden; perspective: 1800px; touch-action: pan-y; user-select: none; }
 .carousel .project-card,
