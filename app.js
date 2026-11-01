@@ -85,6 +85,16 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     return ((offset + total / 2) % total + total) % total - total / 2;
   }
 
+  const mobile = window.matchMedia('(max-width: 560px)');
+
+  function fitHeight() {
+    if (mobile.matches) {
+      carousel.style.setProperty('--stage-h', `${cards[active].offsetHeight}px`);
+    } else {
+      carousel.style.removeProperty('--stage-h');
+    }
+  }
+
   function render() {
     cards.forEach((card, index) => {
       const offset = wrapOffset(index - active);
@@ -98,6 +108,7 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
       card.querySelectorAll('a').forEach((link) => link.setAttribute('tabindex', isActive ? '0' : '-1'));
     });
     count.textContent = `${pad(active + 1)} / ${pad(total)}`;
+    fitHeight();
   }
 
   function goTo(index) {
@@ -143,6 +154,10 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
       }
     });
   });
+
+  window.addEventListener('resize', fitHeight);
+  window.addEventListener('load', fitHeight);
+  track.querySelectorAll('img').forEach((image) => image.addEventListener('load', fitHeight));
 
   render();
 });
