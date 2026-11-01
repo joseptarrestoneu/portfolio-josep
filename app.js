@@ -68,9 +68,7 @@ window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
 
-const carousel = document.querySelector('[data-carousel]');
-
-if (carousel) {
+document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const track = carousel.querySelector('[data-carousel-track]');
   const cards = [...track.querySelectorAll('.project-card')];
   const count = carousel.querySelector('[data-carousel-count]');
@@ -147,4 +145,4 @@ if (carousel) {
   });
 
   render();
-}
+});

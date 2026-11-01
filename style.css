@@ -666,19 +666,6 @@ button { font: inherit; }
 
 /* Articles */
 .articles { border-top: 1px solid var(--line); }
-.article-list { list-style: none; margin: 0; padding: 0; }
-.article-item { border-top: 1px solid var(--line); }
-.article-item:last-child { border-bottom: 1px solid var(--line); }
-.article-item a { display: grid; grid-template-columns: 140px 1fr auto; gap: 2rem; align-items: baseline; padding: 2rem 0; transition: padding-left .25s ease, color .25s ease; }
-.article-item a:hover { padding-left: 1rem; color: var(--accent); }
-.article-item__date { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.article-item h3 { margin: 0 0 .5rem; font-size: clamp(1.5rem, 2.6vw, 2.8rem); font-weight: 400; letter-spacing: -.04em; }
-.article-item p { margin: 0; max-width: 60ch; color: var(--muted); }
-.article-item__source { font-size: .95rem; white-space: nowrap; }
-
-@media (max-width: 900px) {
-  .article-item a { grid-template-columns: 1fr; gap: .75rem; }
-}
 
 /* Marketing */
 .marketing { border-top: 1px solid var(--line); }
@@ -713,9 +700,10 @@ button { font: inherit; }
 }
 
 /* Carrusel de projectes */
-.carousel { position: relative; }
+.carousel { --stage-h: 700px; position: relative; }
+.carousel--articles { --stage-h: 580px; }
 .carousel:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: var(--radius); }
-.carousel .project-list { display: block; position: relative; height: 700px; overflow: hidden; perspective: 1800px; touch-action: pan-y; user-select: none; }
+.carousel .project-list { display: block; position: relative; height: var(--stage-h); overflow: hidden; perspective: 1800px; touch-action: pan-y; user-select: none; }
 .carousel .project-card,
 .carousel .project-card--featured {
   position: absolute; top: 0; bottom: 0; left: 50%;
@@ -734,7 +722,7 @@ button { font: inherit; }
 .carousel .project-card--featured .project-card__visual { min-height: 0; }
 .carousel a, .carousel img { -webkit-user-drag: none; }
 .carousel__button {
-  position: absolute; top: calc(350px - 24px); z-index: 30;
+  position: absolute; top: calc(var(--stage-h) / 2 - 24px); z-index: 30;
   width: 48px; height: 48px; display: grid; place-items: center;
   border: 1px solid var(--line); border-radius: 50%;
   background: var(--bg); color: var(--text); font-size: 1.2rem; cursor: pointer;
@@ -745,7 +733,12 @@ button { font: inherit; }
 .carousel__button--next { right: .5rem; }
 .carousel__count { margin: 1.5rem 0 0; text-align: center; font-size: .76rem; letter-spacing: .13em; color: var(--muted); }
 
+.carousel .article-card h3 { font-size: clamp(1.5rem, 2vw, 2.1rem); line-height: 1.08; }
+.carousel .article-card .project-card__visual img { width: 100%; height: 100%; object-fit: cover; }
+
 @media (max-width: 560px) {
-  .carousel .project-list { height: 680px; }
-  .carousel__button { top: calc(340px - 24px); width: 42px; height: 42px; }
+  .carousel { --stage-h: 680px; }
+  .carousel--articles { --stage-h: 640px; }
+  .carousel__button { width: 42px; height: 42px; }
+  .carousel .article-card h3 { font-size: 1.4rem; }
 }
