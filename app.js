@@ -67,3 +67,84 @@ if ('IntersectionObserver' in window) {
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
+
+const carousel = document.querySelector('[data-carousel]');
+
+if (carousel) {
+  const track = carousel.querySelector('[data-carousel-track]');
+  const cards = [...track.querySelectorAll('.project-card')];
+  const count = carousel.querySelector('[data-carousel-count]');
+  const total = cards.length;
+  const pad = (value) => String(value).padStart(2, '0');
+  let active = 0;
+  let dragStartX = null;
+  let dragged = false;
+
+  cards.forEach((card) => card.classList.remove('reveal'));
+  track.querySelectorAll('a, img').forEach((element) => { element.draggable = false; });
+
+  function wrapOffset(offset) {
+    return ((offset + total / 2) % total + total) % total - total / 2;
+  }
+
+  function render() {
+    cards.forEach((card, index) => {
+      const offset = wrapOffset(index - active);
+      const distance = Math.abs(offset);
+      const isActive = distance === 0;
+      card.style.setProperty('--offset', offset);
+      card.style.setProperty('--abs', Math.min(distance, 3));
+      card.classList.toggle('is-active', isActive);
+      card.classList.toggle('is-hidden', distance > 2);
+      card.setAttribute('aria-hidden', String(!isActive));
+      card.querySelectorAll('a').forEach((link) => link.setAttribute('tabindex', isActive ? '0' : '-1'));
+    });
+    count.textContent = `${pad(active + 1)} / ${pad(total)}`;
+  }
+
+  function goTo(index) {
+    active = ((index % total) + total) % total;
+    render();
+  }
+
+  carousel.querySelector('[data-carousel-prev]').addEventListener('click', () => goTo(active - 1));
+  carousel.querySelector('[data-carousel-next]').addEventListener('click', () => goTo(active + 1));
+
+  carousel.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(active - 1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); goTo(active + 1); }
+  });
+
+  track.addEventListener('pointerdown', (event) => {
+    dragStartX = event.clientX;
+    dragged = false;
+  });
+
+  track.addEventListener('pointerup', (event) => {
+    if (dragStartX === null) return;
+    const distance = event.clientX - dragStartX;
+    dragStartX = null;
+    if (Math.abs(distance) > 50) {
+      dragged = true;
+      goTo(active + (distance < 0 ? 1 : -1));
+    }
+  });
+
+  track.addEventListener('pointercancel', () => { dragStartX = null; });
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', (event) => {
+      if (dragged) {
+        event.preventDefault();
+        dragged = false;
+        return;
+      }
+      if (index !== active) {
+        event.preventDefault();
+        goTo(index);
+      }
+    });
+  });
+
+  render();
+}

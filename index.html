@@ -69,7 +69,8 @@
         <h2 id="work-title">Del problema al producte</h2>
       </div>
 
-      <div class="project-list">
+      <div class="carousel reveal" data-carousel role="region" aria-roledescription="carrusel" aria-label="Projectes realitzats" tabindex="0">
+      <div class="project-list" data-carousel-track>
         <article class="project-card project-card--featured reveal">
           <a href="https://actclub.es/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el cas d'estudi d'ActClub">
             <div class="project-card__topline">
@@ -356,6 +357,11 @@
             </div>
           </a>
         </article>
+      </div>
+
+      <button class="carousel__button carousel__button--prev" type="button" aria-label="Projecte anterior" data-carousel-prev><span aria-hidden="true">←</span></button>
+      <button class="carousel__button carousel__button--next" type="button" aria-label="Projecte següent" data-carousel-next><span aria-hidden="true">→</span></button>
+      <p class="carousel__count" aria-live="polite" data-carousel-count></p>
       </div>
     </section>
 

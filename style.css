@@ -711,3 +711,41 @@ button { font: inherit; }
   .marketing__services li { grid-template-columns: 34px 1fr; }
   .marketing__services p { grid-column: 2; }
 }
+
+/* Carrusel de projectes */
+.carousel { position: relative; }
+.carousel:focus-visible { outline: 2px solid var(--accent); outline-offset: 8px; border-radius: var(--radius); }
+.carousel .project-list { display: block; position: relative; height: 700px; overflow: hidden; perspective: 1800px; touch-action: pan-y; user-select: none; }
+.carousel .project-card,
+.carousel .project-card--featured {
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: min(540px, 78vw); min-height: 0; background: var(--bg); cursor: pointer;
+  --offset: 0; --abs: 0;
+  transform: translateX(calc(-50% + var(--offset) * 62%)) translateZ(calc(var(--abs) * -160px)) rotateY(calc(var(--offset) * -28deg)) scale(calc(1 - var(--abs) * .06));
+  z-index: calc(10 - var(--abs));
+  opacity: .6;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s ease, box-shadow .6s ease;
+}
+.carousel .project-card.is-active { opacity: 1; cursor: default; box-shadow: 0 30px 80px rgba(0,0,0,.18); }
+.carousel .project-card.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.carousel .project-card h3 { font-size: clamp(1.9rem, 2.6vw, 2.8rem); }
+.carousel .project-card__link { grid-template-rows: auto auto minmax(0, 1fr); gap: 1.25rem; }
+.carousel .project-card__visual,
+.carousel .project-card--featured .project-card__visual { min-height: 0; }
+.carousel a, .carousel img { -webkit-user-drag: none; }
+.carousel__button {
+  position: absolute; top: calc(350px - 24px); z-index: 30;
+  width: 48px; height: 48px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: var(--bg); color: var(--text); font-size: 1.2rem; cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease, color .2s ease;
+}
+.carousel__button:hover { background: var(--text); color: var(--bg); transform: scale(1.06); }
+.carousel__button--prev { left: .5rem; }
+.carousel__button--next { right: .5rem; }
+.carousel__count { margin: 1.5rem 0 0; text-align: center; font-size: .76rem; letter-spacing: .13em; color: var(--muted); }
+
+@media (max-width: 560px) {
+  .carousel .project-list { height: 680px; }
+  .carousel__button { top: calc(340px - 24px); width: 42px; height: 42px; }
+}
