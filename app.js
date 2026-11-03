@@ -5,10 +5,27 @@ const nav = document.querySelector('[data-nav]');
 const themeToggle = document.querySelector('[data-theme-toggle]');
 const year = document.querySelector('[data-year]');
 
-const savedTheme = localStorage.getItem('portfolio-theme');
-if (savedTheme === 'dark' || savedTheme === 'light') {
-  root.dataset.theme = savedTheme;
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+function storedTheme() {
+  try {
+    const theme = localStorage.getItem('portfolio-theme');
+    return theme === 'dark' || theme === 'light' ? theme : null;
+  } catch {
+    return null;
+  }
 }
+
+function applyTheme(theme) {
+  root.dataset.theme = theme;
+  if (themeMeta) themeMeta.content = theme === 'dark' ? '#10110f' : '#f3f1eb';
+}
+
+applyTheme(storedTheme() || (systemDark.matches ? 'dark' : 'light'));
+systemDark.addEventListener('change', (event) => {
+  if (!storedTheme()) applyTheme(event.matches ? 'dark' : 'light');
+});
 
 year.textContent = new Date().getFullYear();
 
@@ -33,8 +50,12 @@ nav.querySelectorAll('a').forEach((link) => {
 themeToggle.addEventListener('click', () => {
   const currentTheme = root.dataset.theme === 'dark' ? 'dark' : 'light';
   const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  root.dataset.theme = nextTheme;
-  localStorage.setItem('portfolio-theme', nextTheme);
+  applyTheme(nextTheme);
+  try {
+    localStorage.setItem('portfolio-theme', nextTheme);
+  } catch {
+    /* sense emmagatzematge: el tema només dura aquesta visita */
+  }
 });
 
 function updateHeader() {
@@ -67,6 +88,127 @@ if ('IntersectionObserver' in window) {
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
+
+// Panell de detall que s'expandeix des de la targeta
+const detailState = { panel: null, trigger: null, card: null, rect: null, pushed: false };
+
+// El panell neix i mor amb la mida exacta de la targeta (sense comptar l'escala temporal ni la barra de desplaçament)
+function applyClip(panel, rect, radius) {
+  const viewportWidth = document.documentElement.clientWidth;
+  const viewportHeight = document.documentElement.clientHeight;
+  panel.style.setProperty('--clip-top', `${Math.max(rect.top, 0)}px`);
+  panel.style.setProperty('--clip-left', `${Math.max(rect.left, 0)}px`);
+  panel.style.setProperty('--clip-right', `${Math.max(viewportWidth - rect.right, 0)}px`);
+  panel.style.setProperty('--clip-bottom', `${Math.max(viewportHeight - rect.bottom, 0)}px`);
+  panel.style.setProperty('--clip-radius', radius);
+}
+
+function setBackgroundInert(isInert) {
+  document.querySelectorAll('.site-header, main').forEach((element) => {
+    element.inert = isInert;
+  });
+}
+
+function openDetail(id, trigger, { animate = true, push = true } = {}) {
+  const panel = document.getElementById(id);
+  if (!panel || detailState.panel) return;
+  const card = trigger ? trigger.closest('.project-card') : null;
+
+  detailState.panel = panel;
+  detailState.trigger = trigger;
+  detailState.card = card;
+
+  if (card) {
+    card.getAnimations().forEach((animation) => animation.finish());
+    detailState.rect = card.getBoundingClientRect();
+    detailState.radius = getComputedStyle(card).borderTopLeftRadius;
+  }
+  if (card && animate) {
+    applyClip(panel, detailState.rect, detailState.radius);
+    card.classList.add('is-pressed');
+  }
+
+  panel.hidden = false;
+  panel.scrollTop = 0;
+  document.body.classList.add('detail-open');
+  setBackgroundInert(true);
+
+  if (animate && card) {
+    void panel.offsetWidth;
+    panel.classList.add('is-open');
+  } else {
+    panel.style.transition = 'none';
+    panel.classList.add('is-open');
+    void panel.offsetWidth;
+    panel.style.transition = '';
+  }
+
+  if (push) {
+    history.pushState({ detail: id }, '', `#${id}`);
+    detailState.pushed = true;
+  }
+  panel.querySelector('[data-detail-close]').focus({ preventScroll: true });
+}
+
+function finishCloseDetail() {
+  const { panel, trigger, card } = detailState;
+  if (!panel) return;
+  panel.hidden = true;
+  panel.style.removeProperty('--clip-top');
+  panel.style.removeProperty('--clip-right');
+  panel.style.removeProperty('--clip-bottom');
+  panel.style.removeProperty('--clip-left');
+  panel.style.removeProperty('--clip-radius');
+  document.body.classList.remove('detail-open');
+  setBackgroundInert(false);
+  if (card) card.classList.remove('is-pressed');
+  if (location.hash === '#' + panel.id) history.replaceState(null, '', location.pathname + location.search);
+  if (trigger) trigger.focus({ preventScroll: true });
+  detailState.panel = null;
+  detailState.trigger = null;
+  detailState.card = null;
+  detailState.rect = null;
+  detailState.pushed = false;
+}
+
+function closeDetail() {
+  const { panel, card } = detailState;
+  if (!panel || !panel.classList.contains('is-open')) return;
+  if (card && detailState.rect) {
+    applyClip(panel, detailState.rect, detailState.radius);
+    card.classList.remove('is-pressed');
+  }
+  panel.classList.remove('is-open');
+  window.setTimeout(finishCloseDetail, card ? 800 : 0);
+}
+
+function requestCloseDetail() {
+  if (!detailState.panel) return;
+  if (detailState.pushed) {
+    history.back();
+  } else {
+    closeDetail();
+  }
+}
+
+document.querySelectorAll('[data-detail-close]').forEach((button) => {
+  button.addEventListener('click', requestCloseDetail);
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && detailState.panel) requestCloseDetail();
+});
+
+window.addEventListener('popstate', () => {
+  if (detailState.panel && !(history.state && history.state.detail)) {
+    closeDetail();
+  }
+});
+
+const deepLink = location.hash ? document.querySelector(`[data-detail="${CSS.escape(location.hash.slice(1))}"]`) : null;
+if (deepLink) {
+  openDetail(deepLink.dataset.detail, deepLink, { animate: false, push: false });
+}
 
 document.querySelectorAll('[data-carousel]').forEach((carousel) => {
   const track = carousel.querySelector('[data-carousel-track]');
@@ -151,6 +293,12 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
       if (index !== active) {
         event.preventDefault();
         goTo(index);
+        return;
+      }
+      const trigger = event.target.closest('[data-detail]');
+      if (trigger) {
+        event.preventDefault();
+        openDetail(trigger.dataset.detail, trigger);
       }
     });
   });

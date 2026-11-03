@@ -3,10 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfoli de Josep Tarrés, dissenyador de producte digital, desenvolupador full stack i consultor freelance de màrqueting digital." />
+  <title>Josep Tarrés — Disseny de producte, desenvolupament full stack i màrqueting digital</title>
+  <meta name="description" content="Portfoli de Josep Tarrés: disseny de producte digital, desenvolupament full stack i consultoria freelance de màrqueting digital per a empreses i negocis." />
+  <link rel="canonical" href="https://joseptarrestoneu.com/" />
   <meta name="theme-color" content="#f3f1eb" />
-  <title>Josep Tarrés — Product Designer, Full Stack Developer & Marketing Digital</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ca_ES" />
+  <meta property="og:site_name" content="Josep Tarrés" />
+  <meta property="og:title" content="Josep Tarrés — Disseny de producte, desenvolupament full stack i màrqueting digital" />
+  <meta property="og:description" content="Portfoli de Josep Tarrés: disseny de producte digital, desenvolupament full stack i consultoria freelance de màrqueting digital per a empreses i negocis." />
+  <meta property="og:url" content="https://joseptarrestoneu.com/" />
+  <meta property="og:image" content="https://joseptarrestoneu.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Josep Tarrés, disseny de producte, desenvolupament full stack i màrqueting digital" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" />
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('portfolio-theme');
+        var theme = saved === 'dark' || saved === 'light' ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="detail.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Josep Tarrés Toneu",
+    "url": "https://joseptarrestoneu.com/",
+    "image": "https://joseptarrestoneu.com/og-image.jpg",
+    "jobTitle": "Dissenyador de producte digital, desenvolupador full stack i consultor de màrqueting digital",
+    "description": "Portfoli de Josep Tarrés: disseny de producte digital, desenvolupament full stack i consultoria freelance de màrqueting digital per a empreses i negocis.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vic",
+      "addressCountry": "ES"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/",
+      "https://github.com/joseptarrestoneu",
+      "https://www.instagram.com/joseptarres/"
+    ]
+  }
+  </script>
   <script src="app.js" defer></script>
   <script data-goatcounter="https://joseptarrestoneu.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -23,11 +75,10 @@
 
     <nav id="main-navigation" class="site-nav" aria-label="Navegació principal" data-nav>
       <a href="#work">Projectes</a>
-      <a href="#marketing">Marketing</a>
-      <a href="#articles">Articles</a>
+      <a href="#serveis">Serveis</a>
       <a href="#about">Sobre mi</a>
-      <a href="#sport">Esport</a>
       <a href="#process">Procés</a>
+      <a href="#articles">Articles</a>
       <a href="#contact">Contacte</a>
     </nav>
 
@@ -39,28 +90,26 @@
   <main id="main">
     <section id="home" class="hero section" aria-labelledby="hero-title">
       <div class="hero__copy reveal">
-        <p class="eyebrow">Digital Product Designer · Full Stack Developer</p>
+        <p class="eyebrow">Disseny de producte · Desenvolupament full stack · Màrqueting digital</p>
         <h1 id="hero-title">Construeixo productes digitals que la gent entén i gaudeix utilitzant</h1>
         <p class="hero__intro">
           Combino estratègia, UX/UI i desenvolupament per transformar problemes reals en solucions útils, clares i escalables.
         </p>
         <div class="hero__actions">
-          <a class="button button--primary" href="#work">Veure projectes</a>
-          <a class="text-link" href="#contact">Parlem <span aria-hidden="true">↗</span></a>
+          <a class="button button--primary" href="#contact">Parlem del teu projecte</a>
+          <a class="button button--secondary" href="#work">Veure projectes</a>
         </div>
       </div>
 
       <div class="hero__visual reveal" aria-label="Fotografia de Josep Tarrés">
         <div class="hero__shape" aria-hidden="true"></div>
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="jo_noColor.png" />
-          <img src="jo.png" alt="Josep Tarrés somrient, amb samarreta blanca i ulleres" width="960" height="1440" fetchpriority="high" />
-        </picture>
+        <img class="hero__photo hero__photo--light" src="jo.webp" alt="Josep Tarrés somrient, amb samarreta blanca i ulleres" width="960" height="1307" fetchpriority="high" decoding="async" />
+        <img class="hero__photo hero__photo--dark" src="jo-dark.webp" alt="" width="960" height="1307" loading="lazy" decoding="async" aria-hidden="true" />
         <p class="hero__caption">Vic · Barcelona<br />Disponible per a projectes digitals</p>
       </div>
 
       <a class="scroll-cue" href="#work" aria-label="Baixar fins als projectes">
-        <span>Scroll</span><span aria-hidden="true">↓</span>
+        <span>Baixa</span><span aria-hidden="true">↓</span>
       </a>
     </section>
 
@@ -72,11 +121,201 @@
 
       <div class="carousel reveal" data-carousel role="region" aria-roledescription="carrusel" aria-label="Projectes realitzats" tabindex="0">
       <div class="project-list" data-carousel-track>
+        <article class="project-card project-card--featured reveal">
+          <a href="#actclub" class="project-card__link" data-detail="actclub" aria-haspopup="dialog" aria-label="Veure més sobre ActClub, la plataforma de gestió de clubs">
+            <div class="project-card__topline">
+              <span>01</span>
+              <span>SaaS · UX/UI · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>ActClub</h3>
+                <p>Una plataforma multi-club per gestionar activitats, inscripcions, socis, assistència i cobertures.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--forest" aria-hidden="true">
+              <img src="actclub-card.jpg" alt="Panell de participants, escàner de check-in al mòbil i credencial digital d'ActClub" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#taskin" class="project-card__link" data-detail="taskin" aria-haspopup="dialog" aria-label="Veure més sobre Taskin IA, la plataforma de gestió de tasques">
+            <div class="project-card__topline">
+              <span>02</span>
+              <span>Disseny d'app · Producte · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Taskin IA</h3>
+                <p>Plataforma per a la gestió de tasques i projectes d'equips incorporant IA per transcripció de veu a text i automatització.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--night" aria-hidden="true">
+              <img src="taskin-card.jpg" alt="Tauler de tasques de Taskin amb la bústia de tasques de Claude, el dictat per veu i el cronòmetre" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#espaiviu" class="project-card__link" data-detail="espaiviu" aria-haspopup="dialog" aria-label="Veure més sobre EspaiViu App, la plataforma de gestió d'un CDIAP">
+            <div class="project-card__topline">
+              <span>03</span>
+              <span>Disseny d'app · Institució · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>EspaiViu App</h3>
+                <p>Plataforma de gestió d'un CDIAP - Centre de Desenvolupament Infantil i Atenció Precoç, dirigit a nens de 0 a 6 anys.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--navy" aria-hidden="true">
+              <img src="espaiviu-card.jpg" alt="Taula de seguiments, app del professional al mòbil i dictat per veu d'EspaiViu" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#delivery" class="project-card__link" data-detail="delivery" aria-haspopup="dialog" aria-label="Veure més sobre Delivery Track, l'aplicació de seguiment d'entregues">
+            <div class="project-card__topline">
+              <span>04</span>
+              <span>Disseny d'app · Logística · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Delivery Track</h3>
+                <p>Aplicació per al seguiment d'entregues de paquets, ja siguin de bugaderia o de qualsevol altre material: ruta del repartidor des del mòbil, amb funcionament sense cobertura, signatura i fotos, i tauler d'oficina per planificar rutes i gestionar incidències.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--slate" aria-hidden="true">
+              <img src="delivery-card.jpg" alt="Ruta del repartidor al mòbil i tauler d'oficina de Delivery Track" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#encaix" class="project-card__link" data-detail="encaix" aria-haspopup="dialog" aria-label="Veure més sobre Encaix App, l'eina de competències">
+            <div class="project-card__topline">
+              <span>05</span>
+              <span>Disseny de producte · Dades · IA</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Eina de competències</h3>
+                <p>Aplicació web per avaluar perfils, llocs de treball i facilitar el matching de competències.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--teal" aria-hidden="true">
+              <img src="competencies-card.jpg" alt="Biblioteca de competències de l'eina, amb el nivell d'encaix d'una persona amb un lloc de treball" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#qualitac" class="project-card__link" data-detail="qualitac" aria-haspopup="dialog" aria-label="Veure més sobre Qualitac, l'aplicació de gestió SGI">
+            <div class="project-card__topline">
+              <span>06</span>
+              <span>SaaS · UX/UI · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Qualitac</h3>
+                <p>Conceptualització i disseny de l'aplicació de Gestió SGI, establint objectius, iniciatives i indicadors clau de rendiment.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--qdark" aria-hidden="true">
+              <img src="qualitac-card.jpg" alt="Panell de control de Qualitac amb alertes i seguiment d'indicadors" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#rfid" class="project-card__link" data-detail="rfid" aria-haspopup="dialog" aria-label="Veure més sobre RFIDControl, l'aplicació de gestió de dispositius RFID">
+            <div class="project-card__topline">
+              <span>07</span>
+              <span>Disseny d'app · Producte · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>RFIDControl</h3>
+                <p>Aplicació per a la gestió de dispositius RFID, permetent el seguiment i control eficient dels actius.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--deep" aria-hidden="true">
+              <img src="rfid-card.jpg" alt="Inici de sessió de RFIDControl amb ones de lectura d'etiquetes RFID" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#pla" class="project-card__link" data-detail="pla" aria-haspopup="dialog" aria-label="Veure més sobre el Pla Estratègic">
+            <div class="project-card__topline">
+              <span>08</span>
+              <span>Disseny web · Institució · Frontend</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Pla Estratègic</h3>
+                <p>Desenvolupament del pla estratègic d'una entitat social, establint objectius, iniciatives i indicadors clau de rendiment.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--plan" aria-hidden="true">
+              <img src="pla-card.jpg" alt="Pla estratègic 2024-2026 amb quatre eixos i el seu avanç" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="https://controlapp-jmhy.onrender.com/" class="project-card__link" aria-label="Veure el cas d'estudi de l'Inspection App">
+            <div class="project-card__topline">
+              <span>09</span>
+              <span>Disseny d'app · Institució · Full stack</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Inspection App</h3>
+                <p>Plataforma per a la gestió d'inspeccions tècniques, de legionel·losi, i altres serveis relacionats.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
+              <img src="inspect.webp" alt="Captura de pantalla de l'Inspection App" width="1600" height="980" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a href="#catedra" class="project-card__link" data-detail="catedra" aria-haspopup="dialog" aria-label="Veure més sobre el web de la Càtedra UdL">
+            <div class="project-card__topline">
+              <span>10</span>
+              <span>Disseny web · Institució · Frontend</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Càtedra UdL</h3>
+                <p>Redisseny d'una experiència institucional que combina identitat universitària, claredat i una presència digital actual.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--wine" aria-hidden="true">
+              <img src="catedra-card.jpg" alt="Portada del web de la Càtedra UdL i seccions del menú" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
         <article class="project-card reveal">
           <a href="https://clubciclistatorello.cat/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el web del Club Ciclista Torelló">
             <div class="project-card__topline">
-              <span>01</span>
-              <span>Web Design · Community · Frontend</span>
+              <span>11</span>
+              <span>Disseny web · Comunitat · Frontend</span>
             </div>
             <div class="project-card__content">
               <div>
@@ -85,131 +324,41 @@
               </div>
               <span class="project-card__arrow" aria-hidden="true">↗</span>
             </div>
-            <div class="project-card__visual project-card__visual--black" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="club-ciclista.jpg" />
-                <img src="club-ciclista.jpg" alt="Captura de pantalla del web del Club Ciclista Torelló" loading="lazy" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card project-card--featured reveal">
-          <a href="https://actclub.es/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el cas d'estudi d'ActClub">
-            <div class="project-card__topline">
-              <span>02</span>
-              <span>SaaS · UX/UI · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>ActClub</h3>
-                <p>Una plataforma multi-club per gestionar activitats, inscripcions, socis, assistència i cobertures.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--green" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="actclub.png" />
-                <img src="actclub.png" alt="Captura de pantalla de la plataforma ActClub" fetchpriority="high" />
-              </picture>
+            <div class="project-card__visual project-card__visual--ink" aria-hidden="true">
+              <img src="club-ciclista-card.jpg" alt="Pàgines d'inici, notícies i activitats del web del Club Ciclista Torelló" width="1500" height="1020" loading="lazy" decoding="async" />
             </div>
           </a>
         </article>
 
         <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'aplicació de Laundry">
+          <div class="project-card__link project-card__link--static">
             <div class="project-card__topline">
-              <span>03</span>
-              <span>App Design · Logistics · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Laundry Track</h3>
-                <p>Aplicació per al seguiment d'entregues de bugaderia: ruta del repartidor des del mòbil, amb funcionament sense cobertura, signatura i fotos, i tauler d'oficina per planificar rutes i gestionar incidències.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--blue" aria-hidden="true">
-              <div class="route-visual"><b></b><i></i><i></i><i></i><i></i></div>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'eina de competències">
-            <div class="project-card__topline">
-              <span>04</span>
-              <span>Product Design · Data · IA</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Eina de competències</h3>
-                <p>Aplicació web per avaluar perfils, llocs de treball i facilitar el matching de competències.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--black" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="competencies.png" />
-                <img src="competencies.png" alt="Captura de pantalla de l'eina de competències" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi del projecte de calendaris amb IA">
-            <div class="project-card__topline">
-              <span>05</span>
-              <span>AI Product · Research · Automation</span>
+              <span>12</span>
+              <span>Producte amb IA · Recerca · Automatització</span>
             </div>
             <div class="project-card__content">
               <div>
                 <h3>Calendaris amb IA</h3>
                 <p>Conceptualització d'una eina per generar calendaris laborals respectant regles, disponibilitats i necessitats del servei.</p>
               </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
             </div>
             <div class="project-card__visual project-card__visual--orange" aria-hidden="true">
               <div class="calendar-visual"><b></b><i></i><i></i><i></i><i></i><i></i><i></i></div>
             </div>
-          </a>
+          </div>
         </article>
 
         <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de la web de la Càtedra UdL">
+          <div class="project-card__link project-card__link--static">
             <div class="project-card__topline">
-              <span>06</span>
-              <span>Web Design · Institution · Frontend</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Càtedra UdL</h3>
-                <p>Redisseny d'una experiència institucional que combina identitat universitària, claredat i una presència digital actual.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="catedra.png" />
-                <img src="catedra.png" alt="Captura de pantalla de la web de la Càtedra UdL" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-                <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi del projecte de seguiment d'usuaris amb veu">
-            <div class="project-card__topline">
-              <span>07</span>
-              <span>AI Product · Research · Automation</span>
+              <span>13</span>
+              <span>Producte amb IA · Recerca · Automatització</span>
             </div>
             <div class="project-card__content">
               <div>
                 <h3>Seguiment amb veu</h3>
                 <p>Conceptualització d'una aplicació per al seguiment d'usuaris mitjançant la veu, reduint errors i millorant l'eficiència del procés.</p>
               </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
             </div>
               <div class="project-card__visual project-card__visual--black" aria-hidden="true">
                 <div class="phone-mockup">
@@ -246,158 +395,27 @@
                   </div>
                 </div>
               </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'EspaiViu App">
-            <div class="project-card__topline">
-              <span>08</span>
-              <span>App Design · Institution · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>EspaiViu App</h3>
-                <p>Plataforma de gestió d'un CDIAP - Centre de Desenvolupament Infantil i Atenció Precoç, dirigit a nens de 0 a 6 anys.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="espaiviu.png" />
-                <img src="espaiviu.png" alt="Captura de pantalla de l'EspaiViu App" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="https://controlapp-jmhy.onrender.com/" class="project-card__link" aria-label="Veure el cas d'estudi de l'Inspection App">
-            <div class="project-card__topline">
-              <span>09</span>
-              <span>App Design · Institution · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Inspection App</h3>
-                <p>Plataforma per a la gestió d'inspeccions tècniques, de legionel·losi, i altres serveis relacionats.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="inspect.png" />
-                <img src="inspect.png" alt="Captura de pantalla de l'Inspection App" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="https://taskin-app.onrender.com/" class="project-card__link" aria-label="Veure el cas d'estudi de l'aplicació Taskin">
-            <div class="project-card__topline">
-              <span>10</span>
-              <span>App Design · Product · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Taskin IA</h3>
-                <p>Plataforma per a la gestió de tasques i projectes d'equips incorporant IA per transcripció de veu a text i automatització.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="taskin.png" />
-                <img src="taskin.png" alt="Captura de pantalla de l'aplicació Taskin" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi del Pla Estratègic de la Fundació Sant Tomàs">
-            <div class="project-card__topline">
-              <span>11</span>
-              <span>Web Design · Institution · Frontend</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Plà Estratègic</h3>
-                <p>Desenvolupament del pla estratègic de la Fundació Sant Tomàs, establint objectius, iniciatives i indicadors clau de rendiment.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="pla_estrategic.png" />
-                <img src="pla_estrategic.png" alt="Captura de pantalla del Pla Estratègic de la Fundació Sant Tomàs" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="#" class="project-card__link" aria-label="Veure el cas d'estudi de l'aplicació de gestió de xips RFID">
-            <div class="project-card__topline">
-              <span>12</span>
-              <span>App Design · Product · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>RFID - gestió xips</h3>
-                <p>Aplicació per a la gestió de dispositius RFID, permetent el seguiment i control eficient dels actius.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--white" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="rfid.png" />
-                <img src="rfid.png" alt="Captura de pantalla de l'Aplicació gestió RFID" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card reveal">
-          <a href="#" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el cas d'estudi de l'aplicació de Gestió SGI">
-            <div class="project-card__topline">
-              <span>13</span>
-              <span>SaaS · UX/UI · Full Stack</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Qualitac</h3>
-                <p>Conceptualització i disseny de l'aplicació de Gestió SGI, establint objectius, iniciatives i indicadors clau de rendiment.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--green" aria-hidden="true">
-              <picture>
-                <source media="(prefers-color-scheme: dark)" srcset="sgi.png" />
-                <img src="sgi.png" alt="Captura de pantalla de l'aplicació de Gestió SGI" fetchpriority="high" />
-              </picture>
-            </div>
-          </a>
+          </div>
         </article>
       </div>
 
       <button class="carousel__button carousel__button--prev" type="button" aria-label="Projecte anterior" data-carousel-prev><span aria-hidden="true">←</span></button>
       <button class="carousel__button carousel__button--next" type="button" aria-label="Projecte següent" data-carousel-next><span aria-hidden="true">→</span></button>
       <p class="carousel__count" aria-live="polite" data-carousel-count></p>
+      <p class="carousel__hint"><b aria-hidden="true">+</b> detall del projecte <i aria-hidden="true">·</i> <b aria-hidden="true">↗</b> web publicat</p>
       </div>
     </section>
 
-    <section id="marketing" class="marketing section section--padded" aria-labelledby="marketing-title">
+    <section id="serveis" class="marketing section section--padded" aria-labelledby="serveis-title">
       <div class="marketing__heading reveal">
-        <p class="eyebrow">Marketing digital · Freelance</p>
-        <h2 id="marketing-title">Un bon producte necessita que el trobin.</h2>
+        <p class="eyebrow">Serveis · Freelance</p>
+        <h2 id="serveis-title">Construeixo el producte i faig que el trobin.</h2>
       </div>
 
       <div class="marketing__layout">
         <div class="marketing__statement reveal">
           <p>
-            Ajudo empreses i negocis a guanyar visibilitat, captar clients i entendre què funciona de debò.
+            Ajudo empreses i entitats de punta a punta: des de dissenyar i desenvolupar l'eina digital fins que arribi a qui la necessita.
           </p>
           <p>
             Vinc del producte i de les dades, no d'una agència: cada acció té un objectiu, una mesura i una decisió darrere.
@@ -405,200 +423,77 @@
           <a class="button button--primary" href="#contact">Parlem del teu projecte</a>
         </div>
 
-        <ol class="marketing__services reveal" aria-label="Serveis de marketing digital">
-          <li>
-            <span>01</span>
-            <h3>Web i SEO</h3>
-            <p>Webs ràpides, clares i preparades per aparèixer a Google i convertir visites en contactes.</p>
-          </li>
-          <li>
-            <span>02</span>
-            <h3>Publicitat</h3>
-            <p>Campanyes a Google Ads i Meta Ads amb pressupost controlat i orientades a resultats.</p>
-          </li>
-          <li>
-            <span>03</span>
-            <h3>Email i automatització</h3>
-            <p>Fluxos que atenen i fidelitzen clients sense feina manual repetitiva.</p>
-          </li>
-          <li>
-            <span>04</span>
-            <h3>Analítica i dades</h3>
-            <p>Mesura amb Google Analytics i Power BI per saber què aporta cada euro invertit.</p>
-          </li>
-          <li>
-            <span>05</span>
-            <h3>Contingut i xarxes</h3>
-            <p>Estratègia de continguts i presència a xarxes coherent amb la teva marca.</p>
-          </li>
-        </ol>
+        <div class="services-groups reveal">
+          <div class="services-group">
+            <h3>Producte digital</h3>
+            <ol class="marketing__services" aria-label="Serveis de producte digital">
+              <li>
+                <span>01</span>
+                <h4>Disseny UX/UI</h4>
+                <p>Recerca, fluxos, prototips i interfícies clares, pensades per a qui les fa servir cada dia.</p>
+              </li>
+              <li>
+                <span>02</span>
+                <h4>Desenvolupament full stack</h4>
+                <p>Aplicacions web i instal·lables amb React, Node.js i MongoDB, de la idea al desplegament.</p>
+              </li>
+              <li>
+                <span>03</span>
+                <h4>IA i automatització</h4>
+                <p>Dictat per veu, integració amb Claude i fluxos que estalvien feina repetitiva.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="services-group">
+            <h3>Màrqueting digital</h3>
+            <ol class="marketing__services" aria-label="Serveis de màrqueting digital">
+              <li>
+                <span>01</span>
+                <h4>Web i SEO</h4>
+                <p>Webs ràpides, clares i preparades per aparèixer a Google i convertir visites en contactes.</p>
+              </li>
+              <li>
+                <span>02</span>
+                <h4>Publicitat</h4>
+                <p>Campanyes a Google Ads i Meta Ads amb pressupost controlat i orientades a resultats.</p>
+              </li>
+              <li>
+                <span>03</span>
+                <h4>Email i automatització</h4>
+                <p>Fluxos que atenen i fidelitzen clients sense feina manual repetitiva.</p>
+              </li>
+              <li>
+                <span>04</span>
+                <h4>Analítica i dades</h4>
+                <p>Mesura amb Google Analytics i Power BI per saber què aporta cada euro invertit.</p>
+              </li>
+              <li>
+                <span>05</span>
+                <h4>Contingut i xarxes</h4>
+                <p>Estratègia de continguts i presència a xarxes coherent amb la teva marca.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
       </div>
 
       <div class="marketing__approach reveal">
         <article>
-          <p class="marketing__label">01 · Diagnosi</p>
-          <h3>Punt de partida</h3>
-          <p>Reviso web, canals i dades actuals per detectar on es perden oportunitats.</p>
+          <p class="marketing__label">Empreses</p>
+          <h3>Eines que encaixen amb l'equip</h3>
+          <p>Gestió, rutes i qualitat adaptades al dia a dia de qui les fa servir.</p>
         </article>
         <article>
-          <p class="marketing__label">02 · Pla</p>
-          <h3>Prioritats clares</h3>
-          <p>Proposo poques accions, ben escollides, amb objectius i indicadors definits.</p>
+          <p class="marketing__label">Entitats i institucions</p>
+          <h3>Dades i seguiment sense complicacions</h3>
+          <p>Plataformes de seguiment, indicadors i webs institucionals clares i accessibles.</p>
         </article>
         <article>
-          <p class="marketing__label">03 · Millora</p>
-          <h3>Mesurar i ajustar</h3>
-          <p>Reviso resultats de forma periòdica i ajusto allò que no aporta.</p>
+          <p class="marketing__label">Clubs i comunitats</p>
+          <h3>Menys gestió, més activitat</h3>
+          <p>Activitats, inscripcions i presència digital per a grups de persones.</p>
         </article>
-      </div>
-      <!-- Quan tinguis casos reals de màrqueting, afegeix-los aquí amb mètriques verificades. -->
-    </section>
-
-    <section id="articles" class="articles section section--padded" aria-labelledby="articles-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Articles</p>
-        <h2 id="articles-title">Idees i aprenentatges sobre tecnologia i transformació digital.</h2>
-      </div>
-
-      <div class="carousel carousel--articles reveal" data-carousel role="region" aria-roledescription="carrusel" aria-label="Articles" tabindex="0">
-      <div class="project-list" data-carousel-track>
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/la-ia-als-serveis-socials-eina-o-promesa-josep-tarr%C3%A9s-toneu-y63ff/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «La IA als serveis socials: eina o promesa?» a LinkedIn">
-            <div class="project-card__topline">
-              <span>01</span>
-              <span>LinkedIn · 13 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>La IA als serveis socials: eina o promesa?</h3>
-                <p>Els algoritmes ja decideixen, en silenci, bona part de la nostra vida. La pregunta és si també han de ser-hi quan una persona demana ajuda als serveis socials.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--green" aria-hidden="true">
-              <img src="img/articles/07.png" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/tempestes-dinformaci%C3%B3-com-la-ia-ajuda-desemmascarar-les-tarr%C3%A9s-toneu-91rxf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Tempestes d’informació: com la IA ajuda a desemmascarar les fake news» a LinkedIn">
-            <div class="project-card__topline">
-              <span>02</span>
-              <span>LinkedIn · 3 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Tempestes d’informació: com la IA ajuda a desemmascarar les fake news</h3>
-                <p>Amb l’alerta vermella per pluges a València i Alacant, les xarxes tornen a omplir-se de vídeos virals i missatges que barregen realitat i desinformació. Com la IA ajuda a detectar-los.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--blue" aria-hidden="true">
-              <img src="img/articles/01.jpg" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/ciberseguretat-lamena%C3%A7a-invisible-que-les-empreses-josep-tarr%C3%A9s-toneu-fp1bf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Ciberseguretat: l’amenaça invisible que les empreses encara subestimen» a LinkedIn">
-            <div class="project-card__topline">
-              <span>03</span>
-              <span>LinkedIn · 2 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Ciberseguretat: l’amenaça invisible que les empreses encara subestimen</h3>
-                <p>Cada setmana hi ha nous ciberatacs, robatoris de dades o serveis paralitzats, però moltes empreses continuen sense estar preparades.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--orange" aria-hidden="true">
-              <img src="img/articles/02.jpg" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/silver-bullets-38-anys-despr%C3%A9s-segueix-vigent-josep-tarr%C3%A9s-toneu-qrovf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «No Silver Bullets: 38 anys després, segueix vigent?» a LinkedIn">
-            <div class="project-card__topline">
-              <span>04</span>
-              <span>LinkedIn · 4 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>No Silver Bullets: 38 anys després, segueix vigent?</h3>
-                <p>El 1987 Fred Brooks publicava “No Silver Bullet: Essence and Accidents of Software Engineering”. Què en queda, gairebé quatre dècades després, en temps d’IA?</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--black" aria-hidden="true">
-              <img src="img/articles/03.png" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/automatitzant-la-gesti%C3%B3-de-tickets-claus-sinergia-i-tarr%C3%A9s-toneu-1sxcf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Automatitzant la Gestió de Tickets Claus: La Sinergia entre SendGrid i Telegram» a LinkedIn">
-            <div class="project-card__topline">
-              <span>05</span>
-              <span>LinkedIn · 4 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Automatitzant la Gestió de Tickets Claus: La Sinergia entre SendGrid i Telegram</h3>
-                <p>La gestió eficient del suport, intern i extern, és fonamental: rapidesa de resposta i cap sol·licitud perduda. Un cas pràctic d’automatització.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--green" aria-hidden="true">
-              <img src="img/articles/04.jpg" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/transformaci%C3%B3-digital-estat-de-la-situaci%C3%B3-les-josep-tarr%C3%A9s-toneu/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Transformació digital: estat de la situació de les entitats socials» a LinkedIn">
-            <div class="project-card__topline">
-              <span>06</span>
-              <span>LinkedIn · 9 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Transformació digital: estat de la situació de les entitats socials</h3>
-                <p>Quin és l’estat de la transformació digital al Tercer Sector? Una mirada a les dades de maduresa digital i la bretxa digital a les entitats socials.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--blue" aria-hidden="true">
-              <img src="img/articles/05.jpg" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-
-        <article class="project-card article-card">
-          <a href="https://www.linkedin.com/pulse/transformaci%C3%B3-digital-vs-digitalitzaci%C3%B3-josep-tarr%C3%A9s-toneu/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Transformació digital vs. digitalització» a LinkedIn">
-            <div class="project-card__topline">
-              <span>07</span>
-              <span>LinkedIn · 7 min de lectura</span>
-            </div>
-            <div class="project-card__content">
-              <div>
-                <h3>Transformació digital vs. digitalització</h3>
-                <p>Dos termes sovint confosos però amb implicacions ben diferents: aprofitar la tecnologia per innovar sense perdre l’ADN ni la missió de l’organització.</p>
-              </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="project-card__visual project-card__visual--undefined" aria-hidden="true">
-              <img src="img/articles/06.jpg" alt="" loading="lazy" />
-            </div>
-          </a>
-        </article>
-      </div>
-
-      <button class="carousel__button carousel__button--prev" type="button" aria-label="Article anterior" data-carousel-prev><span aria-hidden="true">←</span></button>
-      <button class="carousel__button carousel__button--next" type="button" aria-label="Article següent" data-carousel-next><span aria-hidden="true">→</span></button>
-      <p class="carousel__count" aria-live="polite" data-carousel-count></p>
       </div>
     </section>
 
@@ -620,84 +515,84 @@
 
         <dl class="stats reveal">
           <div><dt>15+</dt><dd>Anys creant solucions digitals</dd></div>
-          <div><dt>End-to-end</dt><dd>De la descoberta al desplegament</dd></div>
-          <div><dt>UX + Code</dt><dd>Disseny i desenvolupament en un sol perfil</dd></div>
+          <div><dt>De punta a punta</dt><dd>De la descoberta al desplegament</dd></div>
+          <div><dt>UX i codi</dt><dd>Disseny i desenvolupament en un sol perfil</dd></div>
         </dl>
       </div>
 
       <div class="skills reveal" aria-label="Competències i tecnologies">
-        <span>Product strategy</span><span>UX research</span><span>UI design</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>Tailwind CSS</span><span>Figma</span><span>OpenAI</span><span>Power BI</span>
+        <span>Estratègia de producte</span><span>Recerca UX</span><span>Disseny UI</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>Tailwind CSS</span><span>Figma</span><span>OpenAI</span><span>Power BI</span>
       </div>
-    </section>
 
-    <section id="sport" class="sport section section--padded" aria-labelledby="sport-title">
+      <div id="sport" class="sport about__sport" role="region" aria-labelledby="sport-title">
       <div class="sport__heading reveal">
-        <p class="eyebrow">Més enllà de la pantalla</p>
-        <h2 id="sport-title">El ciclisme també defineix la meva manera de treballar.</h2>
-      </div>
-
-      <div class="sport__layout">
-        <div class="sport__statement reveal">
-          <p>
-            L'esport d'ultradistància m'ha ensenyat a preparar objectius ambiciosos,
-            gestionar la incertesa i mantenir la constància quan els resultats encara no es veuen.
-          </p>
-          <p>
-            Trasllado aquesta mentalitat als productes digitals: estratègia, disciplina,
-            capacitat d'adaptació i una millora contínua basada en dades.
-          </p>
+          <p class="eyebrow">Més enllà de la pantalla</p>
+          <h3 id="sport-title">El ciclisme també defineix la meva manera de treballar.</h3>
         </div>
 
-        <div class="sport-links">
-          <a href="https://www.strava.com/athletes/3655609" target="_blank">
-            → Strava
-          </a>
+        <div class="sport__layout">
+          <div class="sport__statement reveal">
+            <p>
+              L'esport d'ultradistància m'ha ensenyat a preparar objectius ambiciosos,
+              gestionar la incertesa i mantenir la constància quan els resultats encara no es veuen.
+            </p>
+            <p>
+              Trasllado aquesta mentalitat als productes digitals: estratègia, disciplina,
+              capacitat d'adaptació i una millora contínua basada en dades.
+            </p>
+          </div>
 
-          <a href="https://es.wikiloc.com/wikiloc/user.do?id=166521" target="_blank">
-            → Wikiloc
-          </a>
+          <div class="sport-links">
+            <a href="https://www.strava.com/athletes/3655609" target="_blank">
+              → Strava
+            </a>
+
+            <a href="https://es.wikiloc.com/wikiloc/user.do?id=166521" target="_blank">
+              → Wikiloc
+            </a>
+          </div>
+
+          <div class="sport__principles reveal" aria-label="Valors que connecten esport i treball">
+            <article>
+              <span>01</span>
+              <h3>Resistència</h3>
+              <p>Avançar amb constància en projectes llargs i complexos.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Estratègia</h3>
+              <p>Dosificar recursos, prioritzar i prendre decisions en el moment adequat.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Comunitat</h3>
+              <p>Compartir recorregut, aprenentatges i objectius amb altres persones.</p>
+            </article>
+          </div>
         </div>
 
-        <div class="sport__principles reveal" aria-label="Valors que connecten esport i treball">
+        <div class="sport__highlights reveal">
           <article>
-            <span>01</span>
-            <h3>Resistència</h3>
-            <p>Avançar amb constància en projectes llargs i complexos.</p>
+            <p class="sport__label">Disciplina</p>
+            <h3>Ciclisme d'ultradistància</h3>
+            <p>Preparació, resistència i gestió física i mental durant moltes hores.</p>
           </article>
           <article>
-            <span>02</span>
-            <h3>Estratègia</h3>
-            <p>Dosificar recursos, prioritzar i prendre decisions en el moment adequat.</p>
+            <p class="sport__label">Comunitat</p>
+            <h3>Club Ciclista Torelló</h3>
+            <p>Organització d'activitats, sortides socials i iniciatives per fer créixer el club.</p>
           </article>
           <article>
-            <span>03</span>
-            <h3>Comunitat</h3>
-            <p>Compartir recorregut, aprenentatges i objectius amb altres persones.</p>
+            <p class="sport__label">Comunicació</p>
+            <h3>Tour de Charleys</h3>
+            <p>Esport, producció audiovisual, streaming i creació de continguts en directe.</p>
           </article>
         </div>
-      </div>
 
-      <div class="sport__highlights reveal">
-        <article>
-          <p class="sport__label">Disciplina</p>
-          <h3>Ciclisme d'ultradistància</h3>
-          <p>Preparació, resistència i gestió física i mental durant moltes hores.</p>
-        </article>
-        <article>
-          <p class="sport__label">Comunitat</p>
-          <h3>Club Ciclista Torelló</h3>
-          <p>Organització d'activitats, sortides socials i iniciatives per fer créixer el club.</p>
-        </article>
-        <article>
-          <p class="sport__label">Comunicació</p>
-          <h3>Tour de Charleys</h3>
-          <p>Esport, producció audiovisual, streaming i creació de continguts en directe.</p>
-        </article>
+        <blockquote class="sport__quote reveal">
+          <p>«Els grans objectius no es resolen amb una única acceleració, sinó mantenint una bona direcció durant tot el recorregut.»</p>
+        </blockquote>
       </div>
-
-      <blockquote class="sport__quote reveal">
-        <p>«Els grans objectius no es resolen amb una única acceleració, sinó mantenint una bona direcció durant tot el recorregut.»</p>
-      </blockquote>
     </section>
 
     <section id="process" class="process section section--padded" aria-labelledby="process-title">
@@ -715,11 +610,164 @@
       </ol>
     </section>
 
+    <section id="articles" class="articles section section--padded" aria-labelledby="articles-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Articles</p>
+        <h2 id="articles-title">Idees i aprenentatges sobre tecnologia i transformació digital.</h2>
+      </div>
+
+      <div class="carousel carousel--articles reveal" data-carousel role="region" aria-roledescription="carrusel" aria-label="Articles" tabindex="0">
+      <div class="project-list" data-carousel-track>
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/la-ia-als-serveis-socials-eina-o-promesa-josep-tarr%C3%A9s-toneu-y63ff/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «La IA als serveis socials: eina o promesa?» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2026-10">Oct 2026</time></span>
+              <span>LinkedIn · 13 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>La IA als serveis socials: eina o promesa?</h3>
+                <p>Els algoritmes ja decideixen, en silenci, bona part de la nostra vida. La pregunta és si també han de ser-hi quan una persona demana ajuda als serveis socials.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--cream" aria-hidden="true">
+              <img src="img/articles/07.png" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/tempestes-dinformaci%C3%B3-com-la-ia-ajuda-desemmascarar-les-tarr%C3%A9s-toneu-91rxf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Tempestes d’informació: com la IA ajuda a desemmascarar les fake news» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2025-10">Oct 2025</time></span>
+              <span>LinkedIn · 3 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Tempestes d’informació: com la IA ajuda a desemmascarar les fake news</h3>
+                <p>Amb l’alerta vermella per pluges a València i Alacant, les xarxes tornen a omplir-se de vídeos virals i missatges que barregen realitat i desinformació. Com la IA ajuda a detectar-los.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--blue" aria-hidden="true">
+              <img src="img/articles/01.jpg" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/ciberseguretat-lamena%C3%A7a-invisible-que-les-empreses-josep-tarr%C3%A9s-toneu-fp1bf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Ciberseguretat: l’amenaça invisible que les empreses encara subestimen» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2025-10">Oct 2025</time></span>
+              <span>LinkedIn · 2 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Ciberseguretat: l’amenaça invisible que les empreses encara subestimen</h3>
+                <p>Cada setmana hi ha nous ciberatacs, robatoris de dades o serveis paralitzats, però moltes empreses continuen sense estar preparades.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--orange" aria-hidden="true">
+              <img src="img/articles/02.jpg" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/silver-bullets-38-anys-despr%C3%A9s-segueix-vigent-josep-tarr%C3%A9s-toneu-qrovf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «No Silver Bullets: 38 anys després, segueix vigent?» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2025-09">Set 2025</time></span>
+              <span>LinkedIn · 4 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>No Silver Bullets: 38 anys després, segueix vigent?</h3>
+                <p>El 1987 Fred Brooks publicava “No Silver Bullet: Essence and Accidents of Software Engineering”. Què en queda, gairebé quatre dècades després, en temps d’IA?</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--black" aria-hidden="true">
+              <img src="img/articles/03.png" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/automatitzant-la-gesti%C3%B3-de-tickets-claus-sinergia-i-tarr%C3%A9s-toneu-1sxcf/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Automatitzant la Gestió de Tickets Claus: La Sinergia entre SendGrid i Telegram» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2025-05">Maig 2025</time></span>
+              <span>LinkedIn · 4 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Automatitzant la Gestió de Tickets Claus: La Sinergia entre SendGrid i Telegram</h3>
+                <p>La gestió eficient del suport, intern i extern, és fonamental: rapidesa de resposta i cap sol·licitud perduda. Un cas pràctic d’automatització.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--green" aria-hidden="true">
+              <img src="img/articles/04.jpg" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/transformaci%C3%B3-digital-estat-de-la-situaci%C3%B3-les-josep-tarr%C3%A9s-toneu/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Transformació digital: estat de la situació de les entitats socials» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2023-08">Ago 2023</time></span>
+              <span>LinkedIn · 9 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Transformació digital: estat de la situació de les entitats socials</h3>
+                <p>Quin és l’estat de la transformació digital al Tercer Sector? Una mirada a les dades de maduresa digital i la bretxa digital a les entitats socials.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--blue" aria-hidden="true">
+              <img src="img/articles/05.jpg" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card article-card">
+          <a href="https://www.linkedin.com/pulse/transformaci%C3%B3-digital-vs-digitalitzaci%C3%B3-josep-tarr%C3%A9s-toneu/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Llegir l'article «Transformació digital vs. digitalització» a LinkedIn">
+            <div class="project-card__topline">
+              <span><time datetime="2023-08">Ago 2023</time></span>
+              <span>LinkedIn · 7 min de lectura</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Transformació digital vs. digitalització</h3>
+                <p>Dos termes sovint confosos però amb implicacions ben diferents: aprofitar la tecnologia per innovar sense perdre l’ADN ni la missió de l’organització.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="project-card__visual project-card__visual--blue" aria-hidden="true">
+              <img src="img/articles/06.jpg" alt="" loading="lazy" />
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <button class="carousel__button carousel__button--prev" type="button" aria-label="Article anterior" data-carousel-prev><span aria-hidden="true">←</span></button>
+      <button class="carousel__button carousel__button--next" type="button" aria-label="Article següent" data-carousel-next><span aria-hidden="true">→</span></button>
+      <p class="carousel__count" aria-live="polite" data-carousel-count></p>
+      </div>
+
+      <p class="articles__more reveal"><a class="text-link" href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/recent-activity/articles/" target="_blank" rel="noopener noreferrer">Veure tots els articles a LinkedIn <span aria-hidden="true">↗</span></a></p>
+    </section>
+
     <section id="contact" class="contact section section--padded" aria-labelledby="contact-title">
       <div class="contact__inner reveal">
         <p class="eyebrow">Tens un projecte?</p>
         <h2 id="contact-title">Construïm alguna cosa que valgui la pena.</h2>
-        <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+        <div class="contact__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <a class="button button--secondary" href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" target="_blank" rel="noopener noreferrer">Escriu-me per LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
 
       <footer class="site-footer">
@@ -728,12 +776,1294 @@
           <a href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer">LinkedIn</a>
           <a href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener">Instagram</a>
           <a href="https://github.com/joseptarrestoneu" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.strava.com/athletes/3655609" target="_blank" rel="noopener">Strava</a>
-          <a href="https://es.wikiloc.com/wikiloc/user.do?id=166521" target="_blank" rel="noopener">Wikiloc</a>
         </div>
         <a href="#home">Tornar a dalt ↑</a>
       </footer>
     </section>
   </main>
+
+  <div class="detail" id="encaix" role="dialog" aria-modal="true" aria-labelledby="encaix-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Encaix App</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="encaix-title">
+        <p class="eyebrow">Aplicació web · Disseny i desenvolupament</p>
+        <h2 id="encaix-title" class="case-hero__title">Encaix&nbsp;App</h2>
+        <p class="case-hero__intro">
+          Una plataforma de gestió de competències, encaix laboral i seguiment social, dissenyada i desenvolupada per mi de principi a fi.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny i desenvolupament full-stack, en solitari</dd></div>
+          <div><dt>Estat</dt><dd>En producció, ús diari</dd></div>
+          <div><dt>Stack</dt><dd>React · Express · MongoDB</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="context-title" class="case-title">Del full de càlcul a un sol sistema.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Acompanyar centenars de persones en processos de formació i inserció laboral vol dir gestionar molta informació: perfils competencials, avaluacions a l'aula i al lloc de treball, i seguiment periòdic d'un equip de professionals repartits en diversos serveis i centres.
+            </p>
+            <p>
+              Tot això vivia repartit entre fulls de càlcul, papers i el criteri personal de cada professional: difícil de comparar, de sumar i d'auditar. Vaig dissenyar i construir un sol sistema on cada competència, cada avaluació, cada hora de seguiment i cada encaix amb un lloc de treball queda registrat de manera coherent, sense perdre la flexibilitat que calia per a una feina tan humana.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="features-title" class="case-title">Sis peces que treballen juntes.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Biblioteca de competències i encaix</h4>
+            <p>Un arbre de competències i indicadors amb quatre nivells de puntuació, i un motor d'encaix que compara el perfil real d'una persona amb els requisits d'un lloc de treball.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Avaluacions d'aula i de lloc de treball</h4>
+            <p>Escales de puntuació versionades i uns pesos configurables entre context d'aula i de lloc de treball, per servei.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Seguiments per veu, individuals i massius</h4>
+            <p>Els professionals poden fer el seguiment d'una persona dictant-lo: l'aplicació transcriu la veu a text i el deixa llest per revisar i desar. També es poden crear seguiments massius per a un grup sencer d'un sol cop, igual de còmodes a mòbil que a ordinador.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Informes amb càlcul real</h4>
+            <p>L'objectiu d'hores de cada persona es reparteix pels dies reals del seu contracte, no per tot el període, amb gràfiques d'evolució i exportació a PDF.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Permisos granulars per servei</h4>
+            <p>Diversos serveis dins una mateixa organització, i un perfil de rol per cadascun que decideix, mòdul a mòdul, què es pot consultar i gestionar.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Integració amb sistemes externs</h4>
+            <p>Sincronització automàtica, nocturna i bidireccional de persones i seguiments amb un sistema de gestió extern.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="screens-title">
+        <div>
+          <p class="eyebrow">Pantalles reconstruïdes</p>
+          <h3 id="screens-title" class="case-title">Tres moments del dia a dia.</h3>
+          <p class="case-note">Totes les dades d'aquestes reconstruccions són fictícies.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Activitat dels professionals</h4>
+            <span class="mock-tag">tendència a cada targeta</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció de la pantalla d'activitat d'un professional, amb quatre targetes d'indicadors i una mini-gràfica de tendència a cadascuna">
+            <p class="mock__name">Laia Serra Puig</p>
+            <div class="stat-row">
+              <div class="stat">
+                <span class="stat__label">Seguiments</span>
+                <div class="stat__row">
+                  <b>486</b>
+                  <svg class="spark" width="54" height="18" viewBox="0 0 54 18" aria-hidden="true"><path d="M0,13 L9,12 L18,9 L27,10 L36,6 L45,4 L54,2"/><circle cx="54" cy="2" r="2"/></svg>
+                </div>
+              </div>
+              <div class="stat">
+                <span class="stat__label">Hores de seguiment</span>
+                <div class="stat__row">
+                  <b>1.512h</b>
+                  <svg class="spark" width="54" height="18" viewBox="0 0 54 18" aria-hidden="true"><path d="M0,15 L9,13 L18,11 L27,8 L36,7 L45,5 L54,3"/><circle cx="54" cy="3" r="2"/></svg>
+                </div>
+              </div>
+              <div class="stat">
+                <span class="stat__label">Avaluacions fetes</span>
+                <div class="stat__row">
+                  <b>12</b>
+                  <svg class="spark" width="54" height="18" viewBox="0 0 54 18" aria-hidden="true"><path d="M0,16 L9,16 L18,14 L27,14 L36,10 L45,10 L54,6"/><circle cx="54" cy="6" r="2"/></svg>
+                </div>
+              </div>
+              <div class="stat">
+                <span class="stat__label">Indicadors avaluats</span>
+                <div class="stat__row">
+                  <b>64</b>
+                  <svg class="spark" width="54" height="18" viewBox="0 0 54 18" aria-hidden="true"><path d="M0,14 L9,12 L18,13 L27,9 L36,8 L45,5 L54,4"/><circle cx="54" cy="4" r="2"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-caption">L'original mostra el nom i les xifres reals de cada professional, amb una mini-gràfica d'evolució dibuixada a mà (sense llibreria de gràfics) a cada targeta.</p>
+        </figure>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Informe d'hores de seguiments</h4>
+            <span class="mock-tag">objectiu prorratejat pel contracte</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció de l'informe d'hores: tres persones amb barres de progrés en verd, blau i vermell segons el seu ritme">
+            <div class="prog-list">
+              <div class="prog-row">
+                <div class="prog-row__top"><span>Martí Vidal Roca</span><b class="is-good">22 / 19h</b></div>
+                <div class="track"><div class="fill is-good" style="width:100%"></div><div class="mark" style="left:70%"></div></div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-row__top"><span>Noa Figueres Camps</span><b class="is-pace">14 / 19h</b></div>
+                <div class="track"><div class="fill is-pace" style="width:74%"></div><div class="mark" style="left:70%"></div></div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-row__top"><span>Pol Ametller Soler</span><b class="is-bad">6 / 19h</b></div>
+                <div class="track"><div class="fill is-bad" style="width:32%"></div><div class="mark" style="left:70%"></div></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-caption">El verd marca l'objectiu complert, el blau que ja va per davant del ritme esperat i el vermell que va endarrerit. La ratlla vertical indica les hores que tocaria haver fet avui, segons els dies reals de contracte de cada persona dins el període triat.</p>
+        </figure>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Seguiment massiu</h4>
+            <span class="mock-tag">un grup, un sol pas</span>
+          </figcaption>
+          <div class="mock group-mock" role="img" aria-label="Reconstrucció del seguiment massiu: es tria un grup i un tipus de seguiment, i es marquen les persones que hi eren">
+            <div class="group-top">
+              <span class="pill">Grup: Itinerari Personal — Dilluns</span>
+              <span class="pill">Tipus: Formació (60 min)</span>
+            </div>
+            <ul class="chk-list">
+              <li><span class="chk is-on">✓</span> Berta Camps Illa</li>
+              <li><span class="chk is-on">✓</span> Dídac Roure Peña</li>
+              <li class="is-off"><span class="chk"></span> Farida Benali Touzani <em>no hi era avui</em></li>
+              <li><span class="chk is-on">✓</span> Guillem Soto Marès</li>
+            </ul>
+            <div class="group-cta"><span class="mock-button">Crear 3 seguiments</span></div>
+          </div>
+          <p class="mock-caption">Es tria un grup de persones desat prèviament, s'omplen els camps comuns un sol cop i es desmarca qui aquell dia no hi era. El mateix formulari serveix a mòbil i a ordinador.</p>
+        </figure>
+      </section>
+
+      <section class="case-section section" aria-labelledby="stack-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">Com està construïda</p>
+            <h3 id="stack-title" class="case-title">Una app instal·lable, feta a mida.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Frontend en React i Vite, com a aplicació instal·lable (PWA) perquè els professionals la facin servir des del mòbil igual que des de l'ordinador. Backend en Express i MongoDB, amb autenticació pròpia i permisos configurables mòdul a mòdul. Els PDF es generen al navegador, i les mini-gràfiques de tendència estan dibuixades a mà amb SVG, sense cap llibreria de gràfics pel mig.
+            </p>
+            <div class="skills">
+              <span>React</span><span>Vite</span><span>PWA</span><span>Express</span><span>MongoDB · Mongoose</span><span>JWT</span><span>@react-pdf/renderer</span><span>SVG a mida</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-end section" aria-labelledby="end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <p class="case-end__lead">En ús diari, creixent amb cada necessitat real que apareix.</p>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="delivery" role="dialog" aria-modal="true" aria-labelledby="delivery-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Delivery Track</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="delivery-title">
+        <p class="eyebrow">Aplicació web instal·lable · Disseny i desenvolupament</p>
+        <h2 id="delivery-title" class="case-hero__title">Delivery&nbsp;Track</h2>
+        <p class="case-hero__intro">
+          Una aplicació per al seguiment d'entregues de paquets, ja siguin de bugaderia o de qualsevol altre material: el repartidor fa la ruta des del mòbil, fins i tot sense cobertura, i l'oficina ho planifica i ho controla des de l'ordinador.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny i desenvolupament full-stack, en solitari</dd></div>
+          <div><dt>Plataforma</dt><dd>PWA al mòbil + tauler d'oficina a l'ordinador</dd></div>
+          <div><dt>Stack</dt><dd>React · Express · MongoDB</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="delivery-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="delivery-context-title" class="case-title">Una app, dues maneres de treballar.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Repartir paquets cada dia vol dir coordinar packing lists, rutes, repartidors i incidències, i saber en tot moment què s'ha entregat i què no, tant si és bugaderia com qualsevol altre material. Cada rol necessita una cosa diferent.
+            </p>
+            <p>
+              Per això l'aplicació és una sola, amb dues interfícies segons el rol. El repartidor té una app de mòbil senzilla, amb només el que necessita a cada parada. L'oficina té un tauler d'escriptori per planificar rutes, revisar entregues i resoldre incidències.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="delivery-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="delivery-features-title" class="case-title">Sis peces, del magatzem al client.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Ruta d'avui i càrrega</h4>
+            <p>El repartidor veu la ruta que li ha publicat l'oficina, amb les parades i els packing lists, i marca cada paquet o carro a mesura que el puja a la furgoneta.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Entrega per parada</h4>
+            <p>Navegar fins al client o trucar-lo amb un toc, consultar l'horari de recepció i les indicacions d'accés, fer fotos del material al lloc i recollir el nom i la signatura de qui el rep.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Funciona sense cobertura</h4>
+            <p>Les entregues es desen al dispositiu i s'envien soles quan torna la connexió. Cada entrega és idempotent: si s'envia dues vegades, no es duplica.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Planificador de rutes</h4>
+            <p>L'oficina crea rutes a partir de plantilles reutilitzables, hi afegeix ubicacions i packing lists, assigna repartidor i vehicle, i les publica.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Tauler i seguiment</h4>
+            <p>Rutes en curs, progrés, mapa d'entregues i darreres entregues. Les que tenen el GPS lluny del client o l'hora desquadrada queden marcades per revisar.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Incidències i sincronització</h4>
+            <p>Registre i resolució d'incidències, des del mòbil o l'oficina, i importació automàtica de packing lists i clients des del sistema de gestió extern.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="delivery-screens-title">
+        <div>
+          <p class="eyebrow">Pantalles reconstruïdes</p>
+          <h3 id="delivery-screens-title" class="case-title">Dos moments del dia a dia.</h3>
+          <p class="case-note">Totes les dades d'aquestes reconstruccions són fictícies.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>App del repartidor</h4>
+            <span class="mock-tag">ruta d'avui i entrega</span>
+          </figcaption>
+          <div class="mock phones" role="img" aria-label="Reconstrucció de dues pantalles del mòbil del repartidor: la llista de parades de la ruta d'avui i la confirmació d'una entrega amb fotos i signatura">
+            <div class="phone">
+              <div class="phone__screen">
+                <p class="phone__title">Ruta d'avui</p>
+                <p class="phone__sub">Ruta Nord · 3 de 6 parades</p>
+                <div class="phone__progress"><i style="width:50%"></i></div>
+                <ul class="stops">
+                  <li class="is-done"><b>1</b><span>Residència Mirasol</span><em>Entregat</em></li>
+                  <li class="is-done"><b>2</b><span>Escola Els Roures</span><em>Entregat</em></li>
+                  <li class="is-done"><b>3</b><span>Clínica del Parc</span><em>Entregat</em></li>
+                  <li class="is-next"><b>4</b><span>Hotel Riu Fred</span><em>Següent</em></li>
+                  <li><b>5</b><span>Casal de la Vila</span><em>Pendent</em></li>
+                  <li><b>6</b><span>Gimnàs Nou Cos</span><em>Pendent</em></li>
+                </ul>
+              </div>
+            </div>
+            <div class="phone">
+              <div class="phone__screen">
+                <p class="phone__title">Signatura i confirmació</p>
+                <p class="phone__sub">Hotel Riu Fred</p>
+                <div class="phone__field"><small>Nom de qui rep</small>Marta Soler</div>
+                <div class="phone__photos"><span></span><span></span><span class="is-add">+</span></div>
+                <div class="phone__sign">
+                  <small>Signatura del client</small>
+                  <svg viewBox="0 0 200 60" aria-hidden="true"><path d="M8,44 C22,10 34,52 48,26 S70,8 80,36 S104,52 120,22 S150,14 160,40 S184,34 192,24"/></svg>
+                </div>
+                <p class="phone__offline">Sense cobertura · s'enviarà sola</p>
+                <span class="phone__button">Confirmar entrega</span>
+              </div>
+            </div>
+          </div>
+          <p class="mock-caption">A cada parada hi ha el necessari per acabar l'entrega: dades del client, fotos, signatura i confirmació. Si no hi ha cobertura, l'entrega es guarda al dispositiu i s'envia sola en recuperar-la.</p>
+        </figure>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Tauler del dia</h4>
+            <span class="mock-tag">visió de l'oficina</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció del tauler d'oficina amb tres indicadors, el progrés de les rutes d'avui i una entrega per revisar">
+            <div class="stat-row">
+              <div class="stat"><span class="stat__label">Rutes en curs</span><div class="stat__row"><b>3</b></div></div>
+              <div class="stat"><span class="stat__label">Packing lists entregats</span><div class="stat__row"><b>41 / 58</b></div></div>
+              <div class="stat"><span class="stat__label">Incidències obertes</span><div class="stat__row"><b class="is-bad">2</b></div></div>
+            </div>
+            <div class="prog-list prog-list--spaced">
+              <div class="prog-row">
+                <div class="prog-row__top"><span>Ruta Nord · Joan</span><b class="is-good">6 / 6</b></div>
+                <div class="track"><div class="fill is-good" style="width:100%"></div></div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-row__top"><span>Ruta Centre · Anna</span><b class="is-pace">4 / 7</b></div>
+                <div class="track"><div class="fill is-pace" style="width:57%"></div></div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-row__top"><span>Ruta Sud · Pere</span><b class="is-bad">1 / 6</b></div>
+                <div class="track"><div class="fill is-bad" style="width:17%"></div></div>
+              </div>
+            </div>
+            <div class="review">
+              <b>Entrega per revisar</b>
+              <span>Casal de la Vila · GPS lluny del client</span>
+            </div>
+          </div>
+          <p class="mock-caption">L'oficina veu d'un cop d'ull com va cada ruta i quines entregues cal revisar, per exemple perquè el GPS era lluny del client o l'hora del mòbil no quadrava.</p>
+        </figure>
+      </section>
+
+      <section class="case-section section" aria-labelledby="delivery-stack-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">Com està construïda</p>
+            <h3 id="delivery-stack-title" class="case-title">Pensada per treballar al carrer.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Frontend en React i Vite, instal·lable com a PWA. Les entregues pendents es desen a IndexedDB i es reenvien soles. Backend en Express i MongoDB, amb sessions que es poden revocar, bloqueig d'intents fallits, límit de peticions i rols diferenciats per a repartidor, oficina i administració. Els mapes són de Leaflet i OpenStreetMap.
+            </p>
+            <div class="skills">
+              <span>React</span><span>Vite</span><span>PWA</span><span>IndexedDB</span><span>Express</span><span>MongoDB · Mongoose</span><span>JWT</span><span>Leaflet</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-end section" aria-labelledby="delivery-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="delivery-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="taskin" role="dialog" aria-modal="true" aria-labelledby="taskin-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Taskin IA</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="taskin-title">
+        <p class="eyebrow">Plataforma web · Disseny i desenvolupament</p>
+        <h2 id="taskin-title" class="case-hero__title">Taskin&nbsp;IA</h2>
+        <p class="case-hero__intro">
+          Una plataforma de gestió de tasques i projectes per a equips, amb intel·ligència artificial per transcriure la veu a text i automatitzar la creació de tasques.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny i desenvolupament full-stack, en solitari</dd></div>
+          <div><dt>Plataforma</dt><dd>Web instal·lable (PWA)</dd></div>
+          <div><dt>Stack</dt><dd>React · Express · MongoDB</dd></div>
+        </dl>
+        <a class="button button--primary case-hero__cta" href="https://taskin-app.onrender.com/" target="_blank" rel="noopener noreferrer">Obrir l'aplicació <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="case-section section" aria-labelledby="taskin-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="taskin-context-title" class="case-title">Menys teclejar, més fer.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Un equip treballa amb moltes tasques que neixen a les reunions, per correu o en converses. Volia un sol lloc on cada tasca tingui responsable, projecte, estat i temps dedicat, i on crear-les costi el mínim possible.
+            </p>
+            <p>
+              Per això Taskin combina la gestió clàssica de tasques i projectes amb eines d'IA: dictar per veu en lloc d'escriure, i deixar que Claude bolqui a una bústia les tasques que surten d'una reunió.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="taskin-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="taskin-features-title" class="case-title">Sis peces per organitzar un equip.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Tasques i projectes</h4>
+            <p>Tasques amb responsable, projecte, estat, dates i etiquetes, que es poden moure d'estat arrossegant-les en un tauler.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Dictat per veu</h4>
+            <p>Un botó de dictat transcriu la veu a text amb Whisper, d'OpenAI, per omplir descripcions i seguiments sense haver de teclejar.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Bústia de tasques amb Claude</h4>
+            <p>Un servidor MCP propi permet que Claude, a partir de la transcripció d'una reunió, creï tasques pendents a la Bústia, i que també les consulti, les editi i les completi.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Control del temps</h4>
+            <p>Cronòmetre a cada tasca, registre d'hores dedicades i un recordatori quan hi ha temporitzadors oberts.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Xat i documents</h4>
+            <p>Xat i documents de l'equip dins l'aplicació, amb actualitzacions en temps real, sense haver de refrescar la pàgina.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Serveis, permisos i informes</h4>
+            <p>Diversos serveis i àrees, professionals amb perfils i permisos, informes amb gràfiques i exportació a PDF, i sincronització amb el sistema de tiquets GLPI.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="taskin-screens-title">
+        <div>
+          <p class="eyebrow">Pantalles reconstruïdes</p>
+          <h3 id="taskin-screens-title" class="case-title">Dos moments del dia a dia.</h3>
+          <p class="case-note">Totes les dades d'aquestes reconstruccions són fictícies.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Tauler de tasques</h4>
+            <span class="mock-tag">tres estats, arrossegant</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció del tauler de tasques amb tres columnes: pendent, en curs i fet">
+            <div class="kanban">
+              <div class="k-col">
+                <h5>Pendent <em>3</em></h5>
+                <div class="k-card"><span>Revisar pressupost del projecte web</span><div><b class="k-tag is-warn">Alta prioritat</b><i>AM</i></div></div>
+                <div class="k-card"><span>Preparar l'ordre del dia de dilluns</span><div><b class="k-tag">Reunions</b><i>JT</i></div></div>
+              </div>
+              <div class="k-col">
+                <h5>En curs <em>2</em></h5>
+                <div class="k-card"><span>Migrar les bústies de correu</span><div><b class="k-tag is-ok">En temps</b><i>JT</i></div></div>
+                <div class="k-card"><span>Configurar l'accés remot de l'equip</span><div><b class="k-tag is-warn">Endarrerida</b><i>PM</i></div></div>
+              </div>
+              <div class="k-col">
+                <h5>Fet <em>4</em></h5>
+                <div class="k-card"><span>Inventari d'equips actualitzat</span><div><b class="k-tag is-ok">Tancada</b><i>LS</i></div></div>
+                <div class="k-card"><span>Alta de nous usuaris</span><div><b class="k-tag is-ok">Tancada</b><i>AM</i></div></div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-caption">Cada tasca mostra el responsable, l'estat i les etiquetes d'un cop d'ull. Canviar-ne l'estat és tan fàcil com arrossegar la targeta a una altra columna.</p>
+        </figure>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Dictat per veu i Bústia</h4>
+            <span class="mock-tag">de la veu a les tasques</span>
+          </figcaption>
+          <div class="mock voice-mock" role="img" aria-label="Reconstrucció del dictat per veu, amb el micròfon i la transcripció, i de la Bústia de tasques amb tasques noves creades per Claude">
+            <div class="voice-box">
+              <div class="voice-box__top">
+                <span class="mic-dot">●</span>
+                <span class="bars-mock"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <em>REC</em>
+              </div>
+              <p>«Cal revisar el pressupost abans de divendres i avisar l'Anna perquè prepari l'ordre del dia…»</p>
+            </div>
+            <div class="inbox-box">
+              <h5>Bústia de tasques <span>Creades per Claude</span></h5>
+              <ul>
+                <li><div>Enviar l'acta de la reunió<small>Pendent d'assignar</small></div><i>Nova</i></li>
+                <li><div>Demanar oferta a dos proveïdors<small>Pendent d'assignar</small></div><i>Nova</i></li>
+                <li><div>Programar la formació de seguretat<small>Pendent d'assignar</small></div><i>Nova</i></li>
+              </ul>
+            </div>
+          </div>
+          <p class="mock-caption">Es pot dictar una nota i veure-la transcrita. Les tasques que Claude extreu d'una reunió arriben a la Bústia pendents d'assignar, i algú de l'equip les confirma amb responsable, dates i projecte.</p>
+        </figure>
+      </section>
+
+      <section class="case-section section" aria-labelledby="taskin-stack-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">Com està construïda</p>
+            <h3 id="taskin-stack-title" class="case-title">Un equip, en temps real.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Frontend en React i Vite amb Ant Design, instal·lable com a PWA. Backend en Express i MongoDB, amb actualitzacions en temps real per websockets. La transcripció de veu fa servir Whisper, d'OpenAI, i un servidor MCP propi connecta Taskin amb Claude: les tasques es llegeixen i s'editen, però cap eina permet esborrar-les, perquè cap crida pugui fer malbé dades de manera irrecuperable.
+            </p>
+            <div class="skills">
+              <span>React</span><span>Vite</span><span>Ant Design</span><span>PWA</span><span>Express</span><span>MongoDB · Mongoose</span><span>WebSockets</span><span>Whisper</span><span>MCP</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-end section" aria-labelledby="taskin-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="taskin-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="espaiviu" role="dialog" aria-modal="true" aria-labelledby="espaiviu-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">EspaiViu App</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="espaiviu-title">
+        <p class="eyebrow">Aplicació web instal·lable · Disseny i desenvolupament</p>
+        <h2 id="espaiviu-title" class="case-hero__title">EspaiViu&nbsp;App</h2>
+        <p class="case-hero__intro">
+          Una plataforma de gestió per a un CDIAP (Centre de Desenvolupament Infantil i Atenció Precoç), dirigit a infants de 0 a 6 anys: fitxes, seguiments terapèutics, avaluacions i llistats en una sola eina.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny i desenvolupament full-stack, en solitari</dd></div>
+          <div><dt>Plataforma</dt><dd>Web a l'ordinador + app instal·lable al mòbil</dd></div>
+          <div><dt>Stack</dt><dd>React · Express · MongoDB</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="espaiviu-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="espaiviu-context-title" class="case-title">Una eina per a cada moment de la sessió.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Un CDIAP acompanya infants i famílies amb professionals de diverses especialitats: logopèdia, psicologia, fisioteràpia, psicomotricitat. Cada sessió s'ha de registrar, i també els objectius terapèutics, les avaluacions i les quotes de les famílies.
+            </p>
+            <p>
+              Vaig dissenyar una sola aplicació amb dues cares: ràpida al mòbil durant la sessió, per consultar el dia i registrar el seguiment, i completa a l'ordinador per a la gestió, els llistats i els informes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="espaiviu-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="espaiviu-features-title" class="case-title">Sis peces per acompanyar els infants.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Fitxes d'infants i referents</h4>
+            <p>Dades de cada infant, escola (d'un catàleg), beca, diagnòstic i professional referent, amb els referents relacionats.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Seguiments individuals i grupals</h4>
+            <p>Registre de cada sessió amb tipus, professional i estat. Un seguiment grupal es crea d'un cop per a diversos infants, i es pot duplicar en dates futures amb repetició. Amb calendari i exportació a PDF.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Veu, cronòmetre i firma</h4>
+            <p>El professional pot dictar el seguiment i veure'l transcrit, comptar el temps dedicat amb un cronòmetre i, segons el tipus de seguiment, recollir una firma i la posició GPS.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>App per al mòbil</h4>
+            <p>Una vista pensada per al mòbil, instal·lable, amb els seguiments d'avui i un detall a pantalla completa per consultar-los i registrar-los en moviment.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Anamnesi, objectius i avaluacions</h4>
+            <p>Anamnesis per especialitat (logopèdia, psicologia, fisioteràpia i psicomotricitat), objectius terapèutics i avaluacions diagnòstiques, amb informes d'avaluació i de seguiment.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Rols, empreses i llistats</h4>
+            <p>Diverses empreses i àrees amb quatre rols, i llistats com les quotes de les famílies o el temps, les firmes i el GPS, amb permisos configurables i exportació a PDF i Excel.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="espaiviu-screens-title">
+        <div>
+          <p class="eyebrow">Pantalles reconstruïdes</p>
+          <h3 id="espaiviu-screens-title" class="case-title">Del mòbil a l'informe.</h3>
+          <p class="case-note">Totes les dades d'aquestes reconstruccions són fictícies i els infants s'identifiquen només amb inicials.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>App del professional</h4>
+            <span class="mock-tag">seguiments d'avui i sessió en curs</span>
+          </figcaption>
+          <div class="mock phones" role="img" aria-label="Reconstrucció de dues pantalles del mòbil: la llista de seguiments d'avui i una sessió en curs amb dictat per veu, cronòmetre i firma">
+            <div class="phone">
+              <div class="phone__screen">
+                <p class="phone__title">Seguiments d'avui</p>
+                <p class="phone__sub">Dimarts · 4 sessions</p>
+                <ul class="sessions">
+                  <li class="is-done"><b>09:00</b><span>L. M.<small>Logopèdia</small></span><em>Fet</em></li>
+                  <li class="is-done"><b>10:00</b><span>P. R.<small>Psicologia</small></span><em>Fet</em></li>
+                  <li class="is-live"><b>11:30</b><span>N. G. + 3<small>Psicomotricitat</small></span><em>En curs</em></li>
+                  <li><b>16:00</b><span>A. S.<small>Fisioteràpia</small></span><em>Pendent</em></li>
+                </ul>
+              </div>
+            </div>
+            <div class="phone">
+              <div class="phone__screen">
+                <p class="phone__title">Sessió en curs</p>
+                <p class="phone__sub">N. G. + 3 · Psicomotricitat</p>
+                <div class="ev-timer"><small>Temps dedicat</small><b>00:38:12</b></div>
+                <div class="ev-voice">
+                  <span class="ev-voice__top"><i class="bars-dot"></i><em>REC</em></span>
+                  <p>«L'infant ha mostrat una millora en la comprensió de consignes simples…»</p>
+                </div>
+                <p class="phone__offline">Firma requerida en acabar</p>
+                <span class="phone__button">Aturar i signar</span>
+              </div>
+            </div>
+          </div>
+          <p class="mock-caption">El professional veu el dia d'un cop d'ull. Durant la sessió pot comptar el temps, dictar el seguiment i, en acabar, recollir la firma si el tipus de seguiment ho requereix.</p>
+        </figure>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Llistat de quotes de les famílies</h4>
+            <span class="mock-tag">taula, PDF i Excel</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció del llistat de quotes de les famílies, amb infant, professional, tipus de seguiment i preu">
+            <div class="table-wrap">
+              <table class="mock-table">
+                <thead><tr><th>Infant</th><th>Professional</th><th>Tipus de seguiment</th><th>Realitzat</th><th>Preu</th></tr></thead>
+                <tbody>
+                  <tr><td>Garcia, N.</td><td>Logopèdia</td><td>Individual · 45 min</td><td>03/11</td><td>35,00 €</td></tr>
+                  <tr><td>Martí, L.</td><td>Psicologia</td><td>Individual · 60 min</td><td>03/11</td><td>45,00 €</td></tr>
+                  <tr><td>Roca, P.</td><td>Fisioteràpia</td><td>Individual · 45 min</td><td>02/11</td><td>35,00 €</td></tr>
+                  <tr><td>Soler, A.</td><td>Psicomotricitat</td><td>Grupal · 60 min</td><td>02/11</td><td>25,00 €</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="mock-caption">Els llistats es poden filtrar i exportar. Qui els pot veure depèn del rol i de l'especialitat, i es configura des de l'aplicació.</p>
+        </figure>
+      </section>
+
+      <section class="case-section section" aria-labelledby="espaiviu-stack-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">Com està construïda</p>
+            <h3 id="espaiviu-stack-title" class="case-title">Pensada per a dades sensibles.</h3>
+          </div>
+          <div class="case-prose">
+            <p>
+              Frontend en React i Vite amb Ant Design i Tailwind, amb una vista de mòbil instal·lable. Backend en Express i MongoDB, amb sessions per JWT i un model multiempresa: cada professional només veu les dades de la seva empresa i de la seva àrea, i els permisos es comproven al servidor, no només a la pantalla. Els PDF es generen al navegador i dins l'app hi ha un manual d'ús amb el registre de novetats.
+            </p>
+            <div class="skills">
+              <span>React</span><span>Vite</span><span>Ant Design</span><span>Tailwind</span><span>PWA</span><span>Express</span><span>MongoDB · Mongoose</span><span>JWT</span><span>Multiempresa</span><span>FullCalendar</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-end section" aria-labelledby="espaiviu-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="espaiviu-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="actclub" role="dialog" aria-modal="true" aria-labelledby="actclub-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">ActClub</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="actclub-title">
+        <p class="eyebrow">Plataforma SaaS · Disseny UX/UI i desenvolupament</p>
+        <h2 id="actclub-title" class="case-hero__title">ActClub</h2>
+        <p class="case-hero__intro">
+          Una plataforma multiclub per gestionar activitats, inscripcions, socis, assistència i cobertures: cada club té el seu espai i cada persona pot ser a diversos clubs.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny UX/UI i desenvolupament full-stack, en solitari</dd></div>
+          <div><dt>Plataforma</dt><dd>Web (SaaS), també al mòbil</dd></div>
+          <div><dt>Stack</dt><dd>React · Express · MongoDB</dd></div>
+        </dl>
+        <a class="button button--primary case-hero__cta" href="https://actclub.es/" target="_blank" rel="noopener noreferrer">Veure ActClub <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="case-section section" aria-labelledby="actclub-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="actclub-context-title" class="case-title">Un sol sistema, molts clubs.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Els clubs i els grups d’activitats gestionen sovint les sortides, les inscripcions i la normativa amb fulls de càlcul i missatgeria. Volia una plataforma on cada club tingui el seu espai, amb els seus colors i el seu logo, i on cada persona vegi les seves activitats en un sol lloc.</p>
+            <p>Una persona pot pertànyer a diversos clubs, amb un rol diferent a cadascun: administrador del club, organitzador o soci. Les dades de cada club queden separades de les dels altres.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="actclub-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="actclub-features-title" class="case-title">Sis peces per fer funcionar un club.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Multiclub i rols per club</h4>
+            <p>Cada club té el seu espai amb nom, colors i logo propis. Els rols (administrador, organitzador, soci) s’assignen per club, no de manera global.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Activitats i sortides</h4>
+            <p>Cada activitat té tipus, data, punt de trobada i cobertura, i la seva pàgina de detall amb el llistat de participants.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Inscripcions i participants</h4>
+            <p>Les persones s’inscriuen a les activitats i l’organització veu en un sol lloc qui participa i en quin estat.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Textos legals amb versió</h4>
+            <p>Cada club defineix els seus textos legals i es conserva quina versió va acceptar cada persona.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Check-in amb QR i credencial digital</h4>
+            <p>Un escàner de QR registra l’assistència a l’arribada, i el carnet de soci es pot afegir com a credencial digital a Google Wallet.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Panell, analítiques i notícies</h4>
+            <p>Un panell d’administració amb analítiques de l’activitat del club, notícies i una pàgina pública personalitzable.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="actclub-screens-title">
+        <div>
+          <p class="eyebrow">Pantalles reconstruïdes</p>
+          <h3 id="actclub-screens-title" class="case-title">Del llistat a la porta.</h3>
+          <p class="case-note">Totes les dades d’aquestes reconstruccions són fictícies.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Participants i check-in</h4>
+            <span class="mock-tag">una sortida, en directe</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció del panell d’una sortida amb tres indicadors i el llistat de participants amb el seu estat de check-in">
+            <div class="stat-row">
+              <div class="stat"><span class="stat__label">Inscrits</span><div class="stat__row"><b>42</b></div></div>
+              <div class="stat"><span class="stat__label">Check-in fet</span><div class="stat__row"><b>31</b></div></div>
+              <div class="stat"><span class="stat__label">Places lliures</span><div class="stat__row"><b>8</b></div></div>
+            </div>
+            <div class="table-wrap">
+              <table class="mock-table mock-table--left">
+                <thead><tr><th>Participant</th><th>Soci</th><th>Normativa</th><th>Check-in</th></tr></thead>
+                <tbody>
+                  <tr><td>Anna Puig</td><td>0127</td><td>Acceptada v2</td><td class="is-good">Fet</td></tr>
+                  <tr><td>Marc Soler</td><td>0214</td><td>Acceptada v2</td><td class="is-good">Fet</td></tr>
+                  <tr><td>Laia Roca</td><td>0098</td><td>Acceptada v2</td><td class="is-pending">Pendent</td></tr>
+                  <tr><td>Pau Ferrer</td><td>0305</td><td>Acceptada v2</td><td class="is-good">Fet</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="mock-caption">El llistat de participants es consulta en directe durant la sortida: qui ha fet el check-in i qui encara no, i amb quina versió de la normativa.</p>
+        </figure>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Credencial digital</h4>
+            <span class="mock-tag">carnet de soci</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció d’una credencial digital de soci amb codi QR">
+            <div class="credential">
+              <small>Carnet de soci · Credencial digital</small>
+              <h5>Els Pedals</h5>
+              <p>Anna Puig · Soci 0127</p>
+              <div class="credential__qr" aria-hidden="true"><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i></div>
+            </div>
+          </div>
+          <p class="mock-caption">El soci té el carnet al mòbil, com a credencial digital, i l’organització el llegeix amb l’escàner per registrar l’assistència.</p>
+        </figure>
+      </section>
+
+      <section class="case-section section" aria-labelledby="actclub-stack-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">Com està construïda</p>
+            <h3 id="actclub-stack-title" class="case-title">Un SaaS pensat per a molts clubs.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Frontend en React i Vite amb Tailwind i lector de QR. Backend en Express i MongoDB, amb sessions per JWT, dades separades per club i rols assignats per club. Els documents es desen a S3, i les credencials digitals es generen amb Google Wallet.</p>
+            <div class="skills"><span>React</span><span>Vite</span><span>Tailwind</span><span>Lector QR</span><span>Express</span><span>MongoDB · Mongoose</span><span>JWT</span><span>S3</span><span>Google Wallet</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-end section" aria-labelledby="actclub-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="actclub-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="rfid" role="dialog" aria-modal="true" aria-labelledby="rfid-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">RFIDControl</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="rfid-title">
+        <p class="eyebrow">Aplicació web · Disseny i desenvolupament</p>
+        <h2 id="rfid-title" class="case-hero__title">RFIDControl</h2>
+        <p class="case-hero__intro">
+          Una aplicació per a la gestió de dispositius RFID, que permet fer el seguiment i el control eficient dels actius.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny de l’aplicació i desenvolupament full-stack</dd></div>
+          <div><dt>Plataforma</dt><dd>Aplicació web amb panell d’administració</dd></div>
+          <div><dt>Accés</dt><dd>Usuari i contrasenya, amb opció de Microsoft 365</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="rfid-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="rfid-context-title" class="case-title">Identificar per poder controlar.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Les etiquetes RFID permeten identificar els actius sense contacte. Perquè aquesta identificació serveixi, cal una eina que n’ordeni la informació.</p>
+            <p>RFIDControl és aquest panell: un lloc des d’on gestionar els dispositius RFID i fer el seguiment i el control dels actius de manera eficient.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="rfid-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="rfid-features-title" class="case-title">Tres peces clau.</h3>
+        </div>
+
+        <ol class="case-grid case-grid--three">
+          <li>
+            <span>01</span>
+            <h4>Gestió de dispositius RFID</h4>
+            <p>Un panell per tenir identificats i organitzats els dispositius RFID i les etiquetes associades als actius.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Seguiment i control dels actius</h4>
+            <p>Seguiment dels actius i control eficient des d’un únic lloc, sense dependre de registres dispersos.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Accés per compte</h4>
+            <p>Inici de sessió amb usuari i contrasenya, amb l’opció de fer-ho amb el compte de Microsoft 365.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="rfid-screens-title">
+        <div>
+          <p class="eyebrow">Pantalla reconstruïda</p>
+          <h3 id="rfid-screens-title" class="case-title">L’entrada al panell.</h3>
+          <p class="case-note">Reconstrucció de la pantalla d’accés, sense dades reals.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Inici de sessió</h4>
+            <span class="mock-tag">usuari o Microsoft 365</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció de la pantalla d’inici de sessió de RFIDControl, amb camps d’usuari i contrasenya i botó d’entrada amb Microsoft 365">
+            <div class="login-mock">
+              <div class="login-mock__top"><i aria-hidden="true">◉</i><b>RFIDControl</b></div>
+              <div class="login-mock__body">
+                <h5>Iniciar sessió</h5>
+                <p>Accedeix al panell de RFIDControl</p>
+                <span class="login-mock__field">usuari</span>
+                <span class="login-mock__field">contrasenya</span>
+                <span class="login-mock__btn">Entrar</span>
+                <span class="login-mock__btn login-mock__btn--ms">Microsoft 365</span>
+              </div>
+            </div>
+          </div>
+          <p class="mock-caption">L’accés al panell es fa amb un compte d’usuari o, si l’organització ho prefereix, amb el compte de Microsoft 365.</p>
+        </figure>
+      </section>
+
+      <section class="case-end section" aria-labelledby="rfid-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="rfid-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="pla" role="dialog" aria-modal="true" aria-labelledby="pla-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Pla Estratègic</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="pla-title">
+        <p class="eyebrow">Web d’indicadors · Disseny web i frontend</p>
+        <h2 id="pla-title" class="case-hero__title">Pla Estratègic</h2>
+        <p class="case-hero__intro">
+          Una web per presentar i seguir el pla estratègic d’una entitat social, amb objectius, iniciatives i indicadors clau de rendiment organitzats per eixos.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny web i desenvolupament frontend</dd></div>
+          <div><dt>Període</dt><dd>2024 – 2026</dd></div>
+          <div><dt>Format</dt><dd>Pàgina web amb eixos i indicadors</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="pla-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="pla-context-title" class="case-title">Un pla que es pot seguir.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Un pla estratègic només serveix si es pot seguir. Volia que qualsevol persona de l’organització pogués veure, d’un cop d’ull, cap a on va el pla i com avança cada línia.</p>
+            <p>La pàgina ordena el pla en eixos amb un objectiu clar, exemples concrets i un indicador d’avanç visible per a cadascun.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="pla-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="pla-features-title" class="case-title">Sis idees per llegir un pla.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Eixos estratègics</h4>
+            <p>El pla s’organitza en quatre eixos, cadascun amb el seu títol i la seva raó de ser.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Objectiu i exemples</h4>
+            <p>Cada eix té un objectiu en una frase i exemples concrets del que vol dir a la pràctica.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Avanç a la vista</h4>
+            <p>Un anell amb el percentatge d’avanç de cada eix permet veure l’estat del pla sense llegir cap taula.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Identitat per eix</h4>
+            <p>Cada eix té el seu color i la seva icona, que ajuden a reconèixer-lo i a recordar-lo.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Capçalera amb el període</h4>
+            <p>El títol i el període del pla, 2024-2026, obren la pàgina amb una imatge clara.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Indicadors clau</h4>
+            <p>Objectius, iniciatives i indicadors de rendiment queden connectats en una mateixa vista.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="pla-screens-title">
+        <div>
+          <p class="eyebrow">Pantalla reconstruïda</p>
+          <h3 id="pla-screens-title" class="case-title">Els quatre eixos.</h3>
+          <p class="case-note">Els textos i percentatges d’aquesta reconstrucció són fictícis.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Eixos i avanç</h4>
+            <span class="mock-tag">objectiu, exemple i percentatge</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció de la pàgina del pla estratègic amb quatre eixos, cadascun amb objectiu, exemple i un anell de progrés">
+            <div class="eix-list">
+              <div class="eix"><span class="eix__pin" style="background:#f2566e" aria-hidden="true"></span><div><h5>Eix 1 · Atenció centrada en la persona</h5><p>Millorar la qualitat de vida de les persones ateses.</p><small>Per exemple, reforçar la participació en les decisions.</small></div><div class="eix__ring"><svg viewBox="0 0 104 104" aria-hidden="true"><circle cx="52" cy="52" r="44" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="8"/><circle cx="52" cy="52" r="44" fill="none" stroke="var(--pace)" stroke-width="8" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="76"/></svg><b>72,5 %</b></div></div>
+              <div class="eix"><span class="eix__pin" style="background:#fbb93b" aria-hidden="true"></span><div><h5>Eix 2 · Gestió del talent i organització</h5><p>Millorar el desenvolupament de tots els professionals.</p><small>Per exemple, impulsar la transformació digital.</small></div><div class="eix__ring"><svg viewBox="0 0 104 104" aria-hidden="true"><circle cx="52" cy="52" r="44" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="8"/><circle cx="52" cy="52" r="44" fill="none" stroke="var(--pace)" stroke-width="8" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="121"/></svg><b>56,0 %</b></div></div>
+              <div class="eix"><span class="eix__pin" style="background:#5ac0a7" aria-hidden="true"></span><div><h5>Eix 3 · Presència social i territori</h5><p>Promoure canvis socials per sensibilitzar la societat.</p><small>Per exemple, fer aliances amb altres entitats.</small></div><div class="eix__ring"><svg viewBox="0 0 104 104" aria-hidden="true"><circle cx="52" cy="52" r="44" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="8"/><circle cx="52" cy="52" r="44" fill="none" stroke="var(--pace)" stroke-width="8" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="89"/></svg><b>67,8 %</b></div></div>
+              <div class="eix"><span class="eix__pin" style="background:#25588c" aria-hidden="true"></span><div><h5>Eix 4 · Economia social i sostenibilitat</h5><p>Assegurar que el creixement sigui sostenible en el temps.</p><small>Per exemple, garantir els recursos necessaris.</small></div><div class="eix__ring"><svg viewBox="0 0 104 104" aria-hidden="true"><circle cx="52" cy="52" r="44" fill="none" stroke="currentColor" stroke-opacity=".15" stroke-width="8"/><circle cx="52" cy="52" r="44" fill="none" stroke="var(--pace)" stroke-width="8" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="80"/></svg><b>71,0 %</b></div></div>
+            </div>
+          </div>
+          <p class="mock-caption">Cada eix explica què vol aconseguir i ensenya, amb un anell, quant ha avançat.</p>
+        </figure>
+      </section>
+
+      <section class="case-end section" aria-labelledby="pla-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="pla-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="qualitac" role="dialog" aria-modal="true" aria-labelledby="qualitac-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Qualitac</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="qualitac-title">
+        <p class="eyebrow">Aplicació de qualitat · Conceptualització i disseny</p>
+        <h2 id="qualitac-title" class="case-hero__title">Qualitac</h2>
+        <p class="case-hero__intro">
+          Una aplicació per gestionar un sistema de gestió integrat (SGI): processos, objectius, indicadors, incidències, accions i documents en un sol lloc.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Conceptualització i disseny de l’aplicació</dd></div>
+          <div><dt>Àmbit</dt><dd>Gestió de la qualitat i millora contínua</dd></div>
+          <div><dt>Format</dt><dd>Aplicació web amb panell de control</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="qualitac-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="qualitac-context-title" class="case-title">El que cal atendre, primer.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Un sistema de gestió integrat reuneix molta informació: processos, objectius, indicadors, incidències, accions de millora, auditories i documentació. Calia posar-ho en ordre i fer-ho fàcil de seguir.</p>
+            <p>El panell de control mostra a dalt les alertes, que són el que demana atenció, i a sota el seguiment dels indicadors, amb un color segons si l’objectiu es compleix o no.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="qualitac-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="qualitac-features-title" class="case-title">Sis àrees d’un mateix sistema.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Processos i objectius</h4>
+            <p>Els processos de l’organització i els objectius que cadascun persegueix, ordenats i consultables.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Indicadors amb seguiment</h4>
+            <p>Cada indicador mostra el valor i l’objectiu, amb color i avís segons l’estat, i es poden veure per any.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Incidències i propostes de millora</h4>
+            <p>Registre i seguiment de les incidències i de les propostes de millora, amb un recompte d’obertes al panell.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Accions</h4>
+            <p>Les accions derivades de les incidències i les propostes, amb el seu estat, també visibles com a alerta.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Inspeccions i auditories</h4>
+            <p>Un apartat per planificar i fer el seguiment de les inspeccions i de les auditories.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Gestor documental</h4>
+            <p>Els documents del sistema en un mateix lloc, amb una àrea de notícies per comunicar novetats.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="qualitac-screens-title">
+        <div>
+          <p class="eyebrow">Pantalla reconstruïda</p>
+          <h3 id="qualitac-screens-title" class="case-title">El panell de control.</h3>
+          <p class="case-note">Totes les dades d’aquesta reconstrucció són fictícies.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Alertes i indicadors</h4>
+            <span class="mock-tag">el que cal atendre</span>
+          </figcaption>
+          <div class="mock" role="img" aria-label="Reconstrucció del panell de control amb tres alertes i sis indicadors amb valor i objectiu, en colors segons l’estat">
+            <div class="q-alerts">
+              <div class="qa qa--blue"><b>3</b><span>Propostes de millora obertes</span></div>
+              <div class="qa qa--blue"><b>12</b><span>Accions obertes</span></div>
+              <div class="qa qa--red"><b>8</b><span>Seguiments d’indicadors pendents</span></div>
+            </div>
+            <div class="q-tiles"><div class="qt qt--red"><span>Nº d’incidències</span><b>2 / 1</b></div><div class="qt qt--ok"><span>Satisfacció dels clients</span><b>86 / 80</b></div><div class="qt qt--ok"><span>Consum d’aigua · Seu A</span><b>480 / 520</b></div><div class="qt qt--ok"><span>Consum d’electricitat · Seu B</span><b>9.800 / 11.000</b></div><div class="qt qt--red"><span>Consum de carburant · Flota</span><b>1.240 / 1.000</b></div><div class="qt qt--ok"><span>Accions tancades a temps (%)</span><b>91 / 85</b></div></div>
+          </div>
+          <p class="mock-caption">El vermell indica que un indicador s’allunya de l’objectiu i el verd blavós que es compleix. Així l’equip sap on mirar primer.</p>
+        </figure>
+      </section>
+
+      <section class="case-end section" aria-labelledby="qualitac-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="qualitac-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="catedra" role="dialog" aria-modal="true" aria-labelledby="catedra-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Càtedra UdL</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="catedra-title">
+        <p class="eyebrow">Web institucional · Disseny web i frontend</p>
+        <h2 id="catedra-title" class="case-hero__title">Càtedra UdL</h2>
+        <p class="case-hero__intro">
+          El web de la Càtedra d’Innovació i Eficiència de la Universitat de Lleida, redissenyat per combinar identitat universitària, claredat i una presència digital actual.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Disseny web i desenvolupament frontend</dd></div>
+          <div><dt>Format</dt><dd>Web institucional bilingüe (català i castellà)</dd></div>
+          <div><dt>Àmbit</dt><dd>Campus Igualada-UdL</dd></div>
+        </dl>
+      </section>
+
+      <section class="case-section section" aria-labelledby="catedra-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="catedra-context-title" class="case-title">Un espai de coneixement compartit.</h3>
+          </div>
+          <div class="case-prose">
+            <p>La càtedra és un espai de coneixement compartit entre universitat, institucions i teixit empresarial per generar impacte real al territori. El web havia de transmetre-ho amb una imatge sòbria i fàcil d’explorar.</p>
+            <p>El redisseny parteix de la identitat de la Universitat de Lleida: el granat com a color de marca, titulars amb serifa i una capçalera doble amb els logotips de la universitat i del campus.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="catedra-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="catedra-features-title" class="case-title">Sis decisions de disseny.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Identitat universitària</h4>
+            <p>Colors, tipografia amb serifa i logotips que fan que el web es reconegui com a part de la Universitat de Lleida.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Estructura per seccions</h4>
+            <p>Missió i valors, Qui som?, Investigació, Formació, Jornades, Premis i Notícies, a un clic des del menú.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Bilingüe</h4>
+            <p>El web es pot llegir en català i en castellà, amb un canvi d’idioma visible a la capçalera.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Portada amb missatge</h4>
+            <p>Una portada amb un titular gran, una frase que explica la càtedra i dues crides a l’acció.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Jornades, premis i notícies</h4>
+            <p>Espais per donar a conèixer l’activitat de la càtedra i fer-ne visible el calendari i els reconeixements.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Contacte i context</h4>
+            <p>Accés directe al contacte i referència al campus, perquè qui visita el web sàpiga on és la càtedra.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-section section" aria-labelledby="catedra-screens-title">
+        <div>
+          <p class="eyebrow">El web publicat</p>
+          <h3 id="catedra-screens-title" class="case-title">La portada.</h3>
+          <p class="case-note">Captura de la portada del web de la càtedra.</p>
+        </div>
+
+        <figure class="mock-block">
+          <figcaption class="mock-label">
+            <h4>Portada</h4>
+            <span class="mock-tag">català · castellà</span>
+          </figcaption>
+          <div class="shot"><img src="catedra.webp" alt="Portada del web de la Càtedra d’Innovació i Eficiència de la Universitat de Lleida" width="1600" height="951" loading="lazy" decoding="async" /></div>
+          <p class="mock-caption">Capçalera doble amb els logotips, menú per seccions, titular a la portada i dues crides a l’acció.</p>
+        </figure>
+      </section>
+
+      <section class="case-end section" aria-labelledby="catedra-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="catedra-end-title" class="case-title case-title--wide">Dissenyada, programada i mantinguda per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
 </body>
 </html>
