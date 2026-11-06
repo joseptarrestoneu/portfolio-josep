@@ -106,11 +106,16 @@ async function refresh() {
 }
 
 /* ---------- accés (Google Identity Services) ---------- */
+const phone = window.matchMedia('(max-width: 560px)');
 function gbutton(el) {
   const big = el.classList.contains('ab-g');
-  if (gReady) window.google.accounts.id.renderButton(el, { theme: big ? 'filled_blue' : 'outline', size: big ? 'large' : 'medium', text: big ? 'continue_with' : 'signin_with', locale: 'ca', shape: 'rectangular' });
+  const opts = big && phone.matches
+    ? { type: 'icon', theme: 'outline', size: 'large', shape: 'rectangular' }            // mòbil: només el logo de Google
+    : { theme: big ? 'filled_blue' : 'outline', size: big ? 'large' : 'medium', text: big ? 'continue_with' : 'signin_with', locale: 'ca', shape: 'rectangular' };
+  if (gReady) window.google.accounts.id.renderButton(el, opts);
   else gQueue.push(el);
 }
+phone.addEventListener('change', () => { if (S.session === false) renderAuth(); });
 async function onCredential(resp) {
   try {
     const r = await fetch(API + '/api/auth/google', { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ credential: resp.credential }) });
@@ -143,7 +148,8 @@ function renderAuth() {
     return;
   }
   if (!S.session) {
-    bar.appendChild(mk('p', 'ab-t', 'Entra amb Google per jugar i sortir a la classificació.'));
+    const t = mk('p', 'ab-t'); t.append(mk('span', 'l-long', 'Entra amb Google per jugar i sortir a la classificació.'), mk('span', 'l-short', 'Entra'));
+    bar.appendChild(t);
     const slot = mk('div', 'ab-g'); bar.appendChild(slot); gbutton(slot);
     return;
   }
