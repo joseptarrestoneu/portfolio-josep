@@ -58,7 +58,6 @@ const ROUTES = {
   get_leaderboard: a => ['GET', '/api/leaderboard?limit=' + a.p_limit],
   create_profile:  a => ['POST', '/api/profile', { alias: a.p_alias, newsletter: a.p_newsletter, weekly: a.p_weekly }],
   subscribe:       a => ['POST', '/api/subscribe', { email: a.p_email, consent: a.p_consent, website: a.p_website }],
-  set_newsletter:  a => ['POST', '/api/newsletter', { on: a.p_on }],
   get_question:    a => ['GET', '/api/question/' + a.p_day],
   answer_question: a => ['POST', '/api/answer', { day: a.p_day, choice: a.p_choice }],
   open_day:        a => ['POST', '/api/open', { day: a.p_day }],
@@ -150,13 +149,6 @@ function renderAuth() {
   if (S.profile) {
     const hi = mk('span'); hi.append('Hola, ', mk('b', '', S.profile.alias));
     me.appendChild(hi);
-    const lab = mk('label', 'inline'), cb = mk('input'); cb.type = 'checkbox'; cb.checked = !!S.profile.newsletter; cb.id = 'news-toggle';
-    cb.addEventListener('change', async () => {
-      try { await call('set_newsletter', { p_on: cb.checked }); S.profile.newsletter = cb.checked; toast(cb.checked ? 'Rebràs el correu diari.' : 'T’has donat de baixa del correu diari.'); }
-      catch (e) { cb.checked = !cb.checked; toast(errText(e)); }
-    });
-    lab.append(cb, document.createTextNode(' Rebre el correu diari'));
-    me.appendChild(lab);
   } else {
     me.appendChild(mk('span', '', 'Has entrat, però falta triar l’àlies.'));
     const f = mk('button', 'btn pri sm', 'Acaba l’alta'); f.type = 'button'; f.addEventListener('click', showOnboarding);
