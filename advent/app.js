@@ -225,10 +225,11 @@ function renderCountdown() {
     if (Date.now() - cdSyncAt > 30000) { cdSyncAt = Date.now(); refresh(); }
     return;
   }
-  const mins = Math.floor(left / 60000);
-  $('cd-d').textContent = Math.floor(mins / 1440);
-  $('cd-h').textContent = Math.floor((mins % 1440) / 60);
-  $('cd-m').textContent = mins % 60;
+  const secs = Math.floor(left / 1000), two = n => String(n).padStart(2, '0');
+  $('cd-d').textContent = Math.floor(secs / 86400);
+  $('cd-h').textContent = two(Math.floor((secs % 86400) / 3600));
+  $('cd-m').textContent = two(Math.floor((secs % 3600) / 60));
+  $('cd-s').textContent = two(secs % 60);
   $('cd-label').textContent = S.raw < 1 ? 'Falta per a l’etapa 1:' : 'Falta per a l’etapa ' + (S.raw + 1) + ':';
   box.hidden = false;
 }
