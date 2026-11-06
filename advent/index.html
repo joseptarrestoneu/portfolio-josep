@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volta a Nadal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Idea de layout: cada porta és un dorsal de cursa; a dalt, el perfil de les 24 etapes. Un sol accent (blau), molt aire. */
+:root{
+  --bg:#FAFAFA; --card:#FFFFFF; --ink:#111315; --sub:#5B616B; --mute:#8A8F98; --line:#D9DCE1;
+  --accent:#2D6CDF; --on-accent:#FFFFFF;
+  --font-d:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-b:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111315; --card:#181B1E; --ink:#FAFAFA; --sub:#A3A8B0; --mute:#8A8F98; --line:#2B3036;
+    --accent:#5B8FEF; --on-accent:#0C0E10; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111315; --card:#181B1E; --ink:#FAFAFA; --sub:#A3A8B0; --mute:#8A8F98; --line:#2B3036;
+  --accent:#5B8FEF; --on-accent:#0C0E10; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.55}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:980px;margin:0 auto;padding:28px 18px 56px}
+
+header .kicker{font-family:var(--font-d);font-weight:500;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);margin:0 0 14px}
+h1{font-family:var(--font-d);font-weight:700;font-size:clamp(2.8rem,10vw,5.6rem);line-height:.95;letter-spacing:-.03em;margin:0 0 16px;text-wrap:balance}
+h1 span{color:var(--accent)}
+.lede{max-width:56ch;color:var(--sub);margin:0 0 6px;font-size:1.05rem}
+.status{font-weight:600;margin:0 0 28px}
+
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin:0 0 22px;padding:0;list-style:none}
+.stats li{display:flex;flex-direction:column}
+.stats b{font-family:var(--font-d);font-size:1.9rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.stats span{font-size:.8rem;color:var(--sub)}
+
+.profile{margin:0 0 34px}
+.bars{display:flex;align-items:flex-end;gap:3px;height:92px;border-bottom:1.5px solid var(--ink)}
+.bar{flex:1;position:relative;background:transparent;border:1.5px solid var(--line);border-bottom:0;border-radius:3px 3px 0 0;min-width:0}
+.bar.open{background:var(--mute);border-color:var(--mute)}
+.bar.done{background:var(--accent);border-color:var(--accent)}
+.bar.today::before{content:"";position:absolute;left:50%;top:-11px;margin-left:-5px;border:5px solid transparent;border-top-color:var(--accent)}
+.ticks{display:flex;gap:3px;margin-top:5px}
+.ticks span{flex:1;font-size:.68rem;color:var(--sub);text-align:center;font-variant-numeric:tabular-nums;min-width:0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:.78rem;color:var(--sub)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;border:1.5px solid var(--line)}
+.legend i.o{background:var(--mute);border-color:var(--mute)}
+.legend i.d{background:var(--accent);border-color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:12px}
+.bib{position:relative;aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:space-between;text-align:left;padding:11px 12px;background:var(--card);border:1.5px solid var(--ink);border-radius:6px;cursor:pointer;transition:transform .15s ease}
+.bib:hover{transform:translateY(-2px)}
+.bib .pin{position:absolute;width:6px;height:6px;border-radius:50%;border:1.2px solid currentColor;opacity:.45}
+.bib .pin:nth-of-type(1){top:5px;left:5px}.bib .pin:nth-of-type(2){top:5px;right:5px}
+.bib .pin:nth-of-type(3){bottom:5px;left:5px}.bib .pin:nth-of-type(4){bottom:5px;right:5px}
+.bib .top{display:flex;justify-content:space-between;align-items:flex-start}
+.qm{width:18px;height:18px;border-radius:50%;border:1.5px solid currentColor;display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;line-height:1;margin-top:3px}
+.qm.ok{background:currentColor}
+.qm.ok span{color:var(--card)}
+.bib.done .qm.ok span{color:var(--accent)}
+.bib .date{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;margin-top:6px;opacity:.8}
+.bib .num{font-family:var(--font-d);font-weight:700;font-size:clamp(2.1rem,7vw,2.9rem);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.bib .foot{font-size:.74rem;line-height:1.25;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bib.locked{border:1.5px dashed var(--line);color:var(--mute);background:transparent}
+.bib.locked:hover{transform:none}
+.bib.done{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.bib.today{outline:2px solid var(--accent);outline-offset:3px}
+.bib svg{width:12px;height:12px;vertical-align:-1px;margin-right:4px}
+
+[hidden]{display:none!important}
+.opt{text-align:left;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:12px 14px;cursor:pointer;display:flex;gap:12px;align-items:baseline}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt .k{font-family:var(--font-d);font-weight:700;color:var(--sub)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.right,.opt.right:disabled{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.opt.right .k{color:inherit}
+.opt.wrong{border-style:dashed;border-color:var(--ink);text-decoration:line-through;text-decoration-color:var(--mute)}
+.fb{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.fb p{margin:0 0 14px;max-width:60ch}
+.fb b{font-family:var(--font-d)}
+.who input{font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%;max-width:260px}
+.rank h2{font-family:var(--font-d);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;margin:0 0 12px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);text-align:left;font-weight:500;padding:6px 10px;border-bottom:1.5px solid var(--ink)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);font-size:.95rem}
+tr.me td{background:color-mix(in srgb,var(--accent) 14%,transparent);font-weight:600}
+td.empty{color:var(--sub);text-align:center;padding:22px 10px}
+.note{font-size:.82rem;color:var(--sub);margin:12px 0 0}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;font-size:.85rem;color:var(--sub)}
+footer .sig{font-family:var(--font-d);font-weight:700;color:var(--ink);font-size:1.1rem}
+.switch{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--sub)}
+.switch .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--mute)}
+.switch[aria-checked="true"]{border-color:var(--accent);color:var(--ink)}
+.switch[aria-checked="true"] .dot{background:var(--accent);border-color:var(--accent)}
+footer a{color:inherit}
+
+.overlay{position:fixed;inset:0;background:rgba(10,12,14,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.overlay.on{display:flex}
+.panel{background:var(--card);color:var(--ink);width:100%;max-width:580px;max-height:92vh;overflow:auto;border-radius:10px;border:1px solid var(--line);padding:24px 22px 22px}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.p-meta{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin:0 0 6px;font-variant-numeric:tabular-nums}
+.panel h2{font-family:var(--font-d);font-weight:700;font-size:clamp(1.7rem,6vw,2.2rem);line-height:1.05;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
+.chips{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 6px;font-size:.8rem;color:var(--sub)}
+.chip{border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.dif{display:inline-flex;gap:3px;vertical-align:middle}
+.dif i{width:14px;height:6px;border-radius:2px;background:var(--line)}
+.dif i.f{background:var(--accent)}
+.close{background:none;border:1px solid var(--line);border-radius:50%;width:36px;height:36px;cursor:pointer;flex:none;font-size:1.1rem;line-height:1}
+.sec{margin-top:20px}
+.sec h3{font-family:var(--font-d);font-weight:500;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.sec p{margin:0;max-width:60ch}
+.sec .big{font-family:var(--font-d);font-weight:700;font-size:1.2rem;line-height:1.25;margin:0 0 4px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{border:1.5px solid var(--ink);background:transparent;border-radius:8px;padding:10px 16px;cursor:pointer;font-weight:600}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:hover{opacity:.9}
+.copybox{display:none;width:100%;margin-top:12px;min-height:150px;font:inherit;font-size:.88rem;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.copybox.on{display:block}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+@media (max-width:560px){
+  .overlay{align-items:flex-end;padding:0}
+  .panel{border-radius:14px 14px 0 0;max-height:94vh}
+}
+@media (prefers-reduced-motion: reduce){.bib,.toast{transition:none}.bib:hover{transform:none}}
+
+.rank{margin-top:44px}
+.rank h2{font-family:var(--font-d);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;margin:0 0 6px}
+.authbar{display:flex;gap:10px 16px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:0 0 22px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:.88rem;color:var(--sub)}
+.authbar .me{display:flex;gap:6px 16px;align-items:center;flex-wrap:wrap}
+.authbar b{color:var(--ink)}
+.btn.sm{padding:6px 12px;font-size:.85rem}
+.inline{display:inline-flex;gap:8px;align-items:center;cursor:pointer}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;margin:12px 0}
+.check input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--accent)}
+.field label{display:block;font-size:.85rem;color:var(--sub);margin:14px 0 6px}
+.field input{font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%;max-width:320px}
+.hint{font-size:.8rem;color:var(--sub);margin:6px 0 0}
+.err{border-left:3px solid var(--ink);padding:6px 10px;margin:12px 0 0;font-size:.88rem}
+.banner{border:1.5px dashed var(--ink);border-radius:8px;padding:12px 14px;margin:0 0 22px;font-size:.9rem}
+.opts{display:grid;gap:10px;margin-top:10px}
+.opt{text-align:left;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:12px 14px;cursor:pointer;display:flex;gap:12px;align-items:baseline}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt .k{font-family:var(--font-d);font-weight:700;color:var(--sub)}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.right,.opt.right:disabled{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.opt.right .k{color:inherit}
+.opt.wrong{border-style:dashed;border-color:var(--ink);text-decoration:line-through;text-decoration-color:var(--mute)}
+.fb{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.fb p{margin:0 0 12px;max-width:60ch}
+.fb b{font-family:var(--font-d)}
+.who{display:none}
+footer a{margin-right:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="authbar" id="authbar"></div>
+  <header>
+    <p class="kicker">Josep Tarrés · Calendari d'Advent 2026</p>
+    <h1>Volta a <span>Nadal</span></h1>
+    <p class="lede">24 etapes imaginàries, una porta cada dia. Surts de Torelló, puges ports mítics i tornes a casa el 24. A cada etapa, una curiositat, una cosa que ningú t'explica, un repte per fer i una pregunta per sumar punts.</p>
+    <p class="status" id="status"></p>
+  </header>
+
+  <ul class="stats" aria-label="El teu progrés">
+    <li><b id="s-open">0</b><span>etapes obertes</span></li>
+    <li><b id="s-done">0</b><span>reptes fets</span></li>
+    <li><b id="s-run">0</b><span>millor ratxa de dies</span></li>
+    <li><b id="s-pts">0</b><span id="s-lvl">punts del quiz</span></li>
+  </ul>
+
+  <section class="profile" aria-label="Perfil de la volta">
+    <div class="bars" id="bars"></div>
+    <div class="ticks" id="ticks" aria-hidden="true"></div>
+    <div class="legend">
+      <span><i></i>Per obrir</span><span><i class="o"></i>Oberta</span><span><i class="d"></i>Repte fet</span>
+      <span><b aria-hidden="true">✓</b> pregunta encertada · <b aria-hidden="true">✕</b> pregunta fallada</span>
+      <span>L'alçada de cada barra és la dificultat de l'etapa.</span>
+    </div>
+  </section>
+
+  <section class="grid" id="grid" aria-label="Les 24 etapes"></section>
+
+  <section class="rank" aria-labelledby="rk-h">
+    <h2 id="rk-h">Classificació</h2>
+    <p class="note">Cada pregunta val 100 punts si l'encertes a la primera. Si hi ha empat, passa davant qui ha arribat abans a aquesta puntuació. Premis i sorteig: consulta les <a href="bases.html">bases</a>.</p>
+    <div class="tablewrap"><table id="rank-table"><thead><tr><th>#</th><th>Jugador</th><th>Punts</th><th>Encerts</th></tr></thead><tbody id="rank"></tbody></table></div>
+  </section>
+
+  <footer>
+    <span class="sig">Pedalem.</span>
+    <span><a href="privacitat.html">Privacitat</a> · <a href="bases.html">Bases del sorteig</a></span>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="p-title" id="panel">
+    <div class="p-top">
+      <div>
+        <p class="p-meta" id="p-meta"></p>
+        <h2 id="p-title" tabindex="-1"></h2>
+      </div>
+      <button class="close" id="close" aria-label="Tanca">✕</button>
+    </div>
+    <div class="chips"><span class="chip" id="p-type"></span><span>Dificultat <span class="dif" id="p-dif"></span></span></div>
+    <div class="sec"><h3>Curiositat de l'etapa</h3><p id="p-cur"></p></div>
+    <div class="sec"><h3>El que ningú t'explica…</h3><p class="big" id="p-tip-t"></p><p id="p-tip"></p></div>
+    <div class="sec"><h3>Repte del dia</h3><p id="p-rep"></p></div>
+    <div class="sec"><h3>Pregunta del dia</h3><p class="big" id="pq-q"></p><div class="opts" id="pq-opts"></div><div id="pq-fb" aria-live="polite"></div></div>
+    <div class="actions">
+      <button class="btn pri" id="b-done"></button>
+      <button class="btn" id="b-copy">Copia el text per a Instagram</button>
+    </div>
+    <textarea class="copybox" id="copybox" readonly aria-label="Text per a Instagram"></textarea>
+  </div>
+</div>
+
+<div class="overlay" id="ob" aria-hidden="true">
+  <form class="panel" id="ob-form" role="dialog" aria-modal="true" aria-labelledby="ob-title" novalidate>
+    <h2 id="ob-title" tabindex="-1">Acaba l'alta</h2>
+    <p class="hint">Només necessitem un àlies per a la classificació. No es mostrarà ni el teu nom ni el teu correu.</p>
+    <div class="field">
+      <label for="ob-alias">Àlies (3 a 20 caràcters)</label>
+      <input id="ob-alias" maxlength="20" autocomplete="nickname" placeholder="Pedalaire72" required>
+    </div>
+    <label class="check"><input type="checkbox" id="ob-news"><span>Vull rebre cada matí un correu amb l'etapa del dia. Puc donar-me de baixa quan vulgui.</span></label>
+    <label class="check"><input type="checkbox" id="ob-terms"><span>He llegit la <a href="privacitat.html" target="_blank" rel="noopener">política de privacitat</a> i les <a href="bases.html" target="_blank" rel="noopener">bases del sorteig</a> i les accepto.</span></label>
+    <div class="err" id="ob-err" role="alert" hidden></div>
+    <div class="actions">
+      <button class="btn pri" id="ob-go" type="submit">Crea el meu perfil</button>
+      <button class="btn" id="ob-cancel" type="button">Ara no</button>
+    </div>
+  </form>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
