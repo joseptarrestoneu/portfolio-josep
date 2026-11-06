@@ -15,6 +15,7 @@ let gReady = false;
 const gQueue = [];
 
 let CONTENT = [];
+const CUR_LOCKED = 'Respon la pregunta d’aquesta etapa i descobriràs la curiositat que la completa.';
 const S = { raw: 0, today: 0, start: '2026-12-01', session: null, profile: null, progress: {}, answers: {}, lb: { rows: [], me: null } };
 let current = null, lastFocus = null, toastTimer = null, refreshing = false, again = false;
 
@@ -267,7 +268,7 @@ async function openDay(d) {
   $('p-title').textContent = x.name;
   $('p-type').textContent = x.type;
   $('p-dif').innerHTML = [1, 2, 3, 4, 5].map(k => '<i class="' + (k <= x.difficulty ? 'f' : '') + '"></i>').join('');
-  $('p-cur').textContent = x.curiosity;
+  $('p-cur').textContent = CUR_LOCKED;
   $('p-tip-t').textContent = x.tip_title;
   $('p-tip').textContent = x.tip;
   $('p-rep').textContent = x.challenge;
@@ -311,19 +312,20 @@ function renderQuestion(d, data) {
   const rot = (d * 3) % 4, order = [0, 1, 2, 3].map(k => (k + rot) % 4);
   const answered = data.chosen !== undefined && data.chosen !== null;
   $('pq-q').textContent = data.question;
+  $('p-cur').textContent = answered && data.curiosity ? data.curiosity : CUR_LOCKED;
   opts.innerHTML = ''; fb.innerHTML = ''; fb.className = '';
   order.forEach((oi, pos) => {
     const b = mk('button', 'opt'); b.type = 'button';
     b.append(mk('span', 'k', 'ABCD'[pos]), mk('span', '', data.options[oi]));
     if (answered) {
       b.disabled = true;
-      if (oi === data.correct) b.classList.add('right'); else if (oi === data.chosen) b.classList.add('wrong');
+      if (data.correct === 'all' || oi === data.correct) b.classList.add('right'); else if (oi === data.chosen) b.classList.add('wrong');
     } else b.addEventListener('click', () => answer(d, oi));
     opts.appendChild(b);
   });
   if (answered) {
     fb.className = 'fb';
-    const p = mk('p'); p.append(mk('b', '', data.points > 0 ? 'Correcte! +100 punts. ' : 'No és aquesta. '), document.createTextNode(data.explanation));
+    const p = mk('p'); p.append(mk('b', '', data.correct === 'all' ? 'Totes són bones respostes! +100 punts. ' : (data.points > 0 ? 'Correcte! +100 punts. ' : 'No és aquesta. ')), document.createTextNode(data.explanation));
     fb.appendChild(p);
   }
 }
