@@ -57,6 +57,15 @@ h1 span{color:var(--accent)}
 .steps .n{flex:none;width:1.3ch;text-align:center;font-family:var(--font-d);font-weight:700;font-size:2rem;line-height:1;color:var(--accent)}
 @media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{gap:10px}.steps .n{font-size:1.7rem}}
 
+.weekly{margin:0 0 30px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.weekly h2{font-family:var(--font-d);font-size:1.15rem;margin:0 0 4px}
+.wk-lead{margin:0 0 12px;color:var(--sub);font-size:.95rem}
+.wk-row{display:flex;gap:10px;flex-wrap:wrap}
+.wk-row input[type=email]{flex:1 1 240px;min-width:0;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.wk-msg{margin:8px 0 0;font-size:.9rem;min-height:1.2em}
+.wk-msg.ok{color:var(--accent);font-weight:600}
+.wk-msg.err{color:#C2271D}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 26px;padding:0;list-style:none}
 .stats li{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .stats b{font-family:var(--font-d);font-size:2rem;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--accent)}
@@ -211,6 +220,20 @@ footer a{margin-right:4px}
     </ol>
   </section>
 
+  <section class="weekly" aria-labelledby="wk-h">
+    <h2 id="wk-h">Newsletter setmanal de Josep Tarrés</h2>
+    <p class="wk-lead">Un correu a la setmanya amb el que vaig aprenent. Sense compte: només el correu.</p>
+    <form id="wk-form" novalidate>
+      <div class="wk-row">
+        <input type="email" id="wk-email" placeholder="el-teu@correu.cat" autocomplete="email" aria-label="El teu correu electrònic" required>
+        <input type="text" id="wk-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn pri" id="wk-go" type="submit">Apunta-m'hi</button>
+      </div>
+      <label class="check"><input type="checkbox" id="wk-consent"><span>Accepto rebre la newsletter setmanal de Josep Tarrés. He llegit la <a href="privacitat.html" target="_blank" rel="noopener">política de privacitat</a>.</span></label>
+      <p class="wk-msg" id="wk-msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
   <ul class="stats" aria-label="El teu progrés">
     <li><b id="s-open">0</b><span>etapes obertes</span></li>
     <li><b id="s-done">0</b><span>reptes fets</span></li>
@@ -273,6 +296,7 @@ footer a{margin-right:4px}
       <input id="ob-alias" maxlength="20" autocomplete="nickname" placeholder="Pedalaire72" required>
     </div>
     <label class="check"><input type="checkbox" id="ob-news"><span>Vull rebre cada matí un correu amb l'etapa del dia. Puc donar-me de baixa quan vulgui.</span></label>
+    <label class="check"><input type="checkbox" id="ob-weekly"><span>Vull rebre també la newsletter setmanal de Josep Tarrés. Puc donar-me de baixa quan vulgui.</span></label>
     <label class="check"><input type="checkbox" id="ob-terms"><span>He llegit la <a href="privacitat.html" target="_blank" rel="noopener">política de privacitat</a> i les <a href="bases.html" target="_blank" rel="noopener">bases del sorteig</a> i les accepto.</span></label>
     <div class="err" id="ob-err" role="alert" hidden></div>
     <div class="actions">
@@ -284,6 +308,6 @@ footer a{margin-right:4px}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="config.js"></script>
-<script src="app.js?v=20261106e"></script>
+<script src="app.js?v=20261107a"></script>
 </body>
 </html>

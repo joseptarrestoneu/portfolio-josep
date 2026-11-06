@@ -41,6 +41,10 @@ const ERRORS = {
   profile_exists: 'Ja tens un perfil creat.',
   bad_choice: 'Resposta no vàlida.',
   invalid_credential: 'Google no ha confirmat el teu accés. Torna-ho a provar.',
+  email_invalid: 'Escriu una adreça de correu vàlida.',
+  consent_required: 'Cal acceptar la newsletter i la política de privacitat.',
+  weekly_disabled: 'La newsletter setmanal encara no està activa.',
+  mail_failed: 'No hem pogut enviar el correu de confirmació. Prova-ho d’aquí a un moment.',
   forbidden: 'Petició no permesa.'
 };
 function errText(e) {
@@ -52,7 +56,8 @@ const ROUTES = {
   get_today:       () => ['GET', '/api/today'],
   get_state:       () => ['GET', '/api/state'],
   get_leaderboard: a => ['GET', '/api/leaderboard?limit=' + a.p_limit],
-  create_profile:  a => ['POST', '/api/profile', { alias: a.p_alias, newsletter: a.p_newsletter }],
+  create_profile:  a => ['POST', '/api/profile', { alias: a.p_alias, newsletter: a.p_newsletter, weekly: a.p_weekly }],
+  subscribe:       a => ['POST', '/api/subscribe', { email: a.p_email, consent: a.p_consent, website: a.p_website }],
   set_newsletter:  a => ['POST', '/api/newsletter', { on: a.p_on }],
   get_question:    a => ['GET', '/api/question/' + a.p_day],
   answer_question: a => ['POST', '/api/answer', { day: a.p_day, choice: a.p_choice }],
@@ -178,12 +183,28 @@ $('ob-form').addEventListener('submit', async e => {
   if (!$('ob-terms').checked) return fail('Cal acceptar la política de privacitat i les bases per continuar.');
   $('ob-go').disabled = true;
   try {
-    await call('create_profile', { p_alias: alias, p_newsletter: $('ob-news').checked });
+    await call('create_profile', { p_alias: alias, p_newsletter: $('ob-news').checked, p_weekly: $('ob-weekly').checked });
     hideOnboarding(); toast('Perfil creat. Som-hi!');
     await refresh();
     if (current) loadQuiz(current);
   } catch (ex) { fail(errText(ex)); }
   $('ob-go').disabled = false;
+});
+
+/* ---------- newsletter setmanal (sense compte) ---------- */
+$('wk-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const msg = $('wk-msg'), email = $('wk-email').value.trim();
+  const say = (t, cls) => { msg.textContent = t; msg.className = 'wk-msg ' + (cls || ''); };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return say('Escriu una adreça de correu vàlida.', 'err');
+  if (!$('wk-consent').checked) return say('Cal acceptar la newsletter i la política de privacitat.', 'err');
+  $('wk-go').disabled = true; say('Enviant…');
+  try {
+    await call('subscribe', { p_email: email, p_consent: true, p_website: $('wk-hp').value });
+    say('Gairebé! T’hem enviat un correu: obre’l i confirma la subscripció.', 'ok');
+    $('wk-form').reset();
+  } catch (ex) { say(errText(ex), 'err'); }
+  $('wk-go').disabled = false;
 });
 
 /* ---------- pintat ---------- */

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Confirma la subscripció</title>
+<style>
+:root{--bg:#FAFAFA;--ink:#111315;--sub:#5B616B;--accent:#2D6CDF;--on:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#111315;--ink:#FAFAFA;--sub:#A3A8B0;--accent:#5B8FEF;--on:#0C0E10;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.55}
+main{max-width:480px;margin:0 auto;padding:64px 20px}
+h1{font-family:'Space Grotesk',system-ui,sans-serif;font-size:2rem;letter-spacing:-.02em;margin:0 0 12px}
+p{color:var(--sub)}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:12px 20px;background:var(--accent);color:var(--on);cursor:pointer}
+button:disabled{opacity:.6;cursor:default}
+a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Confirma la teva subscripció</h1>
+  <p id="msg">Prem el botó per confirmar que vols rebre cada setmana la newsletter de Josep Tarrés. Pots donar-te de baixa quan vulguis des de qualsevol correu.</p>
+  <button id="go" type="button">Confirma la subscripció</button>
+  <p><a href="./">Tornar al calendari</a></p>
+</main>
+<script src="config.js"></script>
+<script src="confirmar.js"></script>
+</body>
+</html>
