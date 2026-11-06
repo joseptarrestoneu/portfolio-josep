@@ -204,7 +204,7 @@ function bindWeekly(p) {
     $(p + '-go').disabled = false;
   });
 }
-bindWeekly('wk'); bindWeekly('wf');
+bindWeekly('wf');
 
 /* ---------- pintat ---------- */
 function bestRun() { let b = 0, r = 0; for (let d = 1; d <= 24; d++) { if (S.progress[d] && S.progress[d].done) { r++; if (r > b) b = r; } else r = 0; } return b; }
@@ -329,11 +329,6 @@ $('wf-join').addEventListener('click', async () => {
     renderAll();
   } catch (ex) { say(errText(ex), 'err'); }
   $('wf-join').disabled = false;
-});
-$('wk-toggle').addEventListener('click', () => {
-  const box = $('wk-box'), on = !box.classList.contains('open');
-  box.classList.toggle('open', on); $('wk-toggle').setAttribute('aria-expanded', String(on));
-  if (on) $('wk-email').focus();
 });
 function renderAll() { renderAuth(); renderStatus(); renderStats(); renderBars(); renderGrid(); renderRank(); renderJoin(); }
 
