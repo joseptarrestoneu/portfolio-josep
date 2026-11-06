@@ -314,7 +314,7 @@ function renderJoin() {
   hero.classList.toggle('solo', join.hidden);
   join.classList.toggle('news-only', newsOnly);
   $('join-play').hidden = newsOnly; $('join-or').hidden = newsOnly;
-  $('join-h').textContent = newsOnly ? 'Newsletter setmanal' : 'Participa';
+  $('wk-t').textContent = newsOnly ? 'Newsletter setmanal de Josep Tarrés' : 'Només la newsletter setmanal';
   if (showAll && !join.dataset.g) { join.dataset.g = '1'; gbutton($('join-g')); }
 }
 $('wk-toggle').addEventListener('click', () => {

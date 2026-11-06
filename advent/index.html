@@ -58,39 +58,40 @@ h1 span{color:var(--accent)}
 @media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{gap:10px}.steps .n{font-size:1.7rem}}
 
 .authbar[hidden]{display:none}
-.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px 44px;align-items:start;margin:0 0 28px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px 40px;align-items:start;margin:0 0 24px}
 .hero.solo{grid-template-columns:1fr}
 .hero-text .status{margin-bottom:0}
 .join[hidden]{display:none}
-.join{padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 4%,transparent)}
-.join h2{font-family:var(--font-d);font-size:1.25rem;margin:0 0 16px}
-.join-t{margin:0;font-weight:600}
-.join-s{margin:2px 0 12px;color:var(--sub);font-size:.92rem}
+.join{padding:14px 16px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.join-t{margin:0 0 6px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sub)}
 .join-g{min-height:44px}
-.join-or{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--sub);font-size:.78rem;text-transform:uppercase;letter-spacing:.12em}
+.join-or{display:flex;align-items:center;gap:10px;margin:10px 0;color:var(--sub);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em}
 .join-or::before,.join-or::after{content:"";flex:1;height:1px;background:var(--line)}
-.join-toggle{display:none;width:100%;font:inherit;font-weight:600;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);cursor:pointer;text-align:left}
-.join-toggle::after{content:"+";float:right;font-size:1.2rem;line-height:1}
-.join-toggle[aria-expanded="true"]::after{content:"–"}
-.wk-row{display:flex;gap:10px;flex-wrap:wrap}
-.wk-row input[type=email]{flex:1 1 200px;min-width:0;font:inherit;padding:11px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
-.wk-row .btn{padding:11px 18px}
+.join-toggle{display:none}
+.wk-row{display:flex;gap:8px}
+.wk-row input[type=email]{flex:1 1 0;min-width:0;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.wk-row .btn{padding:10px 16px;white-space:nowrap}
+.join .check{margin:8px 0 0;font-size:.8rem;color:var(--sub);align-items:center}
+.join .check input{width:16px;height:16px;margin-top:0}
+.wk-msg{margin:6px 0 0;font-size:.85rem;min-height:0}
+.wk-msg:empty{display:none}
 @media (max-width:820px){
-  .hero{grid-template-columns:1fr;gap:22px}
-  .join{padding:18px 16px}
-  .join-toggle{display:block}
-  .wk-box{display:none;margin-top:12px}
+  .hero{grid-template-columns:1fr;gap:16px;margin-bottom:20px}
+  .join{padding:12px 14px}
+  .join-or{display:none}
+  .join-toggle{display:block;width:100%;margin:8px 0 0;padding:6px 0 2px;border:0;background:none;font:inherit;font-size:.9rem;font-weight:600;color:var(--sub);text-decoration:underline;text-underline-offset:3px;cursor:pointer;text-align:center}
+  .join-toggle::after{content:" ▾"}
+  .join-toggle[aria-expanded="true"]::after{content:" ▴"}
+  .wk-box{display:none;margin-top:10px}
   .wk-box.open{display:block}
-  .wk-box>.join-t,.wk-box>.join-s{display:none}
+  .wk-box>.join-t{display:none}
   .join.news-only .wk-box{display:block;margin-top:0}
+  .join.news-only .wk-box>.join-t{display:block}
   .join.news-only .join-toggle{display:none}
-  .join.news-only .wk-box>.join-t,.join.news-only .wk-box>.join-s{display:block}
-  .join-or{margin:14px 0}
-  .wk-row{flex-direction:column}
-  .wk-row .btn{width:100%}
 }
+@media (max-width:420px){.wk-row{flex-direction:column}.wk-row .btn{width:100%}}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.wk-msg{margin:8px 0 0;font-size:.9rem;min-height:1.2em}
 .wk-msg.ok{color:var(--accent);font-weight:600}
 .wk-msg.err{color:#C2271D}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 26px;padding:0;list-style:none}
@@ -239,25 +240,23 @@ footer a{margin-right:4px}
     <p class="status" id="status"></p>
       </div>
       <section class="join" id="join" aria-labelledby="join-h" hidden>
-        <h2 id="join-h">Participa</h2>
+        <h2 id="join-h" class="vh">Participa</h2>
         <div class="join-play" id="join-play">
           <p class="join-t">Vull jugar</p>
-          <p class="join-s">Respon les preguntes, suma punts i surt a la classificació.</p>
           <div id="join-g" class="join-g"></div>
         </div>
         <div class="join-or" id="join-or"><span>o</span></div>
         <div class="join-news" id="join-news">
-          <button type="button" class="join-toggle" id="wk-toggle" aria-expanded="false" aria-controls="wk-box">Només vull la newsletter</button>
+          <button type="button" class="join-toggle" id="wk-toggle" aria-expanded="false" aria-controls="wk-box">o només la newsletter</button>
           <div class="wk-box" id="wk-box">
-            <p class="join-t">Només la newsletter</p>
-            <p class="join-s">Un correu a la setmanya amb el que vaig aprenent. Sense compte.</p>
+            <p class="join-t" id="wk-t">Només la newsletter setmanal</p>
             <form id="wk-form" novalidate>
       <div class="wk-row">
         <input type="email" id="wk-email" placeholder="el-teu@correu.cat" autocomplete="email" aria-label="El teu correu electrònic" required>
         <input type="text" id="wk-hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn pri" id="wk-go" type="submit">Apunta-m'hi</button>
       </div>
-      <label class="check"><input type="checkbox" id="wk-consent"><span>Accepto rebre la newsletter setmanal de Josep Tarrés. He llegit la <a href="privacitat.html" target="_blank" rel="noopener">política de privacitat</a>.</span></label>
+      <label class="check"><input type="checkbox" id="wk-consent"><span>Accepto rebre la newsletter setmanal de Josep Tarrés. <a href="privacitat.html" target="_blank" rel="noopener">Privacitat</a></span></label>
       <p class="wk-msg" id="wk-msg" role="status" aria-live="polite"></p>
     </form>
           </div>
@@ -351,6 +350,6 @@ footer a{margin-right:4px}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="config.js"></script>
-<script src="app.js?v=20261107d"></script>
+<script src="app.js?v=20261107e"></script>
 </body>
 </html>
