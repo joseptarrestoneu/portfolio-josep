@@ -57,6 +57,7 @@ const ROUTES = {
   get_state:       () => ['GET', '/api/state'],
   get_leaderboard: a => ['GET', '/api/leaderboard?limit=' + a.p_limit],
   create_profile:  a => ['POST', '/api/profile', { alias: a.p_alias, newsletter: a.p_newsletter, weekly: a.p_weekly }],
+  join_weekly:     () => ['POST', '/api/weekly', { on: true }],
   subscribe:       a => ['POST', '/api/subscribe', { email: a.p_email, consent: a.p_consent, website: a.p_website }],
   get_question:    a => ['GET', '/api/question/' + a.p_day],
   answer_question: a => ['POST', '/api/answer', { day: a.p_day, choice: a.p_choice }],
@@ -314,7 +315,21 @@ function renderJoin() {
   if (!join.hidden && !join.dataset.g) { join.dataset.g = '1'; gbutton($('join-g')); }
   // Al peu, també per a qui ha entrat però no té la setmanal.
   $('foot-news').hidden = !(configured && S.session !== null && !(S.profile && S.profile.weekly));
+  // Qui ja té compte i perfil: un sol clic, sense escriure el correu.
+  const acct = S.session === true && !!S.profile && !S.profile.weekly;
+  $('wf-account').hidden = !acct; $('wf-form').hidden = acct;
 }
+$('wf-join').addEventListener('click', async () => {
+  const msg = $('wf-amsg'), say = (t, cls) => { msg.textContent = t; msg.className = 'wk-msg ' + (cls || ''); };
+  $('wf-join').disabled = true; say('Un moment…');
+  try {
+    await call('join_weekly');
+    if (S.profile) S.profile.weekly = true;
+    say(''); toast('Ja estàs apuntat a la newsletter setmanal.');
+    renderAll();
+  } catch (ex) { say(errText(ex), 'err'); }
+  $('wf-join').disabled = false;
+});
 $('wk-toggle').addEventListener('click', () => {
   const box = $('wk-box'), on = !box.classList.contains('open');
   box.classList.toggle('open', on); $('wk-toggle').setAttribute('aria-expanded', String(on));
