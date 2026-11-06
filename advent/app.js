@@ -230,7 +230,7 @@ function renderCountdown() {
   $('cd-h').textContent = two(Math.floor((secs % 86400) / 3600));
   $('cd-m').textContent = two(Math.floor((secs % 3600) / 60));
   $('cd-s').textContent = two(secs % 60);
-  $('cd-label').textContent = S.raw < 1 ? 'Falta per a l’etapa 1:' : 'Falta per a l’etapa ' + (S.raw + 1) + ':';
+  $('cd-n').textContent = S.raw < 1 ? 1 : S.raw + 1;
   box.hidden = false;
 }
 setInterval(renderCountdown, 1000);
