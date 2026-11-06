@@ -38,6 +38,19 @@ h1{font-family:var(--font-d);font-weight:700;font-size:clamp(2.8rem,10vw,5.6rem)
 h1 span{color:var(--accent)}
 .lede{max-width:56ch;color:var(--sub);margin:0 0 6px;font-size:1.05rem}
 .status{font-weight:600;margin:0 0 28px}
+.countdown{margin:-14px 0 28px}
+.countdown[hidden]{display:none}
+.cd-label{margin:0 0 8px;color:var(--sub);font-size:.9rem}
+.cd-boxes{display:flex;gap:10px;flex-wrap:wrap}
+.cd-boxes div{min-width:84px;padding:10px 14px;text-align:center;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.cd-boxes b{display:block;font-family:var(--font-d);font-size:2rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.cd-boxes span{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
+.how{margin:0 0 34px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.how h2{font-family:var(--font-d);font-size:1.15rem;margin:0 0 8px}
+.how p{margin:0 0 10px;color:var(--sub)}
+.steps{margin:0;padding-left:1.2rem}
+.steps li{margin:0 0 6px}
+.steps li:last-child{margin:0}
 
 .stats{display:flex;gap:28px;flex-wrap:wrap;margin:0 0 22px;padding:0;list-style:none}
 .stats li{display:flex;flex-direction:column}
@@ -171,7 +184,25 @@ footer a{margin-right:4px}
     <h1>Volta a <span>Nadal</span></h1>
     <p class="lede">24 etapes imaginàries, una porta cada dia. Surts de Torelló, puges ports mítics i tornes a casa el 24. A cada etapa, una curiositat, una cosa que ningú t'explica, un repte per fer i una pregunta per sumar punts.</p>
     <p class="status" id="status"></p>
+    <div class="countdown" id="countdown" hidden>
+      <p class="cd-label" id="cd-label"></p>
+      <div class="cd-boxes" role="timer" aria-label="Temps que falta">
+        <div><b id="cd-d">0</b><span>dies</span></div>
+        <div><b id="cd-h">0</b><span>hores</span></div>
+        <div><b id="cd-m">0</b><span>minuts</span></div>
+      </div>
+    </div>
   </header>
+
+  <section class="how" aria-labelledby="how-h">
+    <h2 id="how-h">Què és un calendari d'advent?</h2>
+    <p>Un calendari d'advent és un calendari que s'obre a poc a poc: una porta cada dia, de l'1 al 24 de desembre, fins a la vigília de Nadal. Aquí cada porta és una etapa d'una volta en bicicleta imaginària que surt i arriba a Torelló.</p>
+    <ol class="steps">
+      <li><b>Cada dia s'obre una etapa nova.</b> Les etapes que encara no toquen estan tancades.</li>
+      <li><b>Llegeix, repta't i respon.</b> Cada etapa té un consell, un repte per fer i una pregunta. Cada pregunta encertada suma 100 punts.</li>
+      <li><b>El 24 arribes a Torelló.</b> Els punts van a la classificació. Premis i sorteig: mira les <a href="bases.html">bases</a>.</li>
+    </ol>
+  </section>
 
   <ul class="stats" aria-label="El teu progrés">
     <li><b id="s-open">0</b><span>etapes obertes</span></li>

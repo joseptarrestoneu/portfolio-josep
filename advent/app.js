@@ -192,13 +192,47 @@ function points() { let p = 0; Object.keys(S.answers).forEach(k => { p += S.answ
 
 function renderStatus() {
   let t;
-  if (S.raw < 1) {
-    const n = 1 - S.raw;
-    t = n === 1 ? "Demà s'obre la primera etapa." : 'Falten ' + n + ' dies perquè s’obri la primera etapa, el ' + longDate(1) + '.';
-  } else if (S.raw <= 24 && CONTENT.length) t = 'Avui toca l’etapa ' + S.raw + ': ' + CONTENT[S.raw - 1].name + '.';
+  if (S.raw < 1) t = 'La primera etapa s’obre el ' + longDate(1) + '.';
+  else if (S.raw <= 24 && CONTENT.length) t = 'Avui toca l’etapa ' + S.raw + ': ' + CONTENT[S.raw - 1].name + '.';
   else t = 'La volta ha acabat, però pots repassar les 24 etapes quan vulgui.';
   $('status').textContent = t;
+  renderCountdown();
 }
+
+/* ---------- compte enrere ---------- */
+// Les etapes s'obren a les 00:00 hora de Madrid, vegi qui vegi el rellotge.
+function madridMidnightMs(y, m, d) {
+  const dtf = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Madrid', hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' });
+  const wall = t => { const o = {}; dtf.formatToParts(new Date(t)).forEach(p => { o[p.type] = p.value; }); return Date.UTC(+o.year, +o.month - 1, +o.day, +o.hour, +o.minute, +o.second); };
+  const want = Date.UTC(y, m - 1, d);
+  let g = want - (wall(want) - want);
+  g -= wall(g) - want;
+  return g;
+}
+// Moment en què s'obre la propera etapa (null si ja no n'hi ha cap més).
+function nextOpenMs() {
+  if (S.raw >= 24) return null;
+  const dt = dateOf(Math.max(1, S.raw + 1));
+  return madridMidnightMs(dt.getFullYear(), dt.getMonth() + 1, dt.getDate());
+}
+let cdSyncAt = 0;
+function renderCountdown() {
+  const box = $('countdown'), t = nextOpenMs();
+  if (t === null) { box.hidden = true; return; }
+  const left = t - Date.now();
+  if (left <= 0) {
+    box.hidden = true;
+    if (Date.now() - cdSyncAt > 30000) { cdSyncAt = Date.now(); refresh(); }
+    return;
+  }
+  const mins = Math.floor(left / 60000);
+  $('cd-d').textContent = Math.floor(mins / 1440);
+  $('cd-h').textContent = Math.floor((mins % 1440) / 60);
+  $('cd-m').textContent = mins % 60;
+  $('cd-label').textContent = S.raw < 1 ? 'Falta per a l’etapa 1:' : 'Falta per a l’etapa ' + (S.raw + 1) + ':';
+  box.hidden = false;
+}
+setInterval(renderCountdown, 1000);
 function renderStats() {
   let o = 0, f = 0;
   Object.keys(S.progress).forEach(k => { o++; if (S.progress[k].done) f++; });
