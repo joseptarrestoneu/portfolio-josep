@@ -308,7 +308,9 @@ function renderRank() {
     add(me, true);
   }
 }
-function renderAll() { renderAuth(); renderStatus(); renderStats(); renderBars(); renderGrid(); renderRank(); }
+// Qui ja és a la newsletter setmanal (amb compte i subscripció confirmada) no veu el formulari.
+function renderWeekly() { $('weekly').hidden = !!(S.profile && S.profile.weekly); }
+function renderAll() { renderAuth(); renderStatus(); renderStats(); renderBars(); renderGrid(); renderRank(); renderWeekly(); }
 
 /* ---------- targeta del dia ---------- */
 function updateDoneBtn() {

@@ -57,6 +57,7 @@ h1 span{color:var(--accent)}
 .steps .n{flex:none;width:1.3ch;text-align:center;font-family:var(--font-d);font-weight:700;font-size:2rem;line-height:1;color:var(--accent)}
 @media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{gap:10px}.steps .n{font-size:1.7rem}}
 
+.weekly[hidden]{display:none}
 .weekly{margin:0 0 30px;padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .weekly h2{font-family:var(--font-d);font-size:1.15rem;margin:0 0 4px}
 .wk-lead{margin:0 0 12px;color:var(--sub);font-size:.95rem}
@@ -220,7 +221,7 @@ footer a{margin-right:4px}
     </ol>
   </section>
 
-  <section class="weekly" aria-labelledby="wk-h">
+  <section class="weekly" id="weekly" aria-labelledby="wk-h">
     <h2 id="wk-h">Newsletter setmanal de Josep Tarrés</h2>
     <p class="wk-lead">Un correu a la setmanya amb el que vaig aprenent. Sense compte: només el correu.</p>
     <form id="wk-form" novalidate>
@@ -308,6 +309,6 @@ footer a{margin-right:4px}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="config.js"></script>
-<script src="app.js?v=20261107a"></script>
+<script src="app.js?v=20261107b"></script>
 </body>
 </html>
