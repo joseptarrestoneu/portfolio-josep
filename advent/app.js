@@ -106,7 +106,8 @@ async function refresh() {
 
 /* ---------- accés (Google Identity Services) ---------- */
 function gbutton(el) {
-  if (gReady) window.google.accounts.id.renderButton(el, { theme: 'outline', size: 'medium', text: 'signin_with', locale: 'ca', shape: 'rectangular' });
+  const big = el.classList.contains('join-g');
+  if (gReady) window.google.accounts.id.renderButton(el, { theme: big ? 'filled_blue' : 'outline', size: big ? 'large' : 'medium', text: big ? 'continue_with' : 'signin_with', locale: 'ca', shape: 'rectangular' });
   else gQueue.push(el);
 }
 async function onCredential(resp) {
@@ -132,19 +133,20 @@ async function logout() {
   if (gReady) window.google.accounts.id.disableAutoSelect();
   await refresh();
 }
-function focusLogin() { closePanel(); window.scrollTo(0, 0); const b = $('authbar').querySelector('[role=button],button'); if (b) b.focus(); }
+function focusLogin() {
+  closePanel();
+  const j = $('join');
+  if (j && !j.hidden) { j.scrollIntoView({ behavior: 'smooth', block: 'center' }); const b = $('join-g').querySelector('[role=button],button'); if (b) b.focus(); }
+  else window.scrollTo(0, 0);
+}
 
 function renderAuth() {
-  const bar = $('authbar'); bar.innerHTML = '';
+  const bar = $('authbar'); bar.innerHTML = ''; bar.hidden = false;
   if (!googleClientId || !API) {
     bar.appendChild(mk('span', '', 'Falta configurar la pàgina (fitxer config.js: API_URL i GOOGLE_CLIENT_ID).'));
     return;
   }
-  if (!S.session) {
-    bar.appendChild(mk('span', '', 'Entra amb Google per guardar els punts i sortir a la classificació.'));
-    const slot = mk('div'); bar.appendChild(slot); gbutton(slot);
-    return;
-  }
+  if (!S.session) { bar.hidden = true; return; } // sense sessió, el login és al bloc «Participa»
   const me = mk('div', 'me');
   if (S.profile) {
     const hi = mk('span'); hi.append('Hola, ', mk('b', '', S.profile.alias));
@@ -300,9 +302,27 @@ function renderRank() {
     add(me, true);
   }
 }
-// Qui ja és a la newsletter setmanal (amb compte i subscripció confirmada) no veu el formulari.
-function renderWeekly() { $('weekly').hidden = !!(S.profile && S.profile.weekly); }
-function renderAll() { renderAuth(); renderStatus(); renderStats(); renderBars(); renderGrid(); renderRank(); renderWeekly(); }
+/* ---------- bloc «Participa»: jugar (Google) o només la newsletter ---------- */
+// Sense sessió: les dues opcions. Amb perfil però sense la setmanal: només la newsletter.
+// Amb la setmanal ja activa, o a mig fer l'alta: el bloc s'amaga.
+function renderJoin() {
+  const join = $('join'), hero = $('hero');
+  const configured = !!(googleClientId && API);
+  const showAll = configured && S.session === false;
+  const newsOnly = configured && S.session === true && !!S.profile && !S.profile.weekly;
+  join.hidden = !(showAll || newsOnly);
+  hero.classList.toggle('solo', join.hidden);
+  join.classList.toggle('news-only', newsOnly);
+  $('join-play').hidden = newsOnly; $('join-or').hidden = newsOnly;
+  $('join-h').textContent = newsOnly ? 'Newsletter setmanal' : 'Participa';
+  if (showAll && !join.dataset.g) { join.dataset.g = '1'; gbutton($('join-g')); }
+}
+$('wk-toggle').addEventListener('click', () => {
+  const box = $('wk-box'), on = !box.classList.contains('open');
+  box.classList.toggle('open', on); $('wk-toggle').setAttribute('aria-expanded', String(on));
+  if (on) $('wk-email').focus();
+});
+function renderAll() { renderAuth(); renderStatus(); renderStats(); renderBars(); renderGrid(); renderRank(); renderJoin(); }
 
 /* ---------- targeta del dia ---------- */
 function updateDoneBtn() {
