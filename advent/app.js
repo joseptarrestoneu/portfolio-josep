@@ -107,7 +107,7 @@ async function refresh() {
 
 /* ---------- accés (Google Identity Services) ---------- */
 function gbutton(el) {
-  const big = el.classList.contains('join-g');
+  const big = el.classList.contains('ab-g');
   if (gReady) window.google.accounts.id.renderButton(el, { theme: big ? 'filled_blue' : 'outline', size: big ? 'large' : 'medium', text: big ? 'continue_with' : 'signin_with', locale: 'ca', shape: 'rectangular' });
   else gQueue.push(el);
 }
@@ -134,20 +134,19 @@ async function logout() {
   if (gReady) window.google.accounts.id.disableAutoSelect();
   await refresh();
 }
-function focusLogin() {
-  closePanel();
-  const j = $('join');
-  if (j && !j.hidden) { j.scrollIntoView({ behavior: 'smooth', block: 'center' }); const b = $('join-g').querySelector('[role=button],button'); if (b) b.focus(); }
-  else window.scrollTo(0, 0);
-}
+function focusLogin() { closePanel(); window.scrollTo({ top: 0, behavior: 'smooth' }); const b = $('authbar').querySelector('[role=button],button'); if (b) b.focus(); }
 
 function renderAuth() {
-  const bar = $('authbar'); bar.innerHTML = ''; bar.hidden = false;
+  const bar = $('authbar'); bar.innerHTML = '';
   if (!googleClientId || !API) {
     bar.appendChild(mk('span', '', 'Falta configurar la pàgina (fitxer config.js: API_URL i GOOGLE_CLIENT_ID).'));
     return;
   }
-  if (!S.session) { bar.hidden = true; return; } // sense sessió, el login és al bloc «Participa»
+  if (!S.session) {
+    bar.appendChild(mk('p', 'ab-t', 'Entra amb Google per jugar i sortir a la classificació.'));
+    const slot = mk('div', 'ab-g'); bar.appendChild(slot); gbutton(slot);
+    return;
+  }
   const me = mk('div', 'me');
   if (S.profile) {
     const hi = mk('span'); hi.append('Hola, ', mk('b', '', S.profile.alias));
@@ -307,13 +306,9 @@ function renderRank() {
     add(me, true);
   }
 }
-/* ---------- bloc «Participa» (sense sessió) i newsletter del peu (qui no hi és subscrit) ---------- */
+/* ---------- newsletter del peu (qui no hi és subscrit; també amb sessió) ---------- */
 function renderJoin() {
-  const join = $('join');
   const configured = !!(googleClientId && API);
-  join.hidden = !(configured && S.session === false);
-  if (!join.hidden && !join.dataset.g) { join.dataset.g = '1'; gbutton($('join-g')); }
-  // Al peu, també per a qui ha entrat però no té la setmanal.
   $('foot-news').hidden = !(configured && S.session !== null && !(S.profile && S.profile.weekly));
   // Qui ja té compte i perfil: un sol clic, sense escriure el correu.
   const acct = S.session === true && !!S.profile && !S.profile.weekly;
