@@ -186,20 +186,24 @@ $('ob-form').addEventListener('submit', async e => {
 });
 
 /* ---------- newsletter setmanal (sense compte) ---------- */
-$('wk-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const msg = $('wk-msg'), email = $('wk-email').value.trim();
-  const say = (t, cls) => { msg.textContent = t; msg.className = 'wk-msg ' + (cls || ''); };
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return say('Escriu una adreça de correu vàlida.', 'err');
-  if (!$('wk-consent').checked) return say('Cal acceptar la newsletter i la política de privacitat.', 'err');
-  $('wk-go').disabled = true; say('Enviant…');
-  try {
-    await call('subscribe', { p_email: email, p_consent: true, p_website: $('wk-hp').value });
-    say('Gairebé! T’hem enviat un correu: obre’l i confirma la subscripció.', 'ok');
-    $('wk-form').reset();
-  } catch (ex) { say(errText(ex), 'err'); }
-  $('wk-go').disabled = false;
-});
+// Es fa servir en dos formularis: el del bloc «Participa» (prefix wk) i el del peu (prefix wf).
+function bindWeekly(p) {
+  $(p + '-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const msg = $(p + '-msg'), email = $(p + '-email').value.trim();
+    const say = (t, cls) => { msg.textContent = t; msg.className = 'wk-msg ' + (cls || ''); };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return say('Escriu una adreça de correu vàlida.', 'err');
+    if (!$(p + '-consent').checked) return say('Cal acceptar la newsletter i la política de privacitat.', 'err');
+    $(p + '-go').disabled = true; say('Enviant…');
+    try {
+      await call('subscribe', { p_email: email, p_consent: true, p_website: $(p + '-hp').value });
+      say('Gairebé! T’hem enviat un correu: obre’l i confirma la subscripció.', 'ok');
+      $(p + '-form').reset();
+    } catch (ex) { say(errText(ex), 'err'); }
+    $(p + '-go').disabled = false;
+  });
+}
+bindWeekly('wk'); bindWeekly('wf');
 
 /* ---------- pintat ---------- */
 function bestRun() { let b = 0, r = 0; for (let d = 1; d <= 24; d++) { if (S.progress[d] && S.progress[d].done) { r++; if (r > b) b = r; } else r = 0; } return b; }
@@ -302,20 +306,14 @@ function renderRank() {
     add(me, true);
   }
 }
-/* ---------- bloc «Participa»: jugar (Google) o només la newsletter ---------- */
-// Sense sessió: les dues opcions. Amb perfil però sense la setmanal: només la newsletter.
-// Amb la setmanal ja activa, o a mig fer l'alta: el bloc s'amaga.
+/* ---------- bloc «Participa» (sense sessió) i newsletter del peu (qui no hi és subscrit) ---------- */
 function renderJoin() {
-  const join = $('join'), hero = $('hero');
+  const join = $('join');
   const configured = !!(googleClientId && API);
-  const showAll = configured && S.session === false;
-  const newsOnly = configured && S.session === true && !!S.profile && !S.profile.weekly;
-  join.hidden = !(showAll || newsOnly);
-  hero.classList.toggle('solo', join.hidden);
-  join.classList.toggle('news-only', newsOnly);
-  $('join-play').hidden = newsOnly; $('join-or').hidden = newsOnly;
-  $('wk-t').textContent = newsOnly ? 'Newsletter setmanal de Josep Tarrés' : 'Només la newsletter setmanal';
-  if (showAll && !join.dataset.g) { join.dataset.g = '1'; gbutton($('join-g')); }
+  join.hidden = !(configured && S.session === false);
+  if (!join.hidden && !join.dataset.g) { join.dataset.g = '1'; gbutton($('join-g')); }
+  // Al peu, també per a qui ha entrat però no té la setmanal.
+  $('foot-news').hidden = !(configured && S.session !== null && !(S.profile && S.profile.weekly));
 }
 $('wk-toggle').addEventListener('click', () => {
   const box = $('wk-box'), on = !box.classList.contains('open');
