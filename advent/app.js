@@ -106,7 +106,7 @@ async function refresh() {
 }
 
 /* ---------- accés (Google Identity Services) ---------- */
-const phone = window.matchMedia('(max-width: 560px)');
+const phone = window.matchMedia ? window.matchMedia('(max-width: 560px)') : { matches: false, addEventListener() {} };
 function gbutton(el) {
   const big = el.classList.contains('ab-g');
   const opts = big && phone.matches
