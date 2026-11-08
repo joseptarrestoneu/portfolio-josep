@@ -79,6 +79,7 @@
       <a href="#about">Sobre mi</a>
       <a href="#process">Procés</a>
       <a href="#articles">Articles</a>
+      <a href="#newsletter">Newsletter</a>
       <a href="#contact">Contacte</a>
     </nav>
 
@@ -760,6 +761,29 @@
       <p class="articles__more reveal"><a data-goatcounter-click="articles-veure-tots" class="text-link" href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/recent-activity/articles/" target="_blank" rel="noopener noreferrer">Veure tots els articles a LinkedIn <span aria-hidden="true">↗</span></a></p>
     </section>
 
+    <section id="newsletter" class="newsletter section section--padded" aria-labelledby="newsletter-title">
+      <div class="newsletter__inner reveal">
+        <div class="newsletter__copy">
+          <p class="eyebrow">Newsletter</p>
+          <h2 id="newsletter-title">Tecnologia i esport, cada diumenge</h2>
+          <p>Un correu a la setmana amb el que vaig aprenent construint productes digitals i fent quilòmetres amb la bici. Sense soroll i amb baixa quan vulguis.</p>
+        </div>
+        <form class="newsletter__form" id="nl-form" novalidate data-api="https://api.joseptarrestoneu.com">
+          <label class="newsletter__label" for="nl-email">El teu correu electrònic</label>
+          <div class="newsletter__row">
+            <input type="email" id="nl-email" name="email" placeholder="el-teu@correu.cat" autocomplete="email" required />
+            <input type="text" id="nl-hp" class="newsletter__hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button class="button button--primary" id="nl-go" type="submit">Apunta-m'hi</button>
+          </div>
+          <label class="newsletter__check">
+            <input type="checkbox" id="nl-consent" name="consent" />
+            <span>Accepto rebre la newsletter setmanal de Josep Tarrés. He llegit la <a href="privadesa.html" target="_blank" rel="noopener">política de privadesa</a>.</span>
+          </label>
+          <p class="newsletter__msg" id="nl-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <section id="contact" class="contact section section--padded" aria-labelledby="contact-title">
       <div class="contact__inner reveal">
         <p class="eyebrow">Tens un projecte?</p>
@@ -771,7 +795,7 @@
       </div>
 
       <footer class="site-footer">
-        <p>© <span data-year></span> Josep Tarrés</p>
+        <p>© <span data-year></span> Josep Tarrés · <a data-goatcounter-click="footer-privadesa" href="privadesa.html">Política de privadesa</a></p>
         <div>
           <a data-goatcounter-click="social-linkedin" href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer">LinkedIn</a>
           <a data-goatcounter-click="social-instagram" href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener">Instagram</a>

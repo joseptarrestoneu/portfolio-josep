@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Confirma la subscripció — Josep Tarrés</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" />
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('portfolio-theme');
+        document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .confirm { max-width: 34rem; margin: 0 auto; padding: 10rem 1.5rem 4rem; }
+    .confirm h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin: 0 0 1rem; font-weight: 500; letter-spacing: -.03em; }
+    .confirm p { line-height: 1.7; color: var(--muted); }
+    .confirm .button { margin: 1rem 0 1.5rem; cursor: pointer; border: 0; font: inherit; }
+    .confirm a { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <header class="site-header is-scrolled">
+    <a class="brand" href="/" aria-label="Tornar a l'inici">JT<span>.</span></a>
+  </header>
+  <main class="confirm">
+    <h1>Confirma la teva subscripció</h1>
+    <p id="msg">Prem el botó per confirmar que vols rebre cada diumenge la newsletter de Josep Tarrés. Pots donar-te de baixa quan vulguis des de qualsevol correu.</p>
+    <button class="button button--primary" id="go" type="button">Confirma la subscripció</button>
+    <p><a href="/">Tornar a la web</a> · <a href="privadesa.html">Política de privadesa</a></p>
+  </main>
+  <script>
+    (function () {
+      var API = 'https://api.joseptarrestoneu.com';
+      var t = new URLSearchParams(location.search).get('t') || '';
+      var btn = document.getElementById('go'), msg = document.getElementById('msg');
+      var fail = "No ho hem pogut fer. Torna-ho a provar d'aquí a un moment.";
+      if (!t) { btn.hidden = true; msg.textContent = "Aquest enllaç no és vàlid. Obre l'enllaç del darrer correu que has rebut."; return; }
+      btn.addEventListener('click', function () {
+        btn.disabled = true;
+        fetch(API + '/api/subscribe/confirm?t=' + encodeURIComponent(t), { method: 'POST' })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (x) {
+            if (x.ok && x.j && x.j.ok) { btn.hidden = true; msg.textContent = "Subscripció confirmada. Gràcies! T'acabo d'enviar un correu de benvinguda."; }
+            else if (x.j && x.j.error === 'not_found') { btn.hidden = true; msg.textContent = "Aquest enllaç ja no és vàlid. Torna a apuntar-te des del formulari."; }
+            else { btn.disabled = false; msg.textContent = fail; }
+          })
+          .catch(function () { btn.disabled = false; msg.textContent = fail; });
+      });
+    })();
+  </script>
+</body>
+</html>

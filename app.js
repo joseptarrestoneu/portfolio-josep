@@ -318,3 +318,43 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
 
   render();
 });
+
+// Newsletter setmanal: doble opt-in amb el backend (envia un correu de confirmació)
+(function () {
+  const form = document.getElementById('nl-form');
+  if (!form) return;
+  const api = (form.dataset.api || '').replace(/\/$/, '');
+  const msg = document.getElementById('nl-msg');
+  const go = document.getElementById('nl-go');
+  const errors = {
+    email_invalid: 'Escriu una adreça de correu vàlida.',
+    consent_required: 'Cal acceptar la newsletter i la política de privadesa.',
+    mail_failed: "No hem pogut enviar el correu de confirmació. Torna-ho a provar d'aquí a una estona.",
+    weekly_disabled: 'La newsletter no està disponible ara mateix.'
+  };
+  const say = (text, kind) => { msg.textContent = text; msg.className = 'newsletter__msg' + (kind ? ' is-' + kind : ''); };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('nl-email').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return say(errors.email_invalid, 'err');
+    if (!document.getElementById('nl-consent').checked) return say(errors.consent_required, 'err');
+    go.disabled = true;
+    say('Enviant…');
+    try {
+      const response = await fetch(api + '/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, consent: true, website: document.getElementById('nl-hp').value })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.error || 'error');
+      trackEvent('newsletter-subscriu');
+      say('Gairebé! T’he enviat un correu: obre’l i confirma la subscripció.', 'ok');
+      form.reset();
+    } catch (error) {
+      say(errors[error.message] || 'No ho hem pogut fer. Torna-ho a provar d’aquí a una estona.', 'err');
+    }
+    go.disabled = false;
+  });
+})();
