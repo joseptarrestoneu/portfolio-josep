@@ -89,6 +89,13 @@ window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
 
+// Esdeveniments de GoatCounter (la web és d'una sola pàgina: els clics són el que ens diu què funciona)
+function trackEvent(name) {
+  if (name && window.goatcounter && typeof window.goatcounter.count === 'function') {
+    window.goatcounter.count({ path: name, event: true });
+  }
+}
+
 // Panell de detall que s'expandeix des de la targeta
 const detailState = { panel: null, trigger: null, card: null, rect: null, pushed: false };
 
@@ -295,6 +302,8 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
         goTo(index);
         return;
       }
+      const tracked = event.target.closest('[data-track]');
+      if (tracked) trackEvent(tracked.dataset.track);
       const trigger = event.target.closest('[data-detail]');
       if (trigger) {
         event.preventDefault();
