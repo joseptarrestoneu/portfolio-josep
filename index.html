@@ -313,9 +313,28 @@
         </article>
 
         <article class="project-card reveal">
-          <a data-track="projecte-web-club-ciclista" href="https://clubciclistatorello.cat/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el web del Club Ciclista Torelló">
+          <a data-track="projecte-obre-mapa" href="#mapa" class="project-card__link" data-detail="mapa" aria-haspopup="dialog" aria-label="Veure més sobre el Mapa de l'ultraciclisme a Espanya">
             <div class="project-card__topline">
               <span>11</span>
+              <span>Web interactiva · Dades · Frontend</span>
+            </div>
+            <div class="project-card__content">
+              <div>
+                <h3>Mapa de l'ultraciclisme</h3>
+                <p>Totes les curses, brevets i rutes d'ultradistància d'Espanya en un sol mapa interactiu, amb filtres i enllaç a la web oficial de cada una.</p>
+              </div>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
+            </div>
+            <div class="project-card__visual project-card__visual--cream" aria-hidden="true">
+              <img src="mapa-card.jpg" alt="Mapa d'Espanya amb les curses, brevets i rutes d'ultraciclisme i la fitxa de Badlands" width="1500" height="1020" loading="lazy" decoding="async" />
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal">
+          <a data-track="projecte-web-club-ciclista" href="https://clubciclistatorello.cat/" target="_blank" rel="noopener noreferrer" class="project-card__link" aria-label="Veure el web del Club Ciclista Torelló">
+            <div class="project-card__topline">
+              <span>12</span>
               <span>Disseny web · Comunitat · Frontend</span>
             </div>
             <div class="project-card__content">
@@ -334,7 +353,7 @@
         <article class="project-card reveal">
           <div class="project-card__link project-card__link--static">
             <div class="project-card__topline">
-              <span>12</span>
+              <span>13</span>
               <span>Producte amb IA · Recerca · Automatització</span>
             </div>
             <div class="project-card__content">
@@ -352,7 +371,7 @@
         <article class="project-card reveal">
           <div class="project-card__link project-card__link--static">
             <div class="project-card__topline">
-              <span>13</span>
+              <span>14</span>
               <span>Producte amb IA · Recerca · Automatització</span>
             </div>
             <div class="project-card__content">
@@ -2084,6 +2103,101 @@
         <h3 id="catedra-end-title" class="case-title case-title--wide">Dissenyada i programada per Josep Tarrés.</h3>
         <div class="case-end__actions">
           <a data-goatcounter-click="panel-correu-catedra" class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="mapa" role="dialog" aria-modal="true" aria-labelledby="mapa-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Mapa de l'ultraciclisme</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="mapa-title">
+        <p class="eyebrow">Web interactiva · Disseny i desenvolupament</p>
+        <h2 id="mapa-title" class="case-hero__title">Mapa de l'ultraciclisme</h2>
+        <p class="case-hero__intro">
+          Un sol mapa per planificar la temporada: curses i reptes autosuficients, brevets homologades i rutes d'ultradistància d'Espanya, cada una amb l'enllaç a la seva web oficial.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Recerca de dades, disseny i desenvolupament, en solitari</dd></div>
+          <div><dt>Contingut</dt><dd>96 esdeveniments recollits d'una desena de fonts</dd></div>
+          <div><dt>Stack</dt><dd>HTML · CSS · JavaScript, sense llibreries</dd></div>
+        </dl>
+        <a data-goatcounter-click="panel-web-mapa" class="button button--primary case-hero__cta" href="https://joseptarrestoneu.com/mapa-ultraciclisme/" target="_blank" rel="noopener">Obrir el mapa <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="case-section section" aria-labelledby="mapa-video-title">
+        <div>
+          <p class="eyebrow">En 40 segons</p>
+          <h3 id="mapa-video-title" class="case-title">Com ha estat fet.</h3>
+        </div>
+        <div class="video-frame">
+          <iframe src="mapa-ultraciclisme/video.html" title="Vídeo de presentació del Mapa de l'ultraciclisme" loading="lazy" sandbox="allow-scripts" allow="autoplay"></iframe>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="mapa-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="mapa-context-title" class="case-title">La informació estava dispersa.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Les curses, les brevets i les rutes lliures d'ultraciclisme viuen en webs diferents, amb calendaris que no es parlen entre ells. Planificar una temporada vol dir obrir moltes pestanyes.</p>
+            <p>El projecte reuneix tot això en un únic mapa, amb un criteri clar: només entra el que té web oficial, i cada fitxa porta a la font i no a un resum de tercers.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="mapa-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="mapa-features-title" class="case-title">Sis decisions de disseny.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Mapa amb comunitats</h4>
+            <p>Un mapa d'Espanya amb una forma per a cada tipus d'esdeveniment. Tocant una comunitat autònoma es filtren els seus esdeveniments.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Filtres combinables</h4>
+            <p>Per tipus, comunitat, data i distància, amb cerca per nom o lloc. L'estat queda a l'adreça: es pot compartir una vista concreta.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Cada punt porta a la font</h4>
+            <p>La fitxa mostra lloc, distància, propera edició i l'enllaç a la web oficial. Si la data no coincideix amb la de l'organitzador, ho indica.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Brevets per distància</h4>
+            <p>Els clubs mostren les distàncies que organitzen (200, 300, 400, 600 km…) amb targetes de color, també al mapa.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Tres idiomes</h4>
+            <p>Català, castellà i anglès, amb els textos de les curses traduïts i el canvi d'idioma sempre visible.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Pensat per al mòbil</h4>
+            <p>Mapa amb zoom i agrupació de punts propers, i una llista que s'adapta a pantalles petites.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-end section" aria-labelledby="mapa-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="mapa-end-title" class="case-title case-title--wide">Dissenyat i programat per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a data-goatcounter-click="panel-correu-mapa" class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
           <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
         </div>
       </section>
