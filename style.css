@@ -124,6 +124,10 @@ button { font: inherit; }
 .project-card__visual--qdark { background: #12141d; }
 .project-card__visual--wine { background: #1a1417; }
 .project-card__visual--cream { background: #f3f1eb; }
+.project-card__visual--video > * { grid-area: 1 / 1; width: 100%; }
+.project-card__visual--video img { height: auto; }
+.project-card__visual--video iframe { aspect-ratio: 16 / 9; border: 0; background: #f3f1eb; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .project-card__visual--video iframe { display: none; } }
 .mockup { width: min(82%, 900px); aspect-ratio: 16/9; background: #f4f4ef; border-radius: .75rem; box-shadow: 0 30px 70px rgba(0,0,0,.23); overflow: hidden; transform: perspective(1000px) rotateX(4deg); }
 .mockup__bar { height: 9%; background: #111; }
 .mockup__body { height: 91%; display: grid; grid-template-columns: 22% 1fr; }
