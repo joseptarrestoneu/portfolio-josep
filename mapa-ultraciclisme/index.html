@@ -227,7 +227,7 @@ const I18N = {
     sortLbl: 'Ordena', sortAlpha: 'Alfabètic', sortDate: 'Per propera data',
     ccLbl: 'Comunitat', ccAll: 'Totes',
     dateLbl: 'Data', dAny: 'Qualsevol data', dMonth: 'Aquest mes', d3m: 'Pròxims 3 mesos', d6m: 'Pròxims 6 mesos', dLater: 'Més endavant', dNone: 'Sense data concreta', dPast: 'Edicions passades',
-    distLbl: 'Distància', kBrevet: 'Brevet de {k} km', kAny: 'Qualsevol distància', kLt500: 'Menys de 500 km', kMid: '500–1.000 km', kGt1000: 'Més de 1.000 km',
+    distLbl: 'Distància', kLt: 'Menys de {k} km', kAny: 'Qualsevol distància', kMid: '600–1.000 km', kGt1000: 'Més de 1.000 km',
     count: '{n} de {t} resultats', clear: 'Esborra els filtres', empty: 'Cap resultat amb aquests filtres.',
     noPoint: 'sense punt al mapa', brevet1: 'brevet', brevetN: 'brevets', clN: 'esdeveniments', langAria: 'Idioma',
     dc: 'Data per confirmar', dcNote: 'La web oficial indica: {x}', past: 'Edició passada',
@@ -259,7 +259,7 @@ const I18N = {
     sortLbl: 'Ordenar', sortAlpha: 'Alfabético', sortDate: 'Por próxima fecha',
     ccLbl: 'Comunidad', ccAll: 'Todas',
     dateLbl: 'Fecha', dAny: 'Cualquier fecha', dMonth: 'Este mes', d3m: 'Próximos 3 meses', d6m: 'Próximos 6 meses', dLater: 'Más adelante', dNone: 'Sin fecha concreta', dPast: 'Ediciones pasadas',
-    distLbl: 'Distancia', kBrevet: 'Brevet de {k} km', kAny: 'Cualquier distancia', kLt500: 'Menos de 500 km', kMid: '500–1.000 km', kGt1000: 'Más de 1.000 km',
+    distLbl: 'Distancia', kLt: 'Menos de {k} km', kAny: 'Cualquier distancia', kMid: '600–1.000 km', kGt1000: 'Más de 1.000 km',
     count: '{n} de {t} resultados', clear: 'Borrar filtros', empty: 'Ningún resultado con estos filtros.',
     noPoint: 'sin punto en el mapa', brevet1: 'brevet', brevetN: 'brevets', clN: 'eventos', langAria: 'Idioma',
     dc: 'Fecha por confirmar', dcNote: 'La web oficial indica: {x}', past: 'Edición pasada',
@@ -291,7 +291,7 @@ const I18N = {
     sortLbl: 'Sort', sortAlpha: 'Alphabetical', sortDate: 'By next date',
     ccLbl: 'Region', ccAll: 'All',
     dateLbl: 'Date', dAny: 'Any date', dMonth: 'This month', d3m: 'Next 3 months', d6m: 'Next 6 months', dLater: 'Later', dNone: 'No fixed date', dPast: 'Past editions',
-    distLbl: 'Distance', kBrevet: '{k} km brevet', kAny: 'Any distance', kLt500: 'Under 500 km', kMid: '500–1,000 km', kGt1000: 'Over 1,000 km',
+    distLbl: 'Distance', kLt: 'Under {k} km', kAny: 'Any distance', kMid: '600–1,000 km', kGt1000: 'Over 1,000 km',
     count: '{n} of {t} results', clear: 'Clear filters', empty: 'No results with these filters.',
     noPoint: 'not on the map', brevet1: 'brevet', brevetN: 'brevets', clN: 'events', langAria: 'Language',
     dc: 'Date to be confirmed', dcNote: 'The official website says: {x}', past: 'Past edition',
@@ -421,7 +421,7 @@ function fd(s) { const [y, m, d] = s.split('/'); return `${+d} ${I18N[lang].mont
 /* ---------- estat, filtres i URL ---------- */
 const state = { types: new Set(), q: '', sel: null, sort: 'alpha', cc: '', date: '', dist: '' };
 const DATES = ['', 'month', '3m', '6m', 'later', 'none', 'past'];
-const DISTS = ['', 'b200', 'b300', 'b400', 'b600', 'lt500', 'mid', 'gt1000'];
+const DISTS = ['', 'lt200', 'lt300', 'lt400', 'lt500', 'lt600', 'mid', 'gt1000'];
 function typeOK(e) { return !state.types.size || state.types.size >= TYPE_IDS.length || state.types.has(e.tipus); }
 function dateOK(e) {
   if (!state.date) return true;
@@ -439,9 +439,9 @@ function dateOK(e) {
 function distOK(e) {
   if (!state.dist) return true;
   const ks = dists(e);
-  if (/^b\d+$/.test(state.dist)) return !!e.brevets && ks.includes(+state.dist.slice(1));
-  if (state.dist === 'lt500') return ks.some((k) => k < 500);
-  if (state.dist === 'mid') return ks.some((k) => k >= 500 && k <= 1000);
+  const m = /^lt([0-9]+)$/.exec(state.dist);
+  if (m) return ks.some((k) => k < +m[1]);
+  if (state.dist === 'mid') return ks.some((k) => k >= 600 && k <= 1000);
   return ks.some((k) => k > 1000);
 }
 function visible(e) {
@@ -601,7 +601,7 @@ function buildLegend() {
 function buildSelects() {
   fillSelect(sortEl, [['alpha', t('sortAlpha')], ['date', t('sortDate')]], state.sort);
   fillSelect(dateEl, [['', t('dAny')], ['month', t('dMonth')], ['3m', t('d3m')], ['6m', t('d6m')], ['later', t('dLater')], ['none', t('dNone')], ['past', t('dPast')]], state.date);
-  fillSelect(distEl, [['', t('kAny')], ...[200, 300, 400, 600].map((k) => ['b' + k, t('kBrevet').replace('{k}', k)]), ['lt500', t('kLt500')], ['mid', t('kMid')], ['gt1000', t('kGt1000')]], state.dist);
+  fillSelect(distEl, [['', t('kAny')], ...[200, 300, 400, 500, 600].map((k) => ['lt' + k, t('kLt').replace('{k}', k)]), ['mid', t('kMid')], ['gt1000', t('kGt1000')]], state.dist);
   const names = I18N[lang].cc;
   const opts = [['', t('ccAll')]].concat(CC_IDS.slice().sort((a, b) => names[a].localeCompare(names[b], lang)).map((id) => [id, `${names[id]} (${CC_COUNT[id] || 0})`]));
   fillSelect(ccsel, opts, state.cc);
