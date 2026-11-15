@@ -57,6 +57,10 @@
   .legend{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12px;display:flex;flex-wrap:wrap;gap:4px 14px;max-width:calc(100% - 24px)}
   .legend span{display:inline-flex;align-items:center;gap:6px;color:#3a3e44}
   .legend svg{width:12px;height:12px;cursor:default}
+  .tip .kmrow{margin-top:5px;justify-content:center;flex-wrap:nowrap}
+  .tip .kmtag{box-shadow:0 0 0 1px rgba(255,255,255,.45)}
+  .tip .kmu{color:#B9BEC6}
+  .detail dd .kmrow{margin-top:0}
   .tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;font-weight:500;padding:5px 9px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-140%);opacity:0;transition:opacity .15s}
   aside{display:flex;flex-direction:column;gap:14px;min-width:0}
   .filters{display:flex;flex-wrap:wrap;gap:8px}
@@ -258,7 +262,7 @@ function place(){
 function showTip(e){
   const r=svg.getBoundingClientRect(), wr=document.getElementById('mapwrap').getBoundingClientRect();
   const px=(e.x-vb.x)/vb.w*r.width + r.left - wr.left, py=(e.y-vb.y)/vb.h*r.height + r.top - wr.top;
-  tip.textContent=e.nom; tip.style.left=px+'px'; tip.style.top=py+'px'; tip.style.opacity=1;
+  tip.innerHTML=esc(e.nom)+(e.brevets&&brevetKm(e)?'<div class="kmrow">'+brevetKm(e)+'<span class="kmu">km</span></div>':''); tip.style.left=px+'px'; tip.style.top=py+'px'; tip.style.opacity=1;
 }
 
 // zoom i desplaçament
@@ -344,8 +348,8 @@ function linkLabel(e){if(e.xarxa)return e.tipus==='brevet'?'Instagram del club':
 function linkNote(e){if(e.tipus==='ruta'&&e.url.includes('construyendo'))return '<div class="note">Fitxa amb track i dades a Construyendo Ultraciclismo.</div>';if(e.oficial)return '';if(e.rancat)return '<div class="note">No hem trobat web pròpia del club. Cada brevet de la llista enllaça a la seva fitxa oficial al calendari de Rancat.</div>';return '<div class="note">No hem trobat una web oficial; l\'enllaç porta a la millor font disponible.</div>'}
 function select(id,center){
   state.sel=id; const e=EV.find(x=>x.id===id); const d=document.getElementById('detail');
-  const rows=[['Tipus',TYPES[e.tipus].label],['Comunitat',CC_NAME[e.cc]],['Distància',e.km],['Desnivell',e.desnivell],['Format',e.format],['Edició',e.data],['Propera',e.propera],['Preu',e.preu]].filter(r=>r[1]);
-  d.innerHTML=`<button class="close" aria-label="Tanca">×</button><span class="badge">${esc(TYPES[e.tipus].label)}</span><h2>${esc(e.nom)}</h2><div class="where">${esc(e.lloc)}</div><p>${esc(e.desc)}</p><dl>${rows.map(r=>`<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl>${e.brevets?brvTable(e.brevets,e.any):''}<a href="${esc(e.url)}" target="_blank" rel="noopener">${linkLabel(e)} ↗</a>${linkNote(e)}`;
+  const rows=[['Tipus',TYPES[e.tipus].label],['Comunitat',CC_NAME[e.cc]],[e.brevets?'Distàncies':'Distància',e.brevets&&brevetKm(e)?{html:'<div class="kmrow">'+brevetKm(e)+'<span class="kmu">km</span></div>'}:e.km],['Desnivell',e.desnivell],['Format',e.format],['Edició',e.data],['Propera',e.propera],['Preu',e.preu]].filter(r=>r[1]);
+  d.innerHTML=`<button class="close" aria-label="Tanca">×</button><span class="badge">${esc(TYPES[e.tipus].label)}</span><h2>${esc(e.nom)}</h2><div class="where">${esc(e.lloc)}</div><p>${esc(e.desc)}</p><dl>${rows.map(r=>`<dt>${r[0]}</dt><dd>${typeof r[1]==='object'?r[1].html:esc(r[1])}</dd>`).join('')}</dl>${e.brevets?brvTable(e.brevets,e.any):''}<a href="${esc(e.url)}" target="_blank" rel="noopener">${linkLabel(e)} ↗</a>${linkNote(e)}`;
   d.classList.add('on'); d.querySelector('.close').onclick=()=>{state.sel=null;d.classList.remove('on');render()};
   if(center&&e.x!=null){ if(k()<2){vb.w=W0/2.2;vb.h=H0/2.2} vb.x=e.x-vb.w/2; vb.y=e.y-vb.h/2; clamp(); place(); }
   render();
