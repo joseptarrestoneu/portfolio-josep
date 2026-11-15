@@ -97,6 +97,9 @@
   .item:hover,.item.sel{border-color:var(--accent)}
   .item .n{font-weight:600;font-size:14px}
   .item .s{color:var(--grey);font-size:12.5px}
+  .kmrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:6px}
+  .kmtag{display:inline-block;color:#fff;font:700 10px 'Space Grotesk',sans-serif;line-height:1;padding:3px 6px;border-radius:4px}
+  .kmu{font-size:11px;color:var(--grey);margin-left:2px}
   .item .k{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13px;color:#3a3e44;white-space:nowrap}
   .item svg{width:15px;height:15px;cursor:pointer}
   .empty{color:var(--grey);font-size:14px;padding:12px 2px}
@@ -209,7 +212,7 @@ const CC_NAME=Object.fromEntries(CCS);
 EV.forEach(e=>{e.cc=CC_OF[e.id]||''});
 const CC_COUNT={};EV.forEach(e=>{if(e.cc)CC_COUNT[e.cc]=(CC_COUNT[e.cc]||0)+1});
 // Distàncies (km) que organitza cada club, de la més curta a la més llarga
-function brevetKm(e){if(!e.brevets)return '';const s=new Set();e.brevets.forEach(b=>{const m=/^[0-9]+/.exec(b.km);if(m)s.add(+m[0])});return [...s].sort((a,b)=>a-b).join(' · ')}
+function brevetKm(e){if(!e.brevets)return '';const s=new Set();e.brevets.forEach(b=>{const m=/^[0-9]+/.exec(b.km);if(m)s.add(+m[0])});return [...s].sort((a,b)=>a-b).map(k=>`<span class="kmtag" style="background:${bcol(k)}">${k}</span>`).join('')}
 const state={types:new Set(),q:'',sel:null,sort:'alpha',cc:''};
 
 // Propera data d'una cursa: la primera data concreta a partir d'avui. Sense dia concret («maig 2027») o sense data → null.
@@ -330,7 +333,7 @@ function render(){
   if(!vis.length){list.innerHTML='<div class="empty">Cap resultat amb aquests filtres.</div>';return}
   vis.forEach(e=>{
     const b=document.createElement('button'); b.className='item'+(e.id===state.sel?' sel':'');
-    b.innerHTML=`${icon(e.tipus,e)}<span><div class="n">${esc(e.nom)}</div><div class="s">${esc(e.lloc)}${brevetKm(e)?' · '+brevetKm(e)+' km':''}${e.x==null?' · sense punt al mapa':''}</div></span><span class="k">${state.sort==='date'&&nextDate(e)?fmtDate(nextDate(e)):e.brevets?e.brevets.length+(e.brevets.length===1?' brevet':' brevets'):esc((e.km||'').split(' / ')[0])}</span>`;
+    b.innerHTML=`${icon(e.tipus,e)}<span><div class="n">${esc(e.nom)}</div><div class="s">${esc(e.lloc)}${e.x==null?' · sense punt al mapa':''}</div>${brevetKm(e)?'<div class="kmrow">'+brevetKm(e)+'<span class="kmu">km</span></div>':''}</span><span class="k">${state.sort==='date'&&nextDate(e)?fmtDate(nextDate(e)):e.brevets?e.brevets.length+(e.brevets.length===1?' brevet':' brevets'):esc((e.km||'').split(' / ')[0])}</span>`;
     b.onclick=()=>select(e.id,true); list.appendChild(b);
   });
 }
