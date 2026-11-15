@@ -807,3 +807,6 @@ button { font: inherit; }
 .newsletter__msg.is-err { color: #c0392b; }
 .button:disabled { opacity: .6; cursor: default; }
 @media (max-width: 900px) { .newsletter__inner { grid-template-columns: 1fr; } }
+
+/* Etiqueta «En breu» */
+.soon { display: inline-block; margin-left: .5rem; padding: .14rem .55rem; border-radius: 999px; background: var(--accent); color: var(--bg); font-style: normal; font-size: .66rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; vertical-align: 1px; }
