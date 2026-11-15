@@ -440,8 +440,8 @@ function distOK(e) {
   if (!state.dist) return true;
   const ks = dists(e);
   const m = /^lt([0-9]+)$/.exec(state.dist);
-  if (m) return ks.some((k) => k < +m[1]);
-  if (state.dist === 'mid') return ks.some((k) => k >= 600 && k <= 1000);
+  if (m) return ks.some((k) => k <= +m[1]);
+  if (state.dist === 'mid') return ks.some((k) => k > 600 && k <= 1000);
   return ks.some((k) => k > 1000);
 }
 function visible(e) {
