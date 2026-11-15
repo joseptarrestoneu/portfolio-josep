@@ -101,6 +101,13 @@
   .item svg{width:15px;height:15px;cursor:pointer}
   .empty{color:var(--grey);font-size:14px;padding:12px 2px}
   footer{max-width:1400px;margin:0 auto;padding:0 32px 32px;color:var(--grey);font-size:12.5px}
+  .about summary{cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:4px 0;color:var(--grey);font-weight:500;list-style:none}
+  .about summary::-webkit-details-marker{display:none}
+  .about summary::before{content:"+";display:inline-block;width:14px;text-align:center;font-weight:600}
+  .about[open] summary::before{content:"–"}
+  .about summary:hover{color:var(--accent)}
+  .about summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+  .about p{margin:8px 0 0;max-width:80ch}
   .sitefoot{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;margin-top:8px;padding:1.5rem 32px 32px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink)}
   .sitefoot p{margin:0}
   .sitefoot div{display:flex;gap:1.25rem}
@@ -156,7 +163,10 @@
   </aside>
 </main>
 <footer>
-  Dades recollides el 14-15 de novembre de 2026 a partir de les webs dels organitzadors i de calendaris com bikepacking.com i el calendari d'esdeveniments d'Apidura. Les dates i els preus són orientatius i canvien cada edició: confirma-ho sempre a la web oficial abans d'inscriure't. Les rutes lliures es poden fer quan vulguis, sense inscripció; surten de montsecloop.com i de les seves «rutas amigas», sempre amb enllaç a la pàgina oficial de cada ruta, i quan només coneixem la província es mostren en un punt aproximat. Les curses que no surten d'un punt d'Espanya es mostren al punt d'arribada. Les brevets surten del calendari 2027 publicat per Rancat (rancat.cat/brevets), que recull totes les d'Espanya (161 cites de 28 clubs), i es mostren a la població del club organitzador (les de Randonneurs Andalucía, al municipi de sortida de cada brevet, segons el seu calendari 2027). A la llista, l'etiqueta de cada club indica la distància més llarga que organitza; la sortida concreta de cada brevet pot variar. Cada brevet enllaça a la seva fitxa. Quatre clubs que tenien brevets el 2026 però encara no surten al calendari 2027 es mantenen amb el calendari 2026. Alguns clubs no tenen ubicació confirmada i només surten a la llista.
+  <details class="about">
+  <summary>Sobre les dades</summary>
+  <p>Dades recollides el 14-15 de novembre de 2026 a partir de les webs dels organitzadors i de calendaris com bikepacking.com i el calendari d'esdeveniments d'Apidura. Les dates i els preus són orientatius i canvien cada edició: confirma-ho sempre a la web oficial abans d'inscriure't. Les rutes lliures es poden fer quan vulguis, sense inscripció; surten de montsecloop.com i de les seves «rutas amigas», sempre amb enllaç a la pàgina oficial de cada ruta, i quan només coneixem la província es mostren en un punt aproximat. Les curses que no surten d'un punt d'Espanya es mostren al punt d'arribada. Les brevets surten del calendari 2027 publicat per Rancat (rancat.cat/brevets), que recull totes les d'Espanya (161 cites de 28 clubs), i es mostren a la població del club organitzador (les de Randonneurs Andalucía, al municipi de sortida de cada brevet, segons el seu calendari 2027). A la llista, l'etiqueta de cada club indica la distància més llarga que organitza; la sortida concreta de cada brevet pot variar. Cada brevet enllaça a la seva fitxa. Quatre clubs que tenien brevets el 2026 però encara no surten al calendari 2027 es mantenen amb el calendari 2026. Alguns clubs no tenen ubicació confirmada i només surten a la llista.</p>
+  </details>
 </footer>
 <footer class="sitefoot">
   <p>© <span id="year"></span> Josep Tarrés · <a href="/privadesa.html">Política de privadesa</a> · <a href="/">Tornar al portfoli</a></p>
