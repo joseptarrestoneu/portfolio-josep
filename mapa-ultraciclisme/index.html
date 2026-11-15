@@ -200,7 +200,7 @@ function shapeSVG(t,s){ // s = mida
 }
 function bcol(k){return k>=1000?'#2D6CDF':k>=600?'#111315':k>=400?'#4B5058':k>=300?'#6B7079':'#8A8F98'}
 function badge(k){const s=String(k>=1000?k:k),w=s.length>3?30:24;return `<rect class="badge-r" x="${-w/2}" y="-8" width="${w}" height="16" rx="4" fill="${bcol(k)}"/><text class="badge-t" x="0" y="3.6" text-anchor="middle">${s}</text>`}
-function icon(t,e){if(t==='brevet'){const k=e?e.maxkm:200;return `<svg viewBox="-16 -9 32 18" style="width:28px;height:16px" aria-hidden="true">${badge(k)}</svg>`}return `<svg viewBox="-7 -7 14 14" aria-hidden="true">${shapeSVG(t,9)}</svg>`}
+function icon(t,e){return `<svg viewBox="-7 -7 14 14" aria-hidden="true">${shapeSVG(t,9)}</svg>`}
 
 // Comunitat autònoma de cada esdeveniment (segons les coordenades). Els que no tenen ubicació concreta no en tenen.
 const CCS=[["and","Andalusia"],["ara","Aragó"],["ast","Astúries"],["can","Canàries"],["cnt","Cantàbria"],["cyl","Castella i Lleó"],["clm","Castella-la Manxa"],["cat","Catalunya"],["val","Comunitat Valenciana"],["ext","Extremadura"],["gal","Galícia"],["bal","Illes Balears"],["rio","La Rioja"],["mad","Madrid"],["mur","Múrcia"],["nav","Navarra"],["pv","País Basc"]];
@@ -208,6 +208,8 @@ const CC_OF={"badlands":"and","basajaun":"pv","transpyrenees":"pv","transiberica
 const CC_NAME=Object.fromEntries(CCS);
 EV.forEach(e=>{e.cc=CC_OF[e.id]||''});
 const CC_COUNT={};EV.forEach(e=>{if(e.cc)CC_COUNT[e.cc]=(CC_COUNT[e.cc]||0)+1});
+// Distàncies (km) que organitza cada club, de la més curta a la més llarga
+function brevetKm(e){if(!e.brevets)return '';const s=new Set();e.brevets.forEach(b=>{const m=/^[0-9]+/.exec(b.km);if(m)s.add(+m[0])});return [...s].sort((a,b)=>a-b).join(' · ')}
 const state={types:new Set(),q:'',sel:null,sort:'alpha',cc:''};
 
 // Propera data d'una cursa: la primera data concreta a partir d'avui. Sense dia concret («maig 2027») o sense data → null.
@@ -328,7 +330,7 @@ function render(){
   if(!vis.length){list.innerHTML='<div class="empty">Cap resultat amb aquests filtres.</div>';return}
   vis.forEach(e=>{
     const b=document.createElement('button'); b.className='item'+(e.id===state.sel?' sel':'');
-    b.innerHTML=`${icon(e.tipus,e)}<span><div class="n">${esc(e.nom)}</div><div class="s">${esc(e.lloc)}${e.x==null?' · sense punt al mapa':''}</div></span><span class="k">${state.sort==='date'&&nextDate(e)?fmtDate(nextDate(e)):e.brevets?e.brevets.length+(e.brevets.length===1?' brevet':' brevets'):esc((e.km||'').split(' / ')[0])}</span>`;
+    b.innerHTML=`${icon(e.tipus,e)}<span><div class="n">${esc(e.nom)}</div><div class="s">${esc(e.lloc)}${brevetKm(e)?' · '+brevetKm(e)+' km':''}${e.x==null?' · sense punt al mapa':''}</div></span><span class="k">${state.sort==='date'&&nextDate(e)?fmtDate(nextDate(e)):e.brevets?e.brevets.length+(e.brevets.length===1?' brevet':' brevets'):esc((e.km||'').split(' / ')[0])}</span>`;
     b.onclick=()=>select(e.id,true); list.appendChild(b);
   });
 }
