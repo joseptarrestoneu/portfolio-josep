@@ -24,6 +24,8 @@
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.45}
   header{padding:28px 32px 12px;max-width:1400px;margin:0 auto}
+  .back{display:inline-block;margin-bottom:14px;font-size:12.5px;color:var(--grey);text-decoration:none}
+  .back:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
   .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
   .tag i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
   h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,40px);line-height:1.1;margin:10px 0 6px;letter-spacing:-.01em}
@@ -110,6 +112,7 @@
 </head>
 <body>
 <header>
+  <a class="back" href="/">← Josep Tarrés</a><br>
   <span class="tag"><i></i>Diari d'un Ultraciclista</span>
   <h1>Mapa de l'ultraciclisme a Espanya</h1>
   <p>Curses, reptes autosuficients, rutes d'ultradistància i totes les brevets homologades del calendari espanyol. Toca un punt per veure'n els detalls i anar a la seva web.</p>
@@ -156,7 +159,7 @@
   Dades recollides el 14-15 de novembre de 2026 a partir de les webs dels organitzadors i de calendaris com bikepacking.com i el calendari d'esdeveniments d'Apidura. Les dates i els preus són orientatius i canvien cada edició: confirma-ho sempre a la web oficial abans d'inscriure't. Les rutes lliures es poden fer quan vulguis, sense inscripció; surten de montsecloop.com i de les seves «rutas amigas», sempre amb enllaç a la pàgina oficial de cada ruta, i quan només coneixem la província es mostren en un punt aproximat. Les curses que no surten d'un punt d'Espanya es mostren al punt d'arribada. Les brevets surten del calendari 2027 publicat per Rancat (rancat.cat/brevets), que recull totes les d'Espanya (161 cites de 28 clubs), i es mostren a la població del club organitzador (les de Randonneurs Andalucía, al municipi de sortida de cada brevet, segons el seu calendari 2027). A la llista, l'etiqueta de cada club indica la distància més llarga que organitza; la sortida concreta de cada brevet pot variar. Cada brevet enllaça a la seva fitxa. Quatre clubs que tenien brevets el 2026 però encara no surten al calendari 2027 es mantenen amb el calendari 2026. Alguns clubs no tenen ubicació confirmada i només surten a la llista.
 </footer>
 <footer class="sitefoot">
-  <p>© <span id="year"></span> Josep Tarrés · <a href="/privadesa.html">Política de privadesa</a></p>
+  <p>© <span id="year"></span> Josep Tarrés · <a href="/privadesa.html">Política de privadesa</a> · <a href="/">Tornar al portfoli</a></p>
   <div>
     <a href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer">LinkedIn</a>
     <a href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener">Instagram</a>
