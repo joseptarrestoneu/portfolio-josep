@@ -166,6 +166,12 @@ if (EMBED) {
   html.embed main{max-width:none;padding:8px 10px 12px;gap:14px}
   html.embed footer,html.embed .sitefoot{display:none}
   html.embed.nolist #list{display:none}
+  .embedcredit{display:none}
+  html.embed .embedcredit{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;padding:2px 10px 12px;font-size:12.5px;color:#5F6670}
+  html.embed .embedcredit b{color:var(--ink);font-weight:600}
+  html.embed .embedcredit a{color:#5F6670;text-underline-offset:3px}
+  html.embed .embedcredit a:hover{color:var(--accent)}
+  html.embed .embedcredit a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
 </style>
 </head>
 <body>
@@ -212,6 +218,11 @@ if (EMBED) {
     <div class="list" id="list"></div>
   </aside>
 </main>
+<div class="embedcredit">
+  <span><span data-i18n="embBy">Fet per</span> <b>Josep Tarrés</b></span>
+  <a href="https://joseptarrestoneu.com/" target="_blank" rel="noopener" data-i18n="embPort">Portfoli</a>
+  <a href="https://joseptarrestoneu.com/mapa-ultraciclisme/" target="_blank" rel="noopener" data-i18n="embFull">Mapa complet ↗</a>
+</div>
 <footer>
   <details class="about">
   <summary data-i18n="aboutT">Sobre les dades</summary>
@@ -266,6 +277,7 @@ const I18N = {
     srcOff: 'Dades de la web oficial · nov 2026', srcRancat: 'Dades del calendari de Rancat · nov 2026', srcThird: 'Font de tercers (sense web oficial verificada) · nov 2026',
     copy: "Copia l'enllaç", copied: 'Enllaç copiat', close: 'Tanca',
     aboutT: 'Sobre les dades',
+    embBy: 'Fet per', embPort: 'Portfoli', embFull: 'Mapa complet ↗',
     embT: 'Insereix el mapa al teu web', embAria: 'Codi per inserir el mapa', embCopy: 'Copia el codi', embCopied: 'Codi copiat',
     embP: "Copia aquest codi i enganxa'l a la teva web. Inclou els filtres que tens ara; amb list=0 s'amaga el llistat i amb langs=0 el selector d'idioma. L'alçada s'ajusta sola.",
     about: "Dades recollides el 14-15 de novembre de 2026 a partir de les webs dels organitzadors i de calendaris com bikepacking.com i el calendari d'esdeveniments d'Apidura, i del projecte Kilómetro Cero (elkilometrocero.com). Les dates i els preus són orientatius i canvien cada edició: confirma-ho sempre a la web oficial abans d'inscriure't. Les rutes lliures es poden fer quan vulguis, sense inscripció; surten de montsecloop.com i de les seves «rutas amigas», sempre amb enllaç a la pàgina oficial de cada ruta, i quan només coneixem la província es mostren en un punt aproximat. Les curses que no surten d'un punt d'Espanya es mostren al punt d'arribada. Les brevets surten del calendari 2027 publicat per Rancat (rancat.cat/brevets), que recull totes les d'Espanya (161 cites de 28 clubs), i es mostren a la població del club organitzador (les de Randonneurs Andalucía, al municipi de sortida de cada brevet, segons el seu calendari 2027). A la llista, les targetes de cada club indiquen les distàncies que organitza; la sortida concreta de cada brevet pot variar. Cada brevet enllaça a la seva fitxa. Quatre clubs que tenien brevets el 2026 però encara no surten al calendari 2027 es mantenen amb el calendari 2026. Alguns clubs no tenen ubicació confirmada i només surten a la llista.",
@@ -300,6 +312,7 @@ const I18N = {
     srcOff: 'Datos de la web oficial · nov 2026', srcRancat: 'Datos del calendario de Rancat · nov 2026', srcThird: 'Fuente de terceros (sin web oficial verificada) · nov 2026',
     copy: 'Copiar enlace', copied: 'Enlace copiado', close: 'Cerrar',
     aboutT: 'Sobre los datos',
+    embBy: 'Hecho por', embPort: 'Portfolio', embFull: 'Mapa completo ↗',
     embT: 'Inserta el mapa en tu web', embAria: 'Código para insertar el mapa', embCopy: 'Copiar código', embCopied: 'Código copiado',
     embP: 'Copia este código y pégalo en tu web. Incluye los filtros actuales; con list=0 se oculta el listado y con langs=0 el selector de idioma. La altura se ajusta sola.',
     about: 'Datos recogidos el 14-15 de noviembre de 2026 a partir de las webs de los organizadores y de calendarios como bikepacking.com y el calendario de eventos de Apidura, y de los proyectos Kilómetro Cero (elkilometrocero.com) y Cyclope Palencia (cyclope.es). Las fechas y los precios son orientativos y cambian cada edición: confírmalo siempre en la web oficial antes de inscribirte. Las rutas libres se pueden hacer cuando quieras, sin inscripción; salen de montsecloop.com y de sus «rutas amigas», siempre con enlace a la página oficial de cada ruta, y cuando solo conocemos la provincia se muestran en un punto aproximado. Las pruebas que no salen de un punto de España se muestran en el punto de llegada. Los brevets salen del calendario 2027 publicado por Rancat (rancat.cat/brevets), que recoge todos los de España (161 citas de 28 clubes), y se muestran en la población del club organizador (los de Randonneurs Andalucía, en el municipio de salida de cada brevet, según su calendario 2027). En la lista, las etiquetas de cada club indican las distancias que organiza; la salida concreta de cada brevet puede variar. Cada brevet enlaza a su ficha. Cuatro clubes que tenían brevets en 2026 pero todavía no aparecen en el calendario 2027 se mantienen con el calendario 2026. Algunos clubes no tienen ubicación confirmada y solo aparecen en la lista.',
@@ -334,6 +347,7 @@ const I18N = {
     srcOff: 'Data from the official website · Nov 2026', srcRancat: 'Data from the Rancat calendar · Nov 2026', srcThird: 'Third-party source (no verified official website) · Nov 2026',
     copy: 'Copy link', copied: 'Link copied', close: 'Close',
     aboutT: 'About the data',
+    embBy: 'Made by', embPort: 'Portfolio', embFull: 'Full map ↗',
     embT: 'Embed this map on your site', embAria: 'Code to embed the map', embCopy: 'Copy code', embCopied: 'Code copied',
     embP: "Copy this code and paste it into your site. It includes your current filters; use list=0 to hide the list and langs=0 to hide the language switcher. The height adjusts itself.",
     about: "Data collected on 14–15 November 2026 from the organisers' websites and from calendars such as bikepacking.com and Apidura's events calendar, and from the Kilómetro Cero (elkilometrocero.com) and Cyclope Palencia (cyclope.es) projects. Dates and prices are indicative and change every edition: always confirm them on the official website before registering. Free routes can be ridden any time, without registration; they come from montsecloop.com and its «rutas amigas», always linking to each route's official page, and when only the province is known they are shown at an approximate point. Events that do not start at a point in Spain are shown at the finish. Brevets come from the 2027 calendar published by Rancat (rancat.cat/brevets), which lists all those in Spain (161 events from 28 clubs), and are shown in the town of the organising club (those of Randonneurs Andalucía at the starting town of each brevet, according to their 2027 calendar). In the list, the tags under each club show the distances it organises; the exact start of each brevet may vary. Each brevet links to its own page. Four clubs that held brevets in 2026 but do not yet appear in the 2027 calendar are kept with their 2026 calendar. Some clubs have no confirmed location and only appear in the list.",
