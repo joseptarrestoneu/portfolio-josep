@@ -55,7 +55,10 @@ h1 span{color:var(--accent)}
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px 18px}
 .steps li{display:flex;align-items:center;gap:12px;font-size:.98rem;line-height:1.3}
 .steps .n{flex:none;width:1.3ch;text-align:center;font-family:var(--font-d);font-weight:700;font-size:2rem;line-height:1;color:var(--accent)}
-@media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{gap:10px}.steps .n{font-size:1.7rem}}
+.steps.inside{grid-template-columns:repeat(2,1fr);gap:14px 22px}
+.steps.inside li{align-items:flex-start}
+.steps.inside small{display:block;margin-top:2px;color:var(--sub);font-size:.88rem;line-height:1.35}
+@media (max-width:640px){.steps,.steps.inside{grid-template-columns:1fr}.steps li{gap:10px}.steps .n{font-size:1.7rem}}
 
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 header{display:flex;flex-direction:column}
@@ -239,6 +242,17 @@ footer a{margin-right:4px}
     </ol>
   </section>
 
+  <section class="how" aria-labelledby="inside-h">
+    <h2 id="inside-h">Què trobaràs a dins cada dia</h2>
+    <p class="how-lead">Cada etapa porta quatre coses, i les pots fer a poc a poc.</p>
+    <ol class="steps inside">
+      <li><span class="n">1</span><span><b>Una curiositat</b><small>Una història o un detall de l'etapa del dia.</small></span></li>
+      <li><span class="n">2</span><span><b>El que ningú t'explica…</b><small>Un consell o un secret de ciclista que no surt als manuals.</small></span></li>
+      <li><span class="n">3</span><span><b>Un repte per fer</b><small>Alguna cosa a la bici o fora d'ella. Marca'l com a fet quan vulguis; no suma punts, però compta per a la ratxa.</small></span></li>
+      <li><span class="n">4</span><span><b>Una pregunta per sumar punts</b><small>100 punts si l'encertes a la primera, amb una sola oportunitat. Després et diu si era correcta i t'explica la resposta.</small></span></li>
+    </ol>
+  </section>
+
 
   <ul class="stats" aria-label="El teu progrés">
     <li><b id="s-open">0</b><span>etapes obertes</span></li>
@@ -261,7 +275,7 @@ footer a{margin-right:4px}
 
   <section class="rank" aria-labelledby="rk-h">
     <h2 id="rk-h">Classificació</h2>
-    <p class="note">Cada pregunta val 100 punts si l'encertes a la primera. Si hi ha empat, passa davant qui ha arribat abans a aquesta puntuació. Premis i sorteig: consulta les <a href="bases.html">bases</a>.</p>
+    <p class="note">Cada pregunta val 100 punts si l'encertes a la primera. Si hi ha empat, passa davant qui ha arribat abans a aquesta puntuació. Això és un calendari d'advent: ho fem per gaudir-ne, no és cap obligació ni una competició. Els premis dependran de si comerços o persones interessades hi volen col·laborar, i no esperis una bicicleta! Més detalls a les <a href="bases.html">bases</a>.</p>
     <div class="tablewrap"><table id="rank-table"><thead><tr><th>#</th><th>Jugador</th><th>Punts</th><th>Encerts</th></tr></thead><tbody id="rank"></tbody></table></div>
   </section>
 
