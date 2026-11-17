@@ -280,6 +280,7 @@ const I18N = {
     nRoute: 'Fitxa amb track i dades a Construyendo Ultraciclismo.',
     srcOff: 'Dades de la web oficial · nov 2026', srcRancat: 'Dades del calendari de Rancat · nov 2026', srcThird: 'Font de tercers (sense web oficial verificada) · nov 2026',
     copy: "Copia l'enllaç", copied: 'Enllaç copiat', close: 'Tanca',
+    ics: 'Afegeix al calendari', icsDone: 'Fitxer descarregat',
     aboutT: 'Sobre les dades',
     embBy: 'Fet per', embPort: 'Portfoli', embFull: 'Mapa complet ↗',
     embT: 'Insereix el mapa al teu web', embAria: 'Codi per inserir el mapa', embCopy: 'Copia el codi', embCopied: 'Codi copiat',
@@ -315,6 +316,7 @@ const I18N = {
     nRoute: 'Ficha con track y datos en Construyendo Ultraciclismo.',
     srcOff: 'Datos de la web oficial · nov 2026', srcRancat: 'Datos del calendario de Rancat · nov 2026', srcThird: 'Fuente de terceros (sin web oficial verificada) · nov 2026',
     copy: 'Copiar enlace', copied: 'Enlace copiado', close: 'Cerrar',
+    ics: 'Añadir al calendario', icsDone: 'Archivo descargado',
     aboutT: 'Sobre los datos',
     embBy: 'Hecho por', embPort: 'Portfolio', embFull: 'Mapa completo ↗',
     embT: 'Inserta el mapa en tu web', embAria: 'Código para insertar el mapa', embCopy: 'Copiar código', embCopied: 'Código copiado',
@@ -350,6 +352,7 @@ const I18N = {
     nRoute: 'Page with track and details on Construyendo Ultraciclismo.',
     srcOff: 'Data from the official website · Nov 2026', srcRancat: 'Data from the Rancat calendar · Nov 2026', srcThird: 'Third-party source (no verified official website) · Nov 2026',
     copy: 'Copy link', copied: 'Link copied', close: 'Close',
+    ics: 'Add to calendar', icsDone: 'File downloaded',
     aboutT: 'About the data',
     embBy: 'Made by', embPort: 'Portfolio', embFull: 'Full map ↗',
     embT: 'Embed this map on your site', embAria: 'Code to embed the map', embCopy: 'Copy code', embCopied: 'Code copied',
@@ -442,6 +445,79 @@ function nextDate(e) {
     best = parseDay(e.propera) || parseDay(e.data);
   }
   return (e._nd = best);
+}
+/* ---------- exportació a calendari (.ics) ---------- */
+// Dies de l'esdeveniment que encara no han passat: [{s, e (exclusiu), label}]
+function icsDays(e) {
+  if (e.brevets) return [];
+  const raw = parseDay(e.propera) ? e.propera : parseDay(e.data) ? e.data : '';
+  const src = raw.replace(/\s*\([^)]*\)/g, ''); // sense notes entre parèntesis: "(Apidura indica 30 maig)"
+  if (!src) return [];
+  const y0 = +((/\d{4}/.exec(src) || [])[0]);
+  const mon = (m) => MONTHS[m.toLowerCase()];
+  const mo = '(' + MON_RE + ')(?![a-zà-ú])';
+  let m;
+  // interval entre mesos: "30 abr – 2 maig 2027"
+  m = new RegExp('(\\d{1,2})\\s*' + mo + '\\s*[–-]\\s*(\\d{1,2})\\s*' + mo + '\\s*(\\d{4})', 'i').exec(src);
+  if (m) return [{ s: new Date(+m[5], mon(m[2]), +m[1]), e: new Date(+m[5], mon(m[4]), +m[3] + 1) }].filter((d) => d.e > TODAY);
+  // interval dins del mes: "14–16 maig 2027"
+  m = new RegExp('(\\d{1,2})\\s*[–-]\\s*(\\d{1,2})\\s*' + mo + '\\s*(\\d{4})', 'i').exec(src);
+  if (m) return [{ s: new Date(+m[4], mon(m[3]), +m[1]), e: new Date(+m[4], mon(m[3]), +m[2] + 1) }].filter((d) => d.e > TODAY);
+  // un o diversos dies: "5 set 2027", "Gravel 24 gen · Road 28 feb · Trail 28 març 2027"
+  const out = [];
+  const re = new RegExp('(?:([A-Za-zÀ-ú]+)\\s+)?(\\d{1,2})\\s*' + mo + '\\s*(\\d{4})?', 'gi');
+  while ((m = re.exec(src))) {
+    const y = +(m[4] || y0);
+    out.push({ s: new Date(y, mon(m[3]), +m[2]), e: new Date(y, mon(m[3]), +m[2] + 1), label: m[1] || '' });
+  }
+  if (out.length === 1) out[0].label = '';
+  return out.filter((d) => d.e > TODAY);
+}
+const icsEsc = (s) => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+function icsFold(line) {
+  const enc = new TextEncoder(); let out = '', cur = '', len = 0;
+  for (const ch of line) {
+    const b = enc.encode(ch).length;
+    if (len + b > 75) { out += cur + '\r\n '; cur = ch; len = 1 + b; } else { cur += ch; len += b; }
+  }
+  return out + cur;
+}
+function buildICS(e) {
+  const pad = (n) => String(n).padStart(2, '0');
+  const ymd = (d) => '' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+  const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const tent = needsConfirm(e);
+  const parts = [L(e.desc)];
+  if (e.km) parts.push(t('rowDist') + ': ' + e.km);
+  if (e.desnivell) parts.push(t('rowElev') + ': ' + e.desnivell);
+  if (e.dc) parts.push(t('dc') + ' – ' + t('dcNote', { x: DCN[e.id][lang] }));
+  else if (tent) parts.push(t('dc'));
+  parts.push(e.url, I18N[lang].h1 + ' · https://joseptarrestoneu.com/mapa-ultraciclisme/');
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Josep Tarres//Mapa de l ultraciclisme//' + lang.toUpperCase(), 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH'];
+  icsDays(e).forEach((d) => {
+    lines.push('BEGIN:VEVENT',
+      'UID:' + e.id + '-' + ymd(d.s) + '@joseptarrestoneu.com',
+      'DTSTAMP:' + stamp,
+      'DTSTART;VALUE=DATE:' + ymd(d.s),
+      'DTEND;VALUE=DATE:' + ymd(d.e),
+      'SUMMARY:' + icsEsc(e.nom + (d.label ? ' – ' + d.label : '')),
+      'LOCATION:' + icsEsc(L(e.lloc)),
+      'DESCRIPTION:' + icsEsc(parts.join('\n')),
+      'URL:' + e.url,
+      'STATUS:' + (tent ? 'TENTATIVE' : 'CONFIRMED'),
+      'TRANSP:TRANSPARENT',
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-P7D', 'DESCRIPTION:' + icsEsc(e.nom), 'END:VALARM',
+      'END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  return lines.map(icsFold).join('\r\n') + '\r\n';
+}
+function downloadICS(e) {
+  const url = URL.createObjectURL(new Blob([buildICS(e)], { type: 'text/calendar;charset=utf-8' }));
+  const a = document.createElement('a');
+  a.href = url; a.download = e.id + '.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
 }
 function hasPast(e) {
   if (e.brevets) return e.brevets.length > 0 && e.brevets.every((b) => { const [y, mo, da] = b.d.split('/').map(Number); return new Date(y, mo - 1, da) < TODAY; });
@@ -755,9 +831,11 @@ function renderDetail() {
   if (e.dc) rows.push([t('rowDate'), { html: `<span class="dcb">${esc(t('dc'))}</span> <span class="dcn">${esc(t('dcNote', { x: DCN[e.id][lang] }))}</span>` }]);
   else if (needsConfirm(e)) rows.push([t('rowDate'), { html: `<span class="dcb">${esc(t('dc'))}</span>` }]);
   const dl = rows.filter((r) => r[1]).map((r) => `<dt>${esc(r[0])}</dt><dd>${typeof r[1] === 'object' ? r[1].html : esc(r[1])}</dd>`).join('');
-  d.innerHTML = `<button class="close" aria-label="${esc(t('close'))}">×</button><span class="badge">${esc(ty)}</span><h2>${esc(e.nom)}</h2><div class="where">${esc(L(e.lloc))}</div><p>${esc(L(e.desc))}</p><dl>${dl}</dl>${e.brevets ? brvTable(e.brevets, e.any) : ''}<div class="acts"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(linkLabel(e))} ↗</a><button class="copy" type="button">${esc(t('copy'))}</button></div>${linkNote(e)}<div class="src">${esc(sourceLine(e))}</div>`;
+  d.innerHTML = `<button class="close" aria-label="${esc(t('close'))}">×</button><span class="badge">${esc(ty)}</span><h2>${esc(e.nom)}</h2><div class="where">${esc(L(e.lloc))}</div><p>${esc(L(e.desc))}</p><dl>${dl}</dl>${e.brevets ? brvTable(e.brevets, e.any) : ''}<div class="acts"><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(linkLabel(e))} ↗</a><button class="copy" type="button">${esc(t('copy'))}</button>${icsDays(e).length ? `<button class="copy ics" type="button">${esc(t('ics'))}</button>` : ''}</div>${linkNote(e)}<div class="src">${esc(sourceLine(e))}</div>`;
   d.classList.add('on');
   d.querySelector('.close').onclick = () => { state.sel = null; renderDetail(); render(); writeHash(); };
+  const ib = d.querySelector('.ics');
+  if (ib) ib.onclick = () => { downloadICS(e); ib.textContent = t('icsDone'); setTimeout(() => { ib.textContent = t('ics'); }, 1600); };
   const cp = d.querySelector('.copy');
   cp.onclick = () => {
     const done = () => { cp.textContent = t('copied'); setTimeout(() => { cp.textContent = t('copy'); }, 1600); };
