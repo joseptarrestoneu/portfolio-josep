@@ -428,9 +428,10 @@ function icon(tp) { return `<svg viewBox="-7 -7 14 14" aria-hidden="true">${shap
 function esc(s) { return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
 // Distàncies (km) que organitza cada club, de la més curta a la més llarga
 function brevetKm(e) {
-  if (!e.brevets) return '';
+  if (!e.brevets && !e.rec) return '';
   const s = new Set();
-  e.brevets.forEach((b) => { const m = /^[0-9]+/.exec(b.km); if (m) s.add(+m[0]); });
+  (e.brevets || []).forEach((b) => { const m = /^[0-9]+/.exec(b.km); if (m) s.add(+m[0]); });
+  (e.rec || []).forEach((r) => { const m = /[0-9][0-9.]*/.exec(r.km); if (m) s.add(+m[0].replace(/\./g, '')); });
   return [...s].sort((a, b) => a - b).map((k) => `<span class="kmtag" style="background:${bcol(k)}">${k}</span>`).join('');
 }
 const kmRow = (e) => (brevetKm(e) ? `<div class="kmrow">${brevetKm(e)}<span class="kmu">km</span></div>` : '');
