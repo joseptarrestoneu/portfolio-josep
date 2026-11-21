@@ -333,7 +333,7 @@
         </article>
 
         <article class="project-card reveal">
-          <a data-track="projecte-web-mapa-grs" href="mapa-grs/" target="_blank" rel="noopener" class="project-card__link" aria-label="Obrir el Mapa de senders d'Espanya">
+          <a data-track="projecte-obre-mapa-grs" href="#mapa-grs" class="project-card__link" data-detail="mapa-grs" aria-haspopup="dialog" aria-label="Veure més sobre el Mapa de senders d'Espanya">
             <div class="project-card__topline">
               <span>12</span>
               <span>Web interactiva · Dades obertes · Frontend</span>
@@ -343,10 +343,11 @@
                 <h3>Mapa de senders d'Espanya</h3>
                 <p>GR, vies verdes i senders europeus d'Espanya dibuixats a partir d'OpenStreetMap en un sol mapa, amb filtres per comunitat i longitud i enllaç al track.</p>
               </div>
-              <span class="project-card__arrow" aria-hidden="true">↗</span>
+              <span class="project-card__arrow" aria-hidden="true">+</span>
             </div>
-            <div class="project-card__visual project-card__visual--cream" aria-hidden="true">
-              <img src="mapa-grs-card.jpg" alt="Mapa d'Espanya amb els traçats dels GR i de les vies verdes" width="1500" height="1020" loading="lazy" decoding="async" />
+            <div class="project-card__visual project-card__visual--cream project-card__visual--video" aria-hidden="true">
+              <img src="mapa-grs-card.jpg" alt="" width="1500" height="1020" loading="lazy" decoding="async" />
+              <iframe src="mapa-grs/video.html" title="" tabindex="-1" loading="lazy" sandbox="allow-scripts"></iframe>
             </div>
           </a>
         </article>
@@ -2218,6 +2219,101 @@
         <h3 id="mapa-end-title" class="case-title case-title--wide">Dissenyat i programat per Josep Tarrés.</h3>
         <div class="case-end__actions">
           <a data-goatcounter-click="panel-correu-mapa" class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
+          <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="detail" id="mapa-grs" role="dialog" aria-modal="true" aria-labelledby="mapa-grs-title" hidden>
+    <div class="detail__bar">
+      <span class="detail__bar-title">Mapa de senders d'Espanya</span>
+      <button class="detail__close" type="button" data-detail-close aria-label="Tancar i tornar als projectes">Tancar <span aria-hidden="true">✕</span></button>
+    </div>
+
+    <div class="detail__inner case">
+      <section class="case-hero section" aria-labelledby="mapa-grs-title">
+        <p class="eyebrow">Web interactiva · Dades obertes · Disseny i desenvolupament</p>
+        <h2 id="mapa-grs-title" class="case-hero__title">Mapa de senders d'Espanya</h2>
+        <p class="case-hero__intro">
+          Els GR, les vies verdes i els senders europeus que travessen Espanya, dibuixats sencers sobre un sol mapa a partir d'OpenStreetMap, amb filtres i enllaç al track de cada un.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Rol</dt><dd>Tractament de dades, disseny i desenvolupament, en solitari</dd></div>
+          <div><dt>Contingut</dt><dd>435 recorreguts: 286 GR, 133 vies verdes, 4 senders europeus i 12 camins històrics</dd></div>
+          <div><dt>Stack</dt><dd>HTML · CSS · JavaScript, sense llibreries</dd></div>
+        </dl>
+        <a data-goatcounter-click="panel-web-mapa-grs" class="button button--primary case-hero__cta" href="https://joseptarrestoneu.com/mapa-grs/" target="_blank" rel="noopener">Obrir el mapa <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="case-section section" aria-labelledby="mapa-grs-video-title">
+        <div>
+          <p class="eyebrow">En 40 segons</p>
+          <h3 id="mapa-grs-video-title" class="case-title">Com ha estat fet.</h3>
+        </div>
+        <div class="video-frame">
+          <iframe src="mapa-grs/video.html" title="Vídeo de presentació del Mapa de senders d'Espanya" loading="lazy" sandbox="allow-scripts" allow="autoplay"></iframe>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="mapa-grs-context-title">
+        <div class="case-split">
+          <div>
+            <p class="eyebrow">El punt de partida</p>
+            <h3 id="mapa-grs-context-title" class="case-title">Cada sender viu en una font diferent.</h3>
+          </div>
+          <div class="case-prose">
+            <p>Els GR, les vies verdes i els senders europeus es documenten en fulletons, webs de federacions i fitxers de track dispersos. No hi havia una vista de conjunt per veure on passa cada un.</p>
+            <p>El projecte parteix d'una única font oberta, OpenStreetMap, i dibuixa el traçat real de cada recorregut en lloc d'un punt, perquè es pugui veure per on passa i amb qui es creua.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section" aria-labelledby="mapa-grs-features-title">
+        <div>
+          <p class="eyebrow">Què fa</p>
+          <h3 id="mapa-grs-features-title" class="case-title">Sis decisions de disseny.</h3>
+        </div>
+
+        <ol class="case-grid">
+          <li>
+            <span>01</span>
+            <h4>Traçat real</h4>
+            <p>Cada sender es dibuixa sencer sobre el mapa d'Espanya i les Canàries, amb un color per tipus: GR, via verda, sender europeu i camí històric.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h4>Dades obertes, processades</h4>
+            <p>Els trams d'OpenStreetMap s'uneixen per codi, se simplifiquen i es calculen la longitud i les comunitats autònomes que travessa cada recorregut.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h4>Filtres combinables</h4>
+            <p>Per tipus, comunitat, longitud i cerca per codi o nom. L'estat queda a l'adreça i es pot compartir una vista o un sender concret.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h4>Fitxa amb enllaç al track</h4>
+            <p>Longitud, origen, destí i comunitats, amb enllaç a OpenStreetMap i a Waymarked Trails per consultar o baixar el recorregut.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h4>Tres idiomes</h4>
+            <p>Català, castellà i anglès, amb el canvi d'idioma sempre visible.</p>
+          </li>
+          <li>
+            <span>06</span>
+            <h4>Pensat per al mòbil</h4>
+            <p>Mapa amb zoom i desplaçament, i una llista que s'adapta a pantalles petites. Dades amb atribució a OpenStreetMap (ODbL).</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="case-end section" aria-labelledby="mapa-grs-end-title">
+        <p class="eyebrow">Autoria</p>
+        <h3 id="mapa-grs-end-title" class="case-title case-title--wide">Dissenyat i programat per Josep Tarrés.</h3>
+        <div class="case-end__actions">
+          <a data-goatcounter-click="panel-correu-mapa-grs" class="contact__mail" href="mailto:joseptarrestoneu@gmail.com">joseptarrestoneu@gmail.com <span aria-hidden="true">↗</span></a>
           <button class="button button--primary" type="button" data-detail-close>← Tornar als projectes</button>
         </div>
       </section>
