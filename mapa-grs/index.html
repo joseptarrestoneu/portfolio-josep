@@ -149,6 +149,9 @@
   .nl .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
   .nl .msg{min-height:1.2em;margin-top:8px;font-size:13px;color:var(--grey)}
   .nl .msg.ok{color:#1E7B46}.nl .msg.err{color:#B3261E}
+  .nl__cta{margin:12px 2px 0;font-size:13.5px;color:var(--grey)}
+  .nl__cta a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
+  .nl__cta a:hover{text-decoration:underline}
   .embed .nl{display:none}
   @media(max-width:760px){.nl{padding:0 16px}.nl__in{grid-template-columns:1fr;padding:20px}.nl .row{flex-direction:column}}
 </style>
@@ -215,6 +218,7 @@
       <p class="msg" id="nl-msg" role="status" aria-live="polite"></p>
     </form>
   </div>
+  <p class="nl__cta"><span data-i18n="ctaT"></span> → <a href="/#contact" data-goatcounter-click="mapa-grs-cta-serveis" data-i18n="ctaA"></a></p>
 </section>
 <footer>
   <details class="about">
@@ -225,8 +229,8 @@
 <footer class="sitefoot">
   <p>© <span id="year"></span> Josep Tarrés · <a href="/privadesa.html" data-i18n="privacy">Política de privadesa</a> · <a href="/" data-i18n="portfolio">Tornar al portfoli</a></p>
   <div>
-    <a href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer">LinkedIn</a>
-    <a href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer" data-goatcounter-click="mapa-grs-social-linkedin">LinkedIn</a>
+    <a href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener" data-goatcounter-click="mapa-grs-social-instagram">Instagram</a>
   </div>
   <a href="#" id="totop" data-i18n="top">Tornar a dalt ↑</a>
 </footer>
@@ -258,7 +262,7 @@ const I18N = {
     note: 'El traçat és una simplificació d’OpenStreetMap: confirma sempre el recorregut i l’estat del sender a la font oficial abans de sortir.',
     aboutT: 'Sobre les dades',
     about: "Traçats i dades d'OpenStreetMap © col·laboradors d'OpenStreetMap, sota llicència ODbL (openstreetmap.org/copyright), recollits el 21 de novembre de 2026. Els traçats estan simplificats i la longitud és aproximada: es mesura sobre la geometria d'OpenStreetMap i pot diferir de la que indiquen les federacions. Aquesta primera fase inclou els GR (itineraris de gran recorregut), els senders europeus (E3, E4, E7, E9…) i els camins històrics d'abast europeu; els PR, els SL i les vies verdes s'afegiran més endavant. Els senders poden estar tancats o desviats: consulta sempre la FEDME, la federació autonòmica o l'administració responsable abans de sortir.",
-    nlK: "Newsletter", nlT: "Tecnologia i esport, cada diumenge", nlP: "Un correu a la setmana amb el que vaig aprenent construint productes digitals i fent quilòmetres amb la bici. Amb baixa quan vulguis.", nlLbl: "El teu correu electrònic", nlGo: "Apunta-m'hi", nlC: "Accepto rebre la newsletter setmanal de Josep Tarrés. He llegit la", privacy: 'Política de privadesa', portfolio: 'Tornar al portfoli', top: 'Tornar a dalt ↑',
+    nlK: "Newsletter", nlT: "Tecnologia i esport, cada diumenge", nlP: "Un correu a la setmana amb el que vaig aprenent construint productes digitals i fent quilòmetres amb la bici. Amb baixa quan vulguis.", nlLbl: "El teu correu electrònic", nlGo: "Apunta-m'hi", nlC: "Accepto rebre la newsletter setmanal de Josep Tarrés. He llegit la", ctaT: "Aquest mapa l'he fet jo. Si vols una eina així per al teu club o empresa", ctaA: "Parlem", privacy: 'Política de privadesa', portfolio: 'Tornar al portfoli', top: 'Tornar a dalt ↑',
     cc: { and: 'Andalusia', ara: 'Aragó', ast: 'Astúries', can: 'Canàries', cnt: 'Cantàbria', cyl: 'Castella i Lleó', clm: 'Castella-la Manxa', cat: 'Catalunya', val: 'Comunitat Valenciana', ext: 'Extremadura', gal: 'Galícia', bal: 'Illes Balears', rio: 'La Rioja', mad: 'Madrid', mur: 'Múrcia', nav: 'Navarra', pv: 'País Basc', ceu: 'Ceuta', mel: 'Melilla' },
   },
   es: {
@@ -282,7 +286,7 @@ const I18N = {
     note: 'El trazado es una simplificación de OpenStreetMap: confirma siempre el recorrido y el estado del sendero en la fuente oficial antes de salir.',
     aboutT: 'Sobre los datos',
     about: 'Trazados y datos de OpenStreetMap © colaboradores de OpenStreetMap, bajo licencia ODbL (openstreetmap.org/copyright), recogidos el 21 de noviembre de 2026. Los trazados están simplificados y la longitud es aproximada: se mide sobre la geometría de OpenStreetMap y puede diferir de la que indican las federaciones. Esta primera fase incluye los GR (itinerarios de gran recorrido), los senderos europeos (E3, E4, E7, E9…) y los caminos históricos de alcance europeo; los PR, los SL y las vías verdes se añadirán más adelante. Los senderos pueden estar cerrados o desviados: consulta siempre la FEDME, la federación autonómica o la administración responsable antes de salir.',
-    nlK: "Newsletter", nlT: "Tecnología y deporte, cada domingo", nlP: "Un correo a la semana con lo que voy aprendiendo construyendo productos digitales y haciendo kilómetros en bici. Con baja cuando quieras.", nlLbl: "Tu correo electrónico", nlGo: "Apúntame", nlC: "Acepto recibir la newsletter semanal de Josep Tarrés. He leído la", privacy: 'Política de privacidad', portfolio: 'Volver al portfolio', top: 'Volver arriba ↑',
+    nlK: "Newsletter", nlT: "Tecnología y deporte, cada domingo", nlP: "Un correo a la semana con lo que voy aprendiendo construyendo productos digitales y haciendo kilómetros en bici. Con baja cuando quieras.", nlLbl: "Tu correo electrónico", nlGo: "Apúntame", nlC: "Acepto recibir la newsletter semanal de Josep Tarrés. He leído la", ctaT: "Este mapa lo he hecho yo. Si quieres una herramienta así para tu club o empresa", ctaA: "Hablemos", privacy: 'Política de privacidad', portfolio: 'Volver al portfolio', top: 'Volver arriba ↑',
     cc: { and: 'Andalucía', ara: 'Aragón', ast: 'Asturias', can: 'Canarias', cnt: 'Cantabria', cyl: 'Castilla y León', clm: 'Castilla-La Mancha', cat: 'Cataluña', val: 'Comunidad Valenciana', ext: 'Extremadura', gal: 'Galicia', bal: 'Islas Baleares', rio: 'La Rioja', mad: 'Madrid', mur: 'Murcia', nav: 'Navarra', pv: 'País Vasco', ceu: 'Ceuta', mel: 'Melilla' },
   },
   en: {
@@ -306,7 +310,7 @@ const I18N = {
     note: 'The route is a simplified version of the OpenStreetMap data: always confirm the route and the trail status with the official source before setting out.',
     aboutT: 'About the data',
     about: "Routes and data from OpenStreetMap © OpenStreetMap contributors, under the ODbL licence (openstreetmap.org/copyright), collected on 21 November 2026. Routes are simplified and lengths are approximate: they are measured on the OpenStreetMap geometry and may differ from the figures given by the federations. This first phase covers the GR trails (long-distance routes), the European long-distance paths (E3, E4, E7, E9…) and the historic ways of European scope; PR and SL trails and greenways will be added later. Trails can be closed or diverted: always check with the FEDME, the regional federation or the responsible authority before heading out.",
-    nlK: "Newsletter", nlT: "Tech and sport, every Sunday", nlP: "One email a week with what I learn building digital products and riding my bike. Unsubscribe whenever you like.", nlLbl: "Your email address", nlGo: "Sign me up", nlC: "I agree to receive Josep Tarrés’s weekly newsletter. I have read the", privacy: 'Privacy policy', portfolio: 'Back to portfolio', top: 'Back to top ↑',
+    nlK: "Newsletter", nlT: "Tech and sport, every Sunday", nlP: "One email a week with what I learn building digital products and riding my bike. Unsubscribe whenever you like.", nlLbl: "Your email address", nlGo: "Sign me up", nlC: "I agree to receive Josep Tarrés’s weekly newsletter. I have read the", ctaT: "I built this map. If you want a tool like this for your club or company", ctaA: "Let's talk", privacy: 'Privacy policy', portfolio: 'Back to portfolio', top: 'Back to top ↑',
     cc: { and: 'Andalusia', ara: 'Aragon', ast: 'Asturias', can: 'Canary Islands', cnt: 'Cantabria', cyl: 'Castile and León', clm: 'Castilla–La Mancha', cat: 'Catalonia', val: 'Valencian Community', ext: 'Extremadura', gal: 'Galicia', bal: 'Balearic Islands', rio: 'La Rioja', mad: 'Madrid', mur: 'Murcia', nav: 'Navarre', pv: 'Basque Country', ceu: 'Ceuta', mel: 'Melilla' },
   },
 };
@@ -551,6 +555,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
       const d = await r.json().catch(() => ({}));
       if (!r.ok || !d.ok) throw new Error(d.error || 'error');
       say(tx('nlOk'), 'ok'); form.reset();
+      try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: 'mapa-grs-newsletter-subscriu', event: true }); } catch (e) { /* sense seguiment */ }
     } catch (e) { say(tx(e.message) && e.message !== 'nlOk' && e.message !== 'nlPh' ? tx(e.message) : tx('other'), 'err'); }
     go.disabled = false;
   });
