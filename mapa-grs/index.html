@@ -73,6 +73,8 @@
   .chip{border:1px solid var(--ink);background:var(--ink);border-radius:999px;padding:6px 12px;font:500 13px Inter,sans-serif;color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .15s,border-color .15s}
   .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}
   .chip b{font-weight:600;color:#B9BEC6}
+  .chip i{display:inline-block;width:16px;height:4px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.75)}
+  @media (max-width:900px){.legend{display:none}}
   .chip[aria-pressed="true"] b{color:#D6E4FF}
   input[type=search]{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:10px;font:14px Inter,sans-serif;background:#fff;color:var(--ink)}
   input[type=search]:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
@@ -421,7 +423,7 @@ const fwrap = document.getElementById('filters'), qEl = document.getElementById(
 const CC_COUNT = {}; SD.forEach((s) => s.cc.forEach((c) => { CC_COUNT[c] = (CC_COUNT[c] || 0) + 1; }));
 function fillSelect(el, opts, value) { el.innerHTML = opts.map(([v, l]) => '<option value="' + esc(v) + '"' + (v === value ? ' selected' : '') + '>' + esc(l) + '</option>').join(''); }
 function buildChips() {
-  fwrap.innerHTML = TYPES.map((tp) => { const n = SD.filter((s) => s.t === tp).length; return n ? '<button type="button" class="chip" data-t="' + tp + '" aria-pressed="' + state.types.has(tp) + '">' + esc(I18N[lang].types[tp]) + ' <b>' + n + '</b></button>' : ''; }).join('');
+  fwrap.innerHTML = TYPES.map((tp) => { const n = SD.filter((s) => s.t === tp).length; return n ? '<button type="button" class="chip" data-t="' + tp + '" aria-pressed="' + state.types.has(tp) + '"><i style="background:' + COL[tp] + '"></i>' + esc(I18N[lang].types[tp]) + ' <b>' + n + '</b></button>' : ''; }).join('');
   fwrap.querySelectorAll('.chip').forEach((b) => b.addEventListener('click', () => { const k = b.dataset.t; if (state.types.has(k)) state.types.delete(k); else state.types.add(k); syncControls(); afterFilter(); }));
 }
 function buildLegend() {
