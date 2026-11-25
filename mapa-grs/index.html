@@ -20,7 +20,17 @@
 <meta name="twitter:image" content="https://joseptarrestoneu.com/mapa-grs/og-image.jpg">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script>/* ?in=ultra: la pàgina /ultra/ ja compta la visita; els mapes incrustats no la dupliquen */try{if(new URLSearchParams(location.search).get("in")==="ultra")window.goatcounter={no_onload:true}}catch(e){}</script>
 <script data-goatcounter="https://joseptarrestoneu.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* Mode «embed»: ?embed=1 (+ &langs=0 per amagar l'idioma, &list=0 per amagar el llistat) */
+const QS = new URLSearchParams(location.search);
+if (QS.get('embed') === '1') {
+  document.documentElement.classList.add('embed');
+  if (QS.get('langs') === '0') document.documentElement.classList.add('nolangs');
+  if (QS.get('list') === '0') document.documentElement.classList.add('nolist');
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -160,6 +170,15 @@
   .nl__cta{margin:12px 2px 0;font-size:13.5px;color:var(--grey)}
   .nl__cta a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
   .nl__cta a:hover{text-decoration:underline}
+  /* mode embed: només mapa, filtres, fitxa i (opcional) llistat */
+  html.embed header{padding:6px 10px 0;min-height:30px}
+  html.embed header>:not(.langs){display:none}
+  html.embed .langs{top:6px;right:10px}
+  html.embed.nolangs header{display:none}
+  html.embed main{max-width:none;padding:8px 10px 12px;gap:14px}
+  html.embed footer,html.embed .sitefoot{display:none}
+  html.embed.nolist #list{display:none}
+  html.embed .list{max-height:520px}
   .embed .nl{display:none}
   @media(max-width:760px){.nl{padding:0 16px}.nl__in{grid-template-columns:1fr;padding:20px}.nl .row{flex-direction:column}}
 </style>

@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapes d'ultraciclisme i de senders — Josep Tarrés</title>
+<meta name="description" content="Els mapes interactius de Josep Tarrés en una sola adreça: les ultres de ciclisme i els senders d'Espanya (GR, vies verdes, camins de Santiago, senders europeus i PR).">
+<link rel="canonical" href="https://joseptarrestoneu.com/ultra/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://joseptarrestoneu.com/ultra/">
+<meta property="og:title" content="Mapes d'ultraciclisme i de senders">
+<meta property="og:description" content="Dos mapes interactius, una sola adreça: les ultres de ciclisme i els senders d'Espanya.">
+<meta property="og:image" content="https://joseptarrestoneu.com/mapa-ultraciclisme/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://joseptarrestoneu.com/mapa-ultraciclisme/og-image.jpg">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<script data-goatcounter="https://joseptarrestoneu.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FAFAFA;--ink:#111315;--grey:#5F6670;--line:#E4E6EA;--accent:#2D6CDF;--card:#FFFFFF}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.45}
+  a{color:var(--accent)}
+  header{position:relative;padding:28px 32px 8px;max-width:1400px;margin:0 auto}
+  .back{display:inline-block;margin-bottom:14px;font-size:12.5px;color:var(--grey);text-decoration:none}
+  .back:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--grey)}
+  .tag i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,40px);line-height:1.1;margin:10px 0 6px;letter-spacing:-.01em}
+  header p{margin:0;color:var(--grey);max-width:640px}
+  .langs{position:absolute;right:32px;top:26px;display:flex;gap:4px}
+  .langs button{font:600 11px Inter,sans-serif;letter-spacing:.04em;padding:4px 9px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--grey);cursor:pointer}
+  .langs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .langs button:hover{border-color:var(--accent)}
+  .tabs{max-width:1400px;margin:18px auto 0;padding:0 32px}
+  .tablist{display:flex;gap:6px;border-bottom:1px solid var(--line)}
+  .tablist button{font:600 14px Inter,sans-serif;padding:10px 16px;border:1px solid transparent;border-bottom:0;border-radius:10px 10px 0 0;background:transparent;color:var(--grey);cursor:pointer;margin-bottom:-1px}
+  .tablist button:hover{color:var(--ink)}
+  .tablist button[aria-selected="true"]{background:var(--card);border-color:var(--line);color:var(--ink);box-shadow:0 1px 0 var(--card)}
+  .tablist button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .tablist .news{margin-left:auto;align-self:center;font-size:13px;color:var(--grey);text-decoration:none;padding:0 4px}
+  .tablist .news:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  .panel{background:var(--card);border:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px;overflow:hidden}
+  .panel[hidden]{display:none}
+  .panel iframe{display:block;width:100%;border:0;height:900px;background:var(--card)}
+  .nl{max-width:1400px;margin:28px auto 0;padding:0 32px}
+  .nl__in{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 28px}
+  .nl .k{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+  .nl .k i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .nl h2{margin:8px 0 6px;font-size:22px;letter-spacing:-.01em}
+  .nl p{margin:0;color:var(--grey);font-size:14px;max-width:60ch}
+  .nl label.l{display:block;font-size:12.5px;color:var(--grey);margin-bottom:6px}
+  .nl .row{display:flex;gap:8px}
+  .nl input[type=email]{flex:1;min-width:0;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  .nl input[type=email]:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .nl button{font:inherit;font-weight:600;padding:10px 18px;border:0;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;white-space:nowrap}
+  .nl button:disabled{opacity:.6;cursor:default}
+  .nl .chk{display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:12.5px;color:var(--grey)}
+  .nl .chk input{margin-top:2px}
+  .nl .chk a{color:inherit;text-decoration:underline}
+  .nl .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+  .nl .msg{min-height:1.2em;margin-top:8px;font-size:13px;color:var(--grey)}
+  .nl .msg.ok{color:#1E7B46}.nl .msg.err{color:#B3261E}
+  .nl__cta{margin:12px 2px 0;font-size:13.5px;color:var(--grey)}
+  .nl__cta a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap}
+  .nl__cta a:hover{text-decoration:underline}
+  .about{max-width:1400px;margin:18px auto 0;padding:0 32px;font-size:12.5px;color:var(--grey)}
+  .about p{margin:0;max-width:80ch}
+  .sitefoot{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem;max-width:1400px;margin:18px auto 0;padding:1.5rem 32px 32px;border-top:1px solid var(--line);font-size:.8rem;color:var(--ink)}
+  .sitefoot p{margin:0}
+  .sitefoot div{display:flex;gap:1.25rem}
+  .sitefoot a{color:inherit;text-decoration:none}
+  .sitefoot a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  .sitefoot>a:last-child{justify-self:end}
+  @media (max-width:900px){header{padding:20px 12px 8px}.langs{right:12px;top:20px}.tabs{padding:0 8px}.nl,.about{padding:0 12px}.sitefoot{grid-template-columns:1fr;gap:.75rem;padding:1.25rem 12px 24px}.sitefoot>a:last-child{justify-self:start}.tablist button{padding:9px 12px;font-size:13px}}
+  @media (max-width:760px){.nl{padding:0 16px}.nl__in{grid-template-columns:1fr;padding:20px}.nl .row{flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="langs" role="group" data-i18n-aria="langAria" aria-label="Idioma">
+    <button type="button" data-lang="ca" aria-pressed="true">CA</button><button type="button" data-lang="es" aria-pressed="false">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <a class="back" href="/">← Josep Tarrés</a><br>
+  <span class="tag"><i></i><span data-i18n="tag">Mapes</span></span>
+  <h1 data-i18n="h1">Dos mapes, una sola adreça</h1>
+  <p data-i18n="intro">Les ultres de ciclisme i els senders d'Espanya, a la mateixa pàgina. Tria la pestanya.</p>
+</header>
+
+<div class="tabs">
+  <div class="tablist" role="tablist" data-i18n-aria="tabsAria" aria-label="Mapes">
+    <button type="button" role="tab" id="tab-ultraciclisme" aria-controls="panel-ultraciclisme" aria-selected="true" data-tab="ultraciclisme" data-i18n="tabUltra">Ultraciclisme</button>
+    <button type="button" role="tab" id="tab-senders" aria-controls="panel-senders" aria-selected="false" tabindex="-1" data-tab="senders" data-i18n="tabSenders">Senders d'Espanya</button>
+    <a class="news" href="/novetats/" data-goatcounter-click="ultra-novetats" data-i18n="news">Novetats →</a>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-ultraciclisme" aria-labelledby="tab-ultraciclisme">
+    <iframe id="f-ultraciclisme" data-src="../mapa-ultraciclisme/" data-title-key="fUltra" title="Mapa de l'ultraciclisme"></iframe>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-senders" aria-labelledby="tab-senders" hidden>
+    <iframe id="f-senders" data-src="../mapa-grs/" data-title-key="fSenders" title="Mapa de senders d'Espanya"></iframe>
+  </div>
+</div>
+
+<section class="nl" id="newsletter" aria-labelledby="nl-t">
+  <div class="nl__in">
+    <div>
+      <span class="k"><i></i><span data-i18n="nlK">Newsletter</span></span>
+      <h2 id="nl-t" data-i18n="nlT"></h2>
+      <p data-i18n="nlP"></p>
+    </div>
+    <form id="nl-form" novalidate data-api="https://api.joseptarrestoneu.com">
+      <label class="l" for="nl-email" data-i18n="nlLbl"></label>
+      <div class="row">
+        <input type="email" id="nl-email" name="email" autocomplete="email" required>
+        <input type="text" id="nl-hp" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button id="nl-go" type="submit" data-i18n="nlGo"></button>
+      </div>
+      <label class="chk"><input type="checkbox" id="nl-consent" name="consent"><span><span data-i18n="nlC"></span> <a href="/privadesa.html" target="_blank" rel="noopener" data-i18n="privacy">Política de privadesa</a>.</span></label>
+      <p class="msg" id="nl-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <p class="nl__cta"><span data-i18n="ctaT"></span> → <a href="/#contact" data-goatcounter-click="ultra-cta-serveis" data-i18n="ctaA"></a></p>
+</section>
+
+<div class="about"><p><span data-i18n="about"></span> <a href="/mapa-ultraciclisme/" data-i18n="fullU"></a> · <a href="/mapa-grs/" data-i18n="fullS"></a></p></div>
+
+<footer class="sitefoot">
+  <p>© <span id="year"></span> Josep Tarrés · <a href="/privadesa.html" data-i18n="privacy2">Política de privadesa</a> · <a href="/" data-i18n="portfolio">Tornar al portfoli</a></p>
+  <div>
+    <a href="https://www.linkedin.com/in/josep-tarr%C3%A9s-toneu-63003040/" rel="noreferrer" data-goatcounter-click="ultra-social-linkedin">LinkedIn</a>
+    <a href="https://www.instagram.com/joseptarres/" target="_blank" rel="noopener" data-goatcounter-click="ultra-social-instagram">Instagram</a>
+  </div>
+  <a href="#" id="totop" data-i18n="top">Tornar a dalt ↑</a>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  const I18N = {
+    ca: { langAria: 'Idioma', tabsAria: 'Mapes', tag: 'Mapes', h1: 'Dos mapes, una sola adreça', intro: "Les ultres de ciclisme i els senders d'Espanya, a la mateixa pàgina. Tria la pestanya.", tabUltra: 'Ultraciclisme', tabSenders: "Senders d'Espanya", news: 'Novetats →', fUltra: "Mapa de l'ultraciclisme", fSenders: "Mapa de senders d'Espanya",
+      nlK: 'Newsletter', nlT: 'Tecnologia i esport, cada diumenge', nlP: 'Un correu a la setmana amb el que vaig aprenent construint productes digitals i fent quilòmetres amb la bici. Amb baixa quan vulguis.', nlLbl: 'El teu correu electrònic', nlGo: "Apunta-m'hi", nlC: 'Accepto rebre la newsletter setmanal de Josep Tarrés. He llegit la', privacy: 'Política de privadesa', privacy2: 'Política de privadesa',
+      ctaT: "Aquests mapes els he fet jo. Si vols una eina així per al teu club o empresa", ctaA: 'Parlem', portfolio: 'Tornar al portfoli', top: 'Tornar a dalt ↑',
+      about: "Dades dels mapes: © col·laboradors d'OpenStreetMap (llicència ODbL) i fonts pròpies de cada mapa. Pantalla completa:", fullU: 'Ultraciclisme', fullS: "Senders d'Espanya" },
+    es: { langAria: 'Idioma', tabsAria: 'Mapas', tag: 'Mapas', h1: 'Dos mapas, una sola dirección', intro: 'Las ultras de ciclismo y los senderos de España, en la misma página. Elige la pestaña.', tabUltra: 'Ultraciclismo', tabSenders: 'Senderos de España', news: 'Novedades →', fUltra: 'Mapa del ultraciclismo', fSenders: 'Mapa de senderos de España',
+      nlK: 'Newsletter', nlT: 'Tecnología y deporte, cada domingo', nlP: 'Un correo a la semana con lo que voy aprendiendo construyendo productos digitales y haciendo kilómetros en bici. Con baja cuando quieras.', nlLbl: 'Tu correo electrónico', nlGo: 'Apúntame', nlC: 'Acepto recibir la newsletter semanal de Josep Tarrés. He leído la', privacy: 'Política de privacidad', privacy2: 'Política de privacidad',
+      ctaT: 'Estos mapas los he hecho yo. Si quieres una herramienta así para tu club o empresa', ctaA: 'Hablemos', portfolio: 'Volver al portfolio', top: 'Volver arriba ↑',
+      about: 'Datos de los mapas: © colaboradores de OpenStreetMap (licencia ODbL) y fuentes propias de cada mapa. Pantalla completa:', fullU: 'Ultraciclismo', fullS: 'Senderos de España' },
+    en: { langAria: 'Language', tabsAria: 'Maps', tag: 'Maps', h1: 'Two maps, one address', intro: 'Cycling ultras and Spain’s hiking trails, on the same page. Pick a tab.', tabUltra: 'Ultracycling', tabSenders: 'Trails of Spain', news: 'What’s new →', fUltra: 'Ultracycling map', fSenders: 'Map of Spain’s trails',
+      nlK: 'Newsletter', nlT: 'Tech and sport, every Sunday', nlP: 'One email a week with what I learn building digital products and riding my bike. Unsubscribe whenever you like.', nlLbl: 'Your email address', nlGo: 'Sign me up', nlC: 'I agree to receive Josep Tarrés’s weekly newsletter. I have read the', privacy: 'Privacy policy', privacy2: 'Privacy policy',
+      ctaT: 'I built these maps. If you want a tool like this for your club or company', ctaA: "Let's talk", portfolio: 'Back to the portfolio', top: 'Back to top ↑',
+      about: 'Map data: © OpenStreetMap contributors (ODbL licence) and each map’s own sources. Full screen:', fullU: 'Ultracycling', fullS: 'Trails of Spain' },
+  };
+  const NLX = {
+    ca: { nlPh: 'el-teu@correu.cat', nlSend: 'Enviant…', nlOk: 'Gairebé! T’he enviat un correu: obre’l i confirma la subscripció.', email_invalid: 'Escriu una adreça de correu vàlida.', consent_required: 'Cal acceptar la newsletter i la política de privadesa.', mail_failed: 'No hem pogut enviar el correu de confirmació. Torna-ho a provar d’aquí a una estona.', weekly_disabled: 'La newsletter no està disponible ara mateix.', other: 'No ho hem pogut fer. Torna-ho a provar d’aquí a una estona.' },
+    es: { nlPh: 'tu@correo.es', nlSend: 'Enviando…', nlOk: '¡Casi! Te he enviado un correo: ábrelo y confirma la suscripción.', email_invalid: 'Escribe una dirección de correo válida.', consent_required: 'Hay que aceptar la newsletter y la política de privacidad.', mail_failed: 'No hemos podido enviar el correo de confirmación. Vuelve a intentarlo en un rato.', weekly_disabled: 'La newsletter no está disponible ahora mismo.', other: 'No lo hemos podido hacer. Vuelve a intentarlo en un rato.' },
+    en: { nlPh: 'you@email.com', nlSend: 'Sending…', nlOk: 'Almost there! I’ve sent you an email: open it and confirm your subscription.', email_invalid: 'Enter a valid email address.', consent_required: 'You need to accept the newsletter and the privacy policy.', mail_failed: 'We couldn’t send the confirmation email. Please try again in a moment.', weekly_disabled: 'The newsletter isn’t available right now.', other: 'We couldn’t do it. Please try again in a moment.' },
+  };
+  const TABS = ['ultraciclisme', 'senders'];
+  const count = (path) => { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, event: true }); } catch (e) { /* sense seguiment */ } };
+
+  /* ---------- idioma ---------- */
+  const detect = () => { const n = (navigator.language || 'ca').toLowerCase(); return n.startsWith('ca') ? 'ca' : n.startsWith('es') ? 'es' : 'en'; };
+  let lang = detect();
+  try { const s = localStorage.getItem('mapes-lang'); if (I18N[s]) lang = s; } catch (e) { /* sense emmagatzematge */ }
+  const tx = (k) => I18N[lang][k];
+
+  function frames() { return TABS.map((t) => document.getElementById('f-' + t)); }
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach((el) => { const v = I18N[lang][el.dataset.i18n]; if (v != null) el.textContent = v; });
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => { el.setAttribute('aria-label', I18N[lang][el.dataset.i18nAria]); });
+    document.querySelectorAll('.langs button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    frames().forEach((f) => { f.title = tx(f.dataset.titleKey); });
+    const em = document.getElementById('nl-email'); if (em) em.placeholder = NLX[lang].nlPh;
+    /* idioma als mapes ja carregats (mateix origen: simulem el clic al seu selector) */
+    frames().forEach((f) => { try { const b = f.contentDocument && f.contentDocument.querySelector('.langs button[data-lang="' + lang + '"]'); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); } catch (e) { /* no accessible */ } });
+  }
+
+  /* ---------- pestanyes ---------- */
+  const tabBtn = (t) => document.getElementById('tab-' + t);
+  function sizeFrame(f) { /* mateix origen: l'alçada segueix el contingut del mapa */
+    try {
+      const doc = f.contentDocument; if (!doc || !doc.documentElement) return;
+      const set = () => { const h = Math.ceil(doc.documentElement.scrollHeight); if (h > 200) f.style.height = h + 'px'; };
+      set();
+      if (f._ro) f._ro.disconnect();
+      if (window.ResizeObserver) { f._ro = new ResizeObserver(set); f._ro.observe(doc.documentElement); if (doc.body) f._ro.observe(doc.body); }
+    } catch (e) { /* si no és accessible, es queda l'alçada per defecte */ }
+  }
+  function load(t) {
+    const f = document.getElementById('f-' + t); if (!f || f.getAttribute('src')) return;
+    f.addEventListener('load', () => { sizeFrame(f); applyLang(); });
+    f.setAttribute('src', f.dataset.src + '?embed=1&langs=0&in=ultra#lang=' + lang);
+  }
+  function show(t, fromUser) {
+    if (!TABS.includes(t)) t = TABS[0];
+    TABS.forEach((x) => {
+      const on = x === t; const b = tabBtn(x);
+      b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1;
+      document.getElementById('panel-' + x).hidden = !on;
+    });
+    load(t);
+    if (fromUser) { count('ultra-pestanya-' + t); try { history.replaceState(null, '', location.pathname + location.search + '#' + t); } catch (e) { /* sense historial */ } }
+  }
+  document.querySelectorAll('.tablist [role="tab"]').forEach((b) => {
+    b.addEventListener('click', () => show(b.dataset.tab, true));
+    b.addEventListener('keydown', (ev) => {
+      const i = TABS.indexOf(b.dataset.tab); let n = -1;
+      if (ev.key === 'ArrowRight') n = (i + 1) % TABS.length; else if (ev.key === 'ArrowLeft') n = (i + TABS.length - 1) % TABS.length; else if (ev.key === 'Home') n = 0; else if (ev.key === 'End') n = TABS.length - 1;
+      if (n >= 0) { ev.preventDefault(); show(TABS[n], true); tabBtn(TABS[n]).focus(); }
+    });
+  });
+  window.addEventListener('hashchange', () => show(location.hash.slice(1), false));
+  document.querySelectorAll('.langs button').forEach((b) => b.addEventListener('click', () => { lang = b.dataset.lang; try { localStorage.setItem('mapes-lang', lang); } catch (e) { /* sense emmagatzematge */ } applyLang(); }));
+  document.getElementById('totop').addEventListener('click', (ev) => { ev.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- newsletter (mateix backend que el portfoli i els mapes) ---------- */
+  (function () {
+    const form = document.getElementById('nl-form'); if (!form) return;
+    const api = form.dataset.api.replace(/\/$/, ''), msg = document.getElementById('nl-msg'), go = document.getElementById('nl-go'), em = document.getElementById('nl-email');
+    const say = (s, kind) => { msg.textContent = s; msg.className = 'msg' + (kind ? ' ' + kind : ''); };
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = em.value.trim(); const N = NLX[lang];
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return say(N.email_invalid, 'err');
+      if (!document.getElementById('nl-consent').checked) return say(N.consent_required, 'err');
+      go.disabled = true; say(N.nlSend);
+      try {
+        const r = await fetch(api + '/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, consent: true, website: document.getElementById('nl-hp').value }) });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok || !d.ok) throw new Error(d.error || 'error');
+        say(N.nlOk, 'ok'); form.reset(); count('ultra-newsletter-subscriu');
+      } catch (e) { say(N[e.message] && e.message !== 'nlOk' && e.message !== 'nlPh' ? N[e.message] : N.other, 'err'); }
+      go.disabled = false;
+    });
+  })();
+
+  applyLang();
+  show(location.hash.slice(1), false);
+})();
+</script>
+</body>
+</html>
